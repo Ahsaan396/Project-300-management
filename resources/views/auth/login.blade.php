@@ -139,7 +139,7 @@ margin-left: 4px;
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
 
-                        <x-input id="email" class="form-control" placeholder="Email" type="email" name="email" :value="old('email')" required autofocus />
+                        <x-input id="email" class="form-control" placeholder="Email Address" type="email" name="email" :value="old('email')" required autofocus />
 						
 					</div>
 
