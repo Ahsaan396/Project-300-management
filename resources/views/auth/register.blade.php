@@ -9,28 +9,42 @@
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
+<!--Fontawesome CDN-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
 <style type="text/css">
+
+html,body{
+background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+font-family: 'Numans', sans-serif;
+}
 
 .divider-text {
     position: relative;
     text-align: center;
     margin-top: 15px;
     margin-bottom: 15px;
+    /* font-family: 'Numans', sans-serif; */
 }
 .divider-text span {
     padding: 7px;
     font-size: 12px;
     position: relative;   
     z-index: 2;
+    /* font-family: 'Numans', sans-serif; */
 }
 .divider-text:after {
     content: "";
     position: absolute;
     width: 100%;
-    border-bottom: 1px solid #ddd;
-    top: 55%;
-    left: 0;
-    z-index: 1;
+    border-bottom: 1px solid #ddd; 
+     top: 55%;
+    left: 0; 
+    z-index: 1; 
+    /* font-family: 'Numans', sans-serif; */
 }
 
 </style>
@@ -41,13 +55,13 @@
    
     <div class="container my-5">
 
-        <div class="card bg-light">
+        <div>
         <article class="card-body mx-auto" style="max-width: 400px;">
 
       <!-- Validation Errors -->
       <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-            <h4 class="card-title mt-3 text-center">Create Account</h4>
+            <h4 class="text-light mt-3 text-center">Create Account</h4>
 
             <form method="POST" action="{{ route('register') }}">
             @csrf
@@ -69,7 +83,7 @@
                 <x-input id="email" class="form-control" placeholder="Email address" type="email" name="email" :value="old('email')" required />
             </div>     
    
-            <!-- form-group end.// -->
+            <!-- Create password -->
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
@@ -82,7 +96,7 @@
             </div> 
             
             
-            <!-- form-group// -->
+            <!-- Confirm Password -->
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
@@ -94,11 +108,11 @@
             </div> 
             
             
-            <!-- form-group// -->                                      
+            <!-- Submit -->                                      
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
             </div> <!-- form-group// -->      
-            <p class="text-center">Have an account? <a href="{{ route('login') }}">Log In</a> </p>                                                                 
+            <p class="text-light text-center">Have an account? <a href="{{ route('login') }}" class="text-warning">Log In</a> </p>                                                                 
         </form>
         </article>
         </div> <!-- card.// -->
