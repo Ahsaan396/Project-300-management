@@ -12,6 +12,12 @@
 <!--Fontawesome CDN-->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
+<!--Extra link-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <style type="text/css">
 
 html,body{
@@ -59,12 +65,21 @@ font-family: 'Numans', sans-serif;
         <article class="card-body mx-auto" style="max-width: 400px;">
 
       <!-- Validation Errors -->
-      <x-auth-validation-errors class="mb-4" :errors="$errors" />
+      {{-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
 
             <h4 class="text-light mt-3 text-center">Create Account</h4>
 
             <form method="POST" action="{{ route('register') }}">
             @csrf
+
+            @if($errors->any())
+			  <div class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				@foreach ($errors->all() as $error)
+				<strong>{{$error}}</strong><br>
+				@endforeach
+			</div>
+			@endif
 
             <div class="form-group input-group">
                 <div class="input-group-prepend">

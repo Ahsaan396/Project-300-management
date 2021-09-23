@@ -6,12 +6,19 @@
    
 	<!--Bootsrap 4 CDN-->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	
     
     <!--Fontawesome CDN-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 	<!--Custom styles-->
 	<link rel="stylesheet" type="text/css" href="styles.css">
+
+	<!--Extra link-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <!--CSS-->
 <style type="text/css">
@@ -128,10 +135,19 @@ margin-left: 4px;
           <x-auth-session-status class="mb-4" :status="session('status')" />
   
           <!-- Validation Errors -->
-          <x-auth-validation-errors class="mb-4" :errors="$errors" />
+          {{-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
                 
-				<form method="POST" action="{{ route('login') }}" >
+			<form method="POST" action="{{ route('login') }}" >
                     @csrf
+
+			  @if($errors->any())
+			  <div class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				@foreach ($errors->all() as $error)
+				<strong>{{$error}}</strong><br>
+				@endforeach
+			</div>
+			@endif			
 
                      <!-- Email Address -->
 					<div class="input-group form-group">
