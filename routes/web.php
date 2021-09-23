@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\FrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
+// Route::get('/home',[FrontendController::class,'home']);
+
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('frontend.layouts.dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
