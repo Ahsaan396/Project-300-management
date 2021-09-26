@@ -49,8 +49,33 @@
 
                 <div class="card-body">
                   <div class="tab-content p-0">
-                    <!-- Morris chart - Sales -->
-                    HEy
+
+                    <!-- List -->
+                    <table id="example1" class="table table-bordered table-striped">
+
+                      <thead>
+
+                        <tr>
+                        <th>SL.</th>  
+                        <th>Name</th>  
+                        <th>Email</th>  
+                        </tr>
+
+                      </thead>
+
+                      <tbody>
+
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+
+                      </tbody>
+
+                    </table>
+
+
                     <div class="chart tab-pane active" id="revenue-chart"
                          style="position: relative; height: 300px;">
                         <canvas id="revenue-chart-canvas" height="300" style="height: 300px;">hey</canvas>
