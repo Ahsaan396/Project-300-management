@@ -29,6 +29,7 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 
 @include('frontend.layouts.navbar')
+@include('frontend.layouts.sidebar')
 
 @yield('content')
 

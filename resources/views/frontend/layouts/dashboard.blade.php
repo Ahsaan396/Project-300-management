@@ -1,8 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
 
-@include('frontend.layouts.sidebar')
-
 <div class="wrapper">
 
    <!-- Content Wrapper. Contains page content -->
@@ -25,7 +23,7 @@
       <section class="content">
         <div class="container-fluid">
           <!-- Small boxes (Stat box) -->
-          <div class="row">
+          {{-- <div class="row">
             <div class="col-lg-3 col-6">
               <!-- small box -->
               <div class="small-box bg-info">
@@ -86,29 +84,29 @@
               </div>
             </div>
             <!-- ./col -->
-          </div>
+          </div> --}}
 
 
           <!-- /.row -->
           <!-- Main row -->
           <div class="row">
             <!-- Left col -->
-            <section class="col-lg-7 connectedSortable">
+            <section class="col-md-12 connectedSortable">
               <!-- Custom tabs (Charts with tabs)-->
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">
                     <i class="fas fa-chart-pie mr-1"></i>
-                    Sales
+                    Admin Activity
                   </h3>
                   <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
-                      <li class="nav-item">
+                      {{-- <li class="nav-item">
                         <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                      </li>
+                      </li> --}}
                     </ul>
                   </div>
 

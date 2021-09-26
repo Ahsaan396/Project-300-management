@@ -20,8 +20,7 @@
             <a href="#" class="d-block">{{ Auth::user()->name }}</a>
           </div>
         </div>
-  
-  
+
         <!-- SidebarSearch Form -->
         {{-- <div class="form-inline">
           <div class="input-group" data-widget="sidebar-search">
@@ -68,10 +67,9 @@
                   </a>
                 </li>
               </ul>
-  
-  
             </li>
   
+            
             <li class="nav-item">
               <a href="#" class="nav-link">
                 {{-- <i class="nav-icon fas fa-copy"></i> --}}

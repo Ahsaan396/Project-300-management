@@ -1,9 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
 
-@include('frontend.layouts.sidebar')
-
-
 <div class="wrapper">
 
    <!-- Content Wrapper. Contains page content -->
