@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function home(){
-        return view('frontend.layouts.dashboard');
-    }
+    // public function addStudent(){
+    //     return view('frontend.layouts.addStudent');
+    // }
 }
