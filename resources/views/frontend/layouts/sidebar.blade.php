@@ -52,7 +52,7 @@
   
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('supervisorList')}}" class="nav-link">
+                  <a href="{{route('supervisorPanel.supervisorList')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Supervisor List</p>
                   </a>
@@ -61,7 +61,7 @@
   
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{route('supervisorPanel.addStudent')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Add Student</p>
                   </a>

@@ -20,7 +20,16 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/supervisorList', [BackendController::class,'supervisorList'])->name('supervisorList');
+Route::prefix('supervisorPanel')->group(function(){
+    Route::get('/supervisorList', [BackendController::class,'supervisorList'])->name('supervisorPanel.supervisorList');
+    Route::get('/register', [BackendController::class,'register'])->name('supervisorPanel.register');
+
+    Route::get('/store', [BackendController::class,'store'])->name('supervisorPanel.store');
+
+    Route::get('/addStudent', [BackendController::class,'addStudent'])->name('supervisorPanel.addStudent');
+
+    Route::get('/add',[BackendController::class,'add'])->name('supervisorPanel.add');
+});
 
 Route::get('/dashboard', function () {
     return view('frontend.layouts.dashboard');
