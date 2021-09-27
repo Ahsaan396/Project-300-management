@@ -10,7 +10,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Manage Supervisor</h1>
+              <h1 class="m-0">Manage Student</h1>
             </div><!-- /.col -->
            <!-- /.col -->
           </div><!-- /.row -->
@@ -33,18 +33,19 @@
                 <div class="card-header">
                   <h3 class="card-title">
                     {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    Supervisor List
+                    <i class="fas fa-user-graduate"></i>
+                    Student List
                   </h3>
 
                   <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                       <li class="nav-item">
-                       <a class="btn btn-success float-right btn-sm" href="{{route('supervisorPanel.register')}}"><i class="fa fa-plus-circle">
-                          Register</i></a>
+                       <a class="btn btn-success float-right btn-sm" href="{{route('supervisorPanel.add')}}"><i class="fa fa-plus-circle">
+                          Add Student</i></a>
                       </li>
                     </ul>
                   </div>
+
                 </div>
                 
                 <!-- /.card-header -->
@@ -58,20 +59,18 @@
 
                         <tr>
                         <th>SL.</th>  
-                        <th>Role</th>  
                         <th>Name</th>  
-                        <th>Email</th> 
-                        <th>Action</th> 
+                        <th>Email</th>  
+                        <th>Action</th>  
                         </tr>
 
                       </thead>
 
                       <tbody>
                         @foreach ($allData as $key => $user)
-
+                        
                         <tr>
                           <td>{{$key + 1}}</td>
-                          <td>{{$user->usertype}}</td>
                           <td>{{$user->name}}</td>
                           <td>{{$user->email}}</td>
                           <td>
@@ -90,7 +89,7 @@
 
                     <div class="chart tab-pane active" id="revenue-chart"
                          style="position: relative; height: 300px;">
-                        <canvas id="revenue-chart-canvas" height="300" style="height: 300px;">hey</canvas>
+                        <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
                      </div>
                      
                     <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
