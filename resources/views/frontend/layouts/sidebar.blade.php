@@ -61,9 +61,9 @@
   
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('supervisorPanel.addStudent')}}" class="nav-link">
+                  <a href="{{route('supervisorPanel.studentList')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Add Student</p>
+                    <p>Student List</p>
                   </a>
                 </li>
               </ul>

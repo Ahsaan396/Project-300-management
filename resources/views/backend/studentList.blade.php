@@ -40,7 +40,7 @@
                   <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                       <li class="nav-item">
-                       <a class="btn btn-success float-right btn-sm" href="{{route('supervisorPanel.add')}}"><i class="fa fa-plus-circle">
+                       <a class="btn btn-success float-right btn-sm" href="{{route('supervisorPanel.addStudent')}}"><i class="fa fa-plus-circle">
                           Add Student</i></a>
                       </li>
                     </ul>
@@ -60,7 +60,10 @@
                         <tr>
                         <th>SL.</th>  
                         <th>Name</th>  
-                        <th>Email</th>  
+                        <th>ID</th>  
+                        <th>Batch</th>  
+                        <th>Project Name</th>  
+                        <th>Phone Number</th>  
                         <th>Action</th>  
                         </tr>
 
@@ -72,7 +75,10 @@
                         <tr>
                           <td>{{$key + 1}}</td>
                           <td>{{$user->name}}</td>
-                          <td>{{$user->email}}</td>
+                          <td>{{$user->student_id}}</td>
+                          <td>{{$user->batch}}</td>
+                          <td>{{$user->pname}}</td>
+                          <td>{{$user->number}}</td>
                           <td>
                             <a title="Edit" class="btn btn-sm btn-primary" href=""><i class="fa fa-edit"></i></a>
 

@@ -40,7 +40,7 @@
                   <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                       <li class="nav-item">
-                       <a class="btn btn-success float-right btn-sm" href="{{route('supervisorPanel.addStudent')}}"><i class="fa fa-list">
+                       <a class="btn btn-success float-right btn-sm" href="{{route('supervisorPanel.studentList')}}"><i class="fa fa-list">
                           Show Student List</i></a>
                       </li>
                     </ul>
@@ -53,37 +53,7 @@
                 <div class="card-body">
                   <div class="tab-content p-0">
 
-                    <!-- List -->
-                    {{-- <table id="example1" class="table table-bordered table-striped">
-                      <thead>
-
-                        <tr>
-                        <th>SL.</th>  
-                        <th>Name</th>  
-                        <th>Email</th>  
-                        <th>Action</th>  
-                        </tr>
-
-                      </thead>
-
-                      <tbody>
-                        @foreach ($allData as $key => $user)
-                        
-                        <tr>
-                          <td>{{$key + 1}}</td>
-                          <td>{{$user->name}}</td>
-                          <td>{{$user->email}}</td>
-                          <td>
-                                <a href=""><i class="fa fa-edit"></i></a>
-                          </td>
-                        </tr>
-
-                        @endforeach
-
-                      </tbody>
-
-                    </table> --}}
-                    <form action="" method="POST" id="myForm">
+                    <form action="{{route('supervisorPanel.storeStudent')}}" method="POST" id="myForm">
                           {{-- {{ csrf_field() }} --}}
                           @csrf
                         {{-- <div class="card-body"> --}}
@@ -94,7 +64,7 @@
                           
                           <div class="form-group">
                             <label for="exampleInputPassword1">ID</label>
-                            <input type="text" name="id" class="form-control" id="exampleInputPassword1" placeholder="ID">
+                            <input type="text" name="student_id" class="form-control" id="exampleInputPassword1" placeholder="ID">
                           </div>
 
                           <div class="form-group">
@@ -108,13 +78,8 @@
                             </div>
 
                             <div class="form-group">
-                              <label for="exampleInputEmail1">Email address</label>
-                              <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                            </div>
-
-                            <div class="form-group">
                               <label for="exampleInputEmail1">Phone Number</label>
-                              <input type="tel" name="number" class="form-control" id="exampleInputEmail1" placeholder="01620-761863" pattern="01620-761863">
+                              <input type="number" name="number" class="form-control" id="exampleInputEmail1" placeholder="01620-761863" pattern="01620761863">
                             </div>
 
                             {{-- <div class="form-group">
