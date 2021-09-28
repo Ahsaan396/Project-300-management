@@ -45,7 +45,8 @@ class BackendController extends Controller
             'name' => 'required',
             'batch' => 'required',
             'pname' =>'required',
-            'number' => 'required'
+            'number' => 'required',
+
         ]);
         $data = new Student();
         $data->name = $request->name;
@@ -53,7 +54,13 @@ class BackendController extends Controller
         $data->batch = $request->batch;
         $data->pname = $request->pname;
         $data->number = $request->number;
+        $data->acceptance = $request->acceptance;
         $data->save();
         return redirect()->route('student.addStudent');
+    }
+
+    public function acceptedStudent(){
+        $data['allData'] = Student::all();
+        return view('backend.acceptedStudent',$data);
     }
 }

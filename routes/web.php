@@ -34,7 +34,10 @@ Route::prefix('student')->group(function(){
     Route::get('/studentList', [BackendController::class,'studentList'])->name('student.studentList');
 
     Route::get('/addStudent',[BackendController::class,'addStudent'])->name('student.addStudent');
+
     Route::post('/storeStudent',[BackendController::class,'storeStudent'])->name('student.storeStudent');
+
+    Route::get('/acceptedStudent',[BackendController::class,'acceptedStudent'])->name('student.acceptedStudent');
 });
 
 Route::get('/dashboard', function () {

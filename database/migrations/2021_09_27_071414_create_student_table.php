@@ -17,9 +17,10 @@ class CreateStudentTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('student_id')->unique();
-            $table->timestamp('batch');
+            $table->string('batch');
             $table->string('pname');
             $table->string('number')->nullable();
+            $table->string('acceptance')->nullable();
             $table->timestamps();
         });
     }

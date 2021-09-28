@@ -34,17 +34,17 @@
                   <h3 class="card-title">
                     {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
                     <i class="fas fa-user-graduate"></i>
-                    Student List
+                    Accepted Students
                   </h3>
 
-                  <div class="card-tools">
+                  {{-- <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                       <li class="nav-item">
                        <a class="btn btn-success float-right btn-sm" href="{{route('student.addStudent')}}"><i class="fa fa-plus-circle">
                           Add Student</i></a>
                       </li>
                     </ul>
-                  </div>
+                  </div> --}}
 
                 </div>
                 
@@ -64,8 +64,8 @@
                         <th>Batch</th>  
                         <th>Project Name</th>  
                         <th>Phone Number</th>  
-                        <th>Action</th>
-                        <th>Acceptance</th> 
+                        <th>Mark</th>
+                        
                         </tr>
 
                       </thead>
@@ -81,19 +81,10 @@
                           <td>{{$user->pname}}</td>
                           <td>{{$user->number}}</td>
                           <td>
-                            <a title="Edit" class="btn btn-sm btn-primary" href=""><i class="fa fa-edit"></i></a>
-
-                            <a title="Delete" class="btn btn-sm btn-danger" href=""><i class="fa fa-trash"></i></a>
-
+                            <a title="Mark" class="btn btn-sm btn-primary" href=""><i class="fas fa-sign-out-alt"></i></a>
                           </td>
-                          <td>
-                            <a title="Accepted" class="btn btn-sm btn-success" href=""><i class="fa fa-check-circle"></i></a>
-
-                            <a title="Rejected" class="btn btn-sm btn-danger" href=""><i class="fa fa-ban"></i></a>
-                          </td>
-
+                        
                         </tr>
-
                         @endforeach
 
                       </tbody>
