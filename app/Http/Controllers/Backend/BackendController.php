@@ -40,6 +40,13 @@ class BackendController extends Controller
     }
 
     public function storeStudent(Request $request){
+        $request->validate([
+            'student_id' =>'required',
+            'name' => 'required',
+            'batch' => 'required',
+            'pname' =>'required',
+            'number' => 'required'
+        ]);
         $data = new Student();
         $data->name = $request->name;
         $data->student_id = $request->student_id;
@@ -47,6 +54,6 @@ class BackendController extends Controller
         $data->pname = $request->pname;
         $data->number = $request->number;
         $data->save();
-        return redirect()->route('supervisorPanel.addStudent');
+        return redirect()->route('student.addStudent');
     }
 }
