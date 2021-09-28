@@ -22,15 +22,19 @@ Route::get('/', function () {
 
 Route::prefix('supervisorPanel')->group(function(){
     Route::get('/supervisorList', [BackendController::class,'supervisorList'])->name('supervisorPanel.supervisorList');
+
     Route::get('/register', [BackendController::class,'register'])->name('supervisorPanel.register');
 
     Route::post('/store', [BackendController::class,'store'])->name('supervisorPanel.store');
 
-    Route::get('/studentList', [BackendController::class,'studentList'])->name('supervisorPanel.studentList');
+    
+});
 
-    Route::get('/addStudent',[BackendController::class,'addStudent'])->name('supervisorPanel.addStudent');
+Route::prefix('student')->group(function(){
+    Route::get('/studentList', [BackendController::class,'studentList'])->name('student.studentList');
 
-    Route::post('/storeStudent',[BackendController::class,'storeStudent'])->name('supervisorPanel.storeStudent');
+    Route::get('/addStudent',[BackendController::class,'addStudent'])->name('student.addStudent');
+    Route::post('/storeStudent',[BackendController::class,'storeStudent'])->name('student.storeStudent');
 });
 
 Route::get('/dashboard', function () {

@@ -40,7 +40,7 @@
                   <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                       <li class="nav-item">
-                       <a class="btn btn-success float-right btn-sm" href="{{route('supervisorPanel.studentList')}}"><i class="fa fa-list">
+                       <a class="btn btn-success float-right btn-sm" href="{{route('student.studentList')}}"><i class="fa fa-list">
                           Show Student List</i></a>
                       </li>
                     </ul>
@@ -53,7 +53,7 @@
                 <div class="card-body">
                   <div class="tab-content p-0">
 
-                    <form action="{{route('supervisorPanel.storeStudent')}}" method="POST" id="myForm">
+                    <form action="{{route('student.storeStudent')}}" method="POST" id="myForm">
                           {{-- {{ csrf_field() }} --}}
                           @csrf
                         {{-- <div class="card-body"> --}}
@@ -79,28 +79,9 @@
 
                             <div class="form-group">
                               <label for="exampleInputEmail1">Phone Number</label>
-                              <input type="number" name="number" class="form-control" id="exampleInputEmail1" placeholder="01620-761863" pattern="01620761863">
+                              <input type="number" name="number" class="form-control" id="exampleInputEmail1" placeholder="01620761863" pattern="01620761863">
                             </div>
 
-                            {{-- <div class="form-group">
-                              <label for="exampleInputEmail1">Email address</label>
-                              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                            </div> --}}
-
-                          {{-- <div class="form-group">
-                            <label for="exampleInputFile">File input</label>
-                            <div class="input-group">
-                              <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                              </div>
-
-                              <div class="input-group-append">
-                                <span class="input-group-text">Upload</span>
-                              </div>
-                            </div>
-                          </div> --}}
-                       
                         {{-- </div> --}}
                         <!-- /.card-body -->
         

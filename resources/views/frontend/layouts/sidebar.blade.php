@@ -58,15 +58,6 @@
                   </a>
                 </li>
               </ul>
-  
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route('supervisorPanel.studentList')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Student List</p>
-                  </a>
-                </li>
-              </ul>
             </li>
   
             
@@ -82,9 +73,9 @@
   
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{route('student.studentList')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>All Student</p>
+                    <p>Student List</p>
                   </a>
                 </li>
               </ul>
