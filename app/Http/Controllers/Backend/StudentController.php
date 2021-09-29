@@ -21,7 +21,7 @@ class StudentController extends Controller
         return view('backend.subPage.addStudent',['data'=>$data]);
     }
 
-    public function storeStudent(Request $request, $id){
+    public function storeStudent(Request $request){
         $request->validate([
             'student_id' =>'required',
             'name' => 'required',
