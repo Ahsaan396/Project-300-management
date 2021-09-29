@@ -34,7 +34,7 @@
                   <h3 class="card-title">
                     {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
                     <i class="fas fa-user-graduate"></i>
-                    Register Supervisor
+                    Edit Supervisor
                   </h3>
 
                   <div class="card-tools">
@@ -50,7 +50,7 @@
                 
                 <!-- /.card-header -->
 
-                <form action="{{route('supervisorPanel.store')}}" method="POST" id="myForm">
+                <form action="{{route('supervisorPanel.updateSupervisor',$editData->id)}}" method="POST" id="myForm">
                       {{-- {{ csrf_field() }} --}}
                       @csrf
                   <div class="card-body">
@@ -59,40 +59,31 @@
                         <label for="exampleInputEmail1">Role</label>
                         <select class="form-select" name="usertype" aria-label="Default select example">
                               <option selected>Select Role</option>
-                              <option value="Admin">Admin</option>
-                              <option value="Supervisor">Supervisor</option>
+                              <option value="Admin" {{($editData->usertype=='Admin')?'selected':''}}>Admin</option>
+                              <option value="Supervisor" {{($editData->usertype=='Supervisor')?'selected':''}}>Supervisor</option>
                         </select>
                         </div>
 
                         <div class="form-group col-md-6">
                               <label for="exampleInputEmail1">Full Name</label>
-                              <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Full Name">
+                              <input type="text" name="name" value="{{$editData->name}}" class="form-control" id="exampleInputEmail1" placeholder="Full Name">
 
                               <font style="color:red">{{($errors->has('name'))?($errors->first('name')):''}}</font>
                         </div>
 
                     <div class="form-group col-md-6">
                       <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      <input type="email" name="email" value="{{$editData->email}}" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
 
                       <font style="color:red">{{($errors->has('email'))?($errors->first('email')):''}}</font>
                     </div>
 
-                    <div class="form-group col-md-6">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label for="exampleInputPassword1">Confirm Password</label>
-                        <input type="password" name="cpass" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password">
-                      </div>
                   </div>
                   </div>
                   <!-- /.card-body -->
   
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-success">Update</button>
                   </div>
                 </form>
 

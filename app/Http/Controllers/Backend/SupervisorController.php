@@ -30,4 +30,25 @@ class SupervisorController extends Controller
         return redirect()->route('supervisorPanel.supervisorList');
     }
 
+    public function editSupervisor($id){
+        $editData = User::find($id);
+        return view('backend.subPage.editSupervisor',compact('editData')); 
+    }
+
+    public function updateSupervisor($id, Request $request){
+        $data = User::find($id);
+        $data->usertype = $request->usertype;
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->password = bcrypt($request->password);
+        $data->save();
+        return redirect()->route('supervisorPanel.supervisorList');
+    }
+
+    public function deleteSupervisor($id){
+        $data = User::find($id);
+        $data->delete();
+        return redirect()->route('supervisorPanel.supervisorList'); 
+    }
+
 }

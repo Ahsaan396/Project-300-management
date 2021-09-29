@@ -46,12 +46,25 @@ class StudentController extends Controller
 
     public function editStudent($id){
         $editData = Student::find($id);
-        dd($editData);
+        return view('backend.subPage.editStudent',compact('editData'));
+    }
+
+    public function updateStudent($id, Request $request){
+        $data = Student::find($id);
+        $data->name = $request->name;
+        $data->student_id = $request->student_id;
+        $data->batch = $request->batch;
+        $data->pname = $request->pname;
+        $data->number = $request->number;
+        $data->acceptance = $request->acceptance;
+        $data->save();
         return redirect()->route('student.studentList');
     }
 
     public function deleteStudent($id){
-dd($id);
+        // dd($id);
+        $data = Student::find($id);
+        $data->delete();
         return redirect()->route('student.studentList');
     }
 }

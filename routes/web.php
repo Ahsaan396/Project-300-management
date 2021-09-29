@@ -29,6 +29,13 @@ Route::prefix('supervisorPanel')->group(function(){
 
     Route::post('/store', [SupervisorController::class,'store'])->name('supervisorPanel.store');
 
+    Route::get('/editSupervisor/{id}',[SupervisorController::class,'editSupervisor'])->name('supervisorPanel.editSupervisor');
+
+    Route::post('/updateSupervisor/{id}',[SupervisorController::class,'updateSupervisor'])->name('supervisorPanel.updateSupervisor');
+
+    Route::get('/deleteSupervisor/{id}',[SupervisorController::class,'deleteSupervisor'])->name('supervisorPanel.deleteSupervisor');
+
+
     
 });
 
@@ -42,6 +49,8 @@ Route::prefix('student')->group(function(){
     Route::get('/acceptedStudent',[StudentController::class,'acceptedStudent'])->name('student.acceptedStudent');
 
     Route::get('/editStudent/{id}', [StudentController::class,'editStudent'])->name('student.editStudent');
+
+    Route::post('/updateStudent/{id}', [StudentController::class,'updateStudent'])->name('student.updateStudent');
 
     Route::get('/deleteStudent/{id}', [StudentController::class,'deleteStudent'])->name('student.deleteStudent');
 });

@@ -34,7 +34,7 @@
                   <h3 class="card-title">
                     {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
                     <i class="fas fa-user-graduate"></i>
-                    Add Student
+                    Edit Student
                   </h3>
 
                   <div class="card-tools">
@@ -52,42 +52,41 @@
 
                 <div class="card-body">
                   <div class="tab-content p-0">
-
-                  <form action="{{route('student.storeStudent')}}" method="POST" id="myForm">
+                  <form action="{{route('student.updateStudent',$editData->id)}}" method="POST" id="myForm">
                           {{-- {{ csrf_field() }} --}}
                           @csrf
                       <div class="card-body">
                         <div class="row">
                           <div class="form-group col-md-6">
                             <label for="exampleInputEmail1">Full Name</label>
-                            <input type="text" class="form-control" name="name" id="exampleInputEmail1" placeholder="Full Name">
+                            <input type="text" class="form-control" value="{{$editData->name}}" name="name" id="exampleInputEmail1" placeholder="Full Name">
                           </div>
                           
                           <div class="form-group col-md-6">
                             <label for="exampleInputPassword1">ID</label>
-                            <input type="text" name="student_id" class="form-control" id="exampleInputPassword1" placeholder="ID">
+                            <input type="text" name="student_id" value="{{$editData->student_id}}" class="form-control" id="exampleInputPassword1" placeholder="ID">
                           </div>
 
                           <div class="form-group col-md-6">
                               <label for="exampleInputEmail1">Batch</label>
-                              <input type="text" name="batch" class="form-control" id="exampleInputEmail1" placeholder="Batch">
+                              <input type="text" name="batch" value="{{$editData->batch}}" class="form-control" id="exampleInputEmail1" placeholder="Batch">
                             </div>
 
                             <div class="form-group col-md-6">
                               <label for="exampleInputEmail1">Project Name</label>
-                              <input type="text" name="pname" class="form-control" id="exampleInputEmail1" placeholder="Project Name">
+                              <input type="text" name="pname" value="{{$editData->pname}}" class="form-control" id="exampleInputEmail1" placeholder="Project Name">
                             </div>
 
                             <div class="form-group col-md-6">
                               <label for="exampleInputEmail1">Phone Number</label>
-                              <input type="tel" name="number" class="form-control" id="exampleInputEmail1" placeholder="01620761863">
+                              <input type="tel" name="number" value="{{$editData->number}}" class="form-control" id="exampleInputEmail1" placeholder="01620761863">
                             </div>
                         </div>
                       </div>
                         <!-- /.card-body -->
         
                         <div class="card-footer">
-                          <button type="submit" class="btn btn-primary">Add</button>
+                          <button type="submit" class="btn btn-success">Update</button>
                         </div>
                   </form>
 
