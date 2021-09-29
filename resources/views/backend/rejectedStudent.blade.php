@@ -34,17 +34,17 @@
                   <h3 class="card-title">
                     {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
                     <i class="fas fa-user-graduate"></i>
-                    Student List
+                    Rejected Students
                   </h3>
 
-                  <div class="card-tools">
+                  {{-- <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                       <li class="nav-item">
                        <a class="btn btn-success float-right btn-sm" href="{{route('student.addStudent')}}"><i class="fa fa-plus-circle">
                           Add Student</i></a>
                       </li>
                     </ul>
-                  </div>
+                  </div> --}}
 
                 </div>
                 
@@ -65,7 +65,7 @@
                         <th>Project Name</th>  
                         <th>Phone Number</th>  
                         <th>Action</th>
-                        <th>Acceptance</th> 
+                        
                         </tr>
 
                       </thead>
@@ -81,19 +81,12 @@
                           <td>{{$user->pname}}</td>
                           <td>{{$user->number}}</td>
                           <td>
-                            <a title="Edit" class="btn btn-sm btn-primary" href="{{route('student.editStudent',$user->id)}}"><i class="fa fa-edit"></i></a>
-
-                            <a title="Delete" class="btn btn-sm btn-danger" href="{{route('student.deleteStudent',$user->id)}}"><i class="fa fa-trash"></i></a>
-
+                              <a title="Accepted" class="btn btn-sm btn-success" href="{{route('student.accept',$user->id)}}"><i class="fa fa-check-circle"></i></a>
+                              
+                              <a title="Delete" class="btn btn-sm btn-danger" href="{{route('student.deleteStudent',$user->id)}}"><i class="fa fa-trash"></i></a>
                           </td>
-                          <td>
-                            <a title="Accepted" class="btn btn-sm btn-success" href="{{route('student.accept',$user->id)}}"><i class="fa fa-check-circle"></i></a>
-
-                            <a title="Rejected" class="btn btn-sm btn-danger" href="{{route('student.reject',$user->id)}}"><i class="fas fa-times-circle"></i></a>
-                          </td>
-
+                        
                         </tr>
-
                         @endforeach
 
                       </tbody>

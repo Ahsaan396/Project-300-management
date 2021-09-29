@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Student;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
 
 class SupervisorController extends Controller
 {
     public function supervisorList(){
-        $data['allData'] = User::all();
-        return view('backend.supervisorList',$data);
+        $data = DB::table('users')->get();
+        return view('backend.supervisorList',['data'=>$data]);
     }
 
     public function register()
@@ -31,8 +32,8 @@ class SupervisorController extends Controller
     }
 
     public function editSupervisor($id){
-        $editData = User::find($id);
-        return view('backend.subPage.editSupervisor',compact('editData')); 
+        $data = DB::table('users')->find($id);
+        return view('backend.subPage.editSupervisor',['data'=>$data]); 
     }
 
     public function updateSupervisor($id, Request $request){
