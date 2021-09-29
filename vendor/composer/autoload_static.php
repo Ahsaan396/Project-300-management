@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit73a32df5efe00790c06a702c6558317e
+class ComposerStaticInit55a7697e1cb1e998ef6ac99112fc469c
 {
     public static $files = array (
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
@@ -534,6 +534,7 @@ class ComposerStaticInit73a32df5efe00790c06a702c6558317e
         'App\\Http\\Controllers\\Backend\\BackendController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/BackendController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\Frontend\\FrontendController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/FrontendController.php',
+        'App\\Http\\Controllers\\StudentController' => __DIR__ . '/../..' . '/app/Http/Controllers/StudentController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -544,7 +545,7 @@ class ComposerStaticInit73a32df5efe00790c06a702c6558317e
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
-        'App\\Models\\Supervisor' => __DIR__ . '/../..' . '/app/Models/Supervisor.php',
+        'App\\Models\\Student' => __DIR__ . '/../..' . '/app/Models/Student.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -1338,6 +1339,7 @@ class ComposerStaticInit73a32df5efe00790c06a702c6558317e
         'Faker\\Provider\\nl_BE\\Payment' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Payment.php',
         'Faker\\Provider\\nl_BE\\Person' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Person.php',
         'Faker\\Provider\\nl_BE\\PhoneNumber' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/PhoneNumber.php',
+        'Faker\\Provider\\nl_BE\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Text.php',
         'Faker\\Provider\\nl_NL\\Address' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Address.php',
         'Faker\\Provider\\nl_NL\\Color' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Color.php',
         'Faker\\Provider\\nl_NL\\Company' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Company.php',
@@ -5491,10 +5493,10 @@ class ComposerStaticInit73a32df5efe00790c06a702c6558317e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit73a32df5efe00790c06a702c6558317e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit73a32df5efe00790c06a702c6558317e::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit73a32df5efe00790c06a702c6558317e::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit73a32df5efe00790c06a702c6558317e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit55a7697e1cb1e998ef6ac99112fc469c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit55a7697e1cb1e998ef6ac99112fc469c::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit55a7697e1cb1e998ef6ac99112fc469c::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit55a7697e1cb1e998ef6ac99112fc469c::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -81,15 +81,15 @@
                           <td>{{$user->pname}}</td>
                           <td>{{$user->number}}</td>
                           <td>
-                            <a title="Edit" class="btn btn-sm btn-primary" href=""><i class="fa fa-edit"></i></a>
+                            <a title="Edit" class="btn btn-sm btn-primary" href="#"><i class="fa fa-edit"></i></a>
 
-                            <a title="Delete" class="btn btn-sm btn-danger" href=""><i class="fa fa-trash"></i></a>
+                            <a title="Delete" class="btn btn-sm btn-danger" href="#"><i class="fa fa-trash"></i></a>
 
                           </td>
                           <td>
-                            <a title="Accepted" class="btn btn-sm btn-success" href=""><i class="fa fa-check-circle"></i></a>
+                            <a title="Accepted" value="Accepted" class="btn btn-sm btn-success" href=""><i class="fa fa-check-circle"></i></a>
 
-                            <a title="Rejected" class="btn btn-sm btn-danger" href=""><i class="fa fa-ban"></i></a>
+                            <a title="Rejected" value="Rejected" class="btn btn-sm btn-danger" href=""><i class="fas fa-times-circle"></i></a>
                           </td>
 
                         </tr>

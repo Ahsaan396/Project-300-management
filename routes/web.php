@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Backend\BackendController;
+use App\Http\Controllers\Backend\SupervisorController;
+use App\Http\Controllers\Backend\StudentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\FrontendController;
 
@@ -21,23 +23,27 @@ Route::get('/', function () {
 });
 
 Route::prefix('supervisorPanel')->group(function(){
-    Route::get('/supervisorList', [BackendController::class,'supervisorList'])->name('supervisorPanel.supervisorList');
+    Route::get('/supervisorList', [SupervisorController::class,'supervisorList'])->name('supervisorPanel.supervisorList');
 
-    Route::get('/register', [BackendController::class,'register'])->name('supervisorPanel.register');
+    Route::get('/register', [SupervisorController::class,'register'])->name('supervisorPanel.register');
 
-    Route::post('/store', [BackendController::class,'store'])->name('supervisorPanel.store');
+    Route::post('/store', [SupervisorController::class,'store'])->name('supervisorPanel.store');
 
     
 });
 
 Route::prefix('student')->group(function(){
-    Route::get('/studentList', [BackendController::class,'studentList'])->name('student.studentList');
+    Route::get('/studentList', [StudentController::class,'studentList'])->name('student.studentList');
 
-    Route::get('/addStudent',[BackendController::class,'addStudent'])->name('student.addStudent');
+    Route::get('/addStudent',[StudentController::class,'addStudent'])->name('student.addStudent');
 
-    Route::post('/storeStudent',[BackendController::class,'storeStudent'])->name('student.storeStudent');
+    Route::post('/storeStudent',[StudentController::class,'storeStudent'])->name('student.storeStudent');
 
-    Route::get('/acceptedStudent',[BackendController::class,'acceptedStudent'])->name('student.acceptedStudent');
+    Route::get('/acceptedStudent',[StudentController::class,'acceptedStudent'])->name('student.acceptedStudent');
+
+    Route::get('/editStudent/{id}', [StudentController::class,'editStudent'])->name('student.editStudent');
+
+    Route::get('/deleteStudent/{id}', [StudentController::class,'deleteStudent'])->name('student.deleteStudent');
 });
 
 Route::get('/dashboard', function () {
