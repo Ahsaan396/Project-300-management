@@ -17,6 +17,8 @@ return array(
     'App\\Http\\Controllers\\Auth\\RegisteredUserController' => $baseDir . '/app/Http/Controllers/Auth/RegisteredUserController.php',
     'App\\Http\\Controllers\\Auth\\VerifyEmailController' => $baseDir . '/app/Http/Controllers/Auth/VerifyEmailController.php',
     'App\\Http\\Controllers\\Backend\\BackendController' => $baseDir . '/app/Http/Controllers/Backend/BackendController.php',
+    'App\\Http\\Controllers\\Backend\\StudentController' => $baseDir . '/app/Http/Controllers/Backend/StudentController.php',
+    'App\\Http\\Controllers\\Backend\\SupervisorController' => $baseDir . '/app/Http/Controllers/Backend/SupervisorController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\Frontend\\FrontendController' => $baseDir . '/app/Http/Controllers/Frontend/FrontendController.php',
     'App\\Http\\Controllers\\StudentController' => $baseDir . '/app/Http/Controllers/StudentController.php',
