@@ -44,13 +44,14 @@ class StudentController extends Controller
         return view('backend.acceptedStudent',$data);
     }
 
-    public function editStudent(){
-
+    public function editStudent($id){
+        $editData = Student::find($id);
+        dd($editData);
         return redirect()->route('student.studentList');
     }
 
-    public function deleteStudent(){
-
+    public function deleteStudent($id){
+dd($id);
         return redirect()->route('student.studentList');
     }
 }
