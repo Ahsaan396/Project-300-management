@@ -52,7 +52,7 @@
 
                 <div class="card-body">
                   <div class="tab-content p-0">
-
+                    {{-- {{$data = DB::table('users')->get()}} --}}
                   <form action="{{route('student.storeStudent')}}" method="POST" id="myForm">
                           {{-- {{ csrf_field() }} --}}
                           @csrf

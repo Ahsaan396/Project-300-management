@@ -22,12 +22,13 @@ class SupervisorController extends Controller
 
     public function store(Request $request)
     {
-        $data = new User();
-        $data->usertype = $request->usertype;
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->password = bcrypt($request->password);
-        $data->save();
+        $data = DB::table('users')->insert([
+            'usertype'=> $request->usertype,
+            'name'=> $request->name,
+            'batch'=> $request->batch,
+            'email'=> $request->email,
+            'password'=> bcrypt($request->password)
+        ]);
         return redirect()->route('supervisorPanel.supervisorList');
     }
 
@@ -37,18 +38,16 @@ class SupervisorController extends Controller
     }
 
     public function updateSupervisor($id, Request $request){
-        $data = User::find($id);
-        $data->usertype = $request->usertype;
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->password = bcrypt($request->password);
-        $data->save();
+        $data = DB::table('users')->where('id',$id)->update([
+            'usertype'=> $request->usertype,
+            'name'=> $request->name,
+            'email'=> $request->email,
+        ]);
         return redirect()->route('supervisorPanel.supervisorList');
     }
 
     public function deleteSupervisor($id){
-        $data = User::find($id);
-        $data->delete();
+        $data = DB::table('users')->where('id',$id)->delete();
         return redirect()->route('supervisorPanel.supervisorList'); 
     }
 
