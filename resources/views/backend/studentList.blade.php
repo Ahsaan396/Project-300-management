@@ -89,7 +89,7 @@
                           <td>
                             <a title="Accepted" value="Accepted" class="btn btn-sm btn-success" href=""><i class="fa fa-check-circle"></i></a>
 
-                            <a title="Rejected" value="Rejected" class="btn btn-sm btn-danger" href=""><i class="fas fa-times-circle"></i></a>
+                            <a title="Rejected" class="btn btn-sm btn-danger" href=""><i class="fas fa-times-circle"></i></a>
                           </td>
 
                         </tr>
