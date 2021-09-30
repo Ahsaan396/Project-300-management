@@ -21,6 +21,7 @@ class CreateStudentTable extends Migration
             $table->string('pname');
             $table->string('number')->nullable();
             $table->string('acceptance')->nullable();
+            $table->foreignId('supervisorID')->nullable()->references('id')->on('User');
             $table->timestamps();
         });
     }

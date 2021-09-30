@@ -67,7 +67,7 @@
                       </thead>
 
                       <tbody>
-                        @foreach ($allData as $key => $user)
+                        @foreach ($data as $key => $user)
 
                         <tr>
                           <td>{{$key + 1}}</td>

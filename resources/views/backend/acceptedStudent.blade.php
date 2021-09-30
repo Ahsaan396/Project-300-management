@@ -71,7 +71,7 @@
                       </thead>
 
                       <tbody>
-                        @foreach ($allData as $key => $user)
+                        @foreach ($data as $key => $user)
                         
                         <tr>
                           <td>{{$key + 1}}</td>
@@ -81,7 +81,13 @@
                           <td>{{$user->pname}}</td>
                           <td>{{$user->number}}</td>
                           <td>
+<<<<<<< HEAD
                             <a title="Mark" class="btn btn-sm btn-primary" href="{{route('student.marks',$user->id)}}"><i class="fas fa-sign-out-alt"></i></a>
+=======
+                            <a title="Mark" class="btn btn-sm btn-primary" href=""><i class="fas fa-sign-out-alt"></i></a>
+
+                            <a title="Delete" class="btn btn-sm btn-danger" href="{{route('student.deleteStudent',$user->id)}}"><i class="fa fa-trash"></i></a>
+>>>>>>> 0674e86ab7cc7c12c2c233af60eff8b902cd01d2
                           </td>
                         
                         </tr>

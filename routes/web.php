@@ -46,14 +46,24 @@ Route::prefix('student')->group(function(){
 
     Route::post('/storeStudent',[StudentController::class,'storeStudent'])->name('student.storeStudent');
 
-    Route::get('/acceptedStudent',[StudentController::class,'acceptedStudent'])->name('student.acceptedStudent');
-
     Route::get('/editStudent/{id}', [StudentController::class,'editStudent'])->name('student.editStudent');
 
     Route::post('/updateStudent/{id}', [StudentController::class,'updateStudent'])->name('student.updateStudent');
 
     Route::get('/deleteStudent/{id}', [StudentController::class,'deleteStudent'])->name('student.deleteStudent');
+<<<<<<< HEAD
     Route::get('/marks/{id}',[MarksController::class,'marks'])->name('student.marks');
+=======
+
+    Route::get('/acceptedStudent',[StudentController::class,'acceptedStudent'])->name('student.acceptedStudent');
+
+    Route::get('/accept/{id}',[StudentController::class,'accept'])->name('student.accept');
+
+    Route::get('/rejectedStudent',[StudentController::class,'rejectedStudent'])->name('student.rejectedStudent');
+
+
+    Route::get('/reject/{id}',[StudentController::class,'reject'])->name('student.reject');
+>>>>>>> 0674e86ab7cc7c12c2c233af60eff8b902cd01d2
 });
 
 Route::get('/dashboard', function () {

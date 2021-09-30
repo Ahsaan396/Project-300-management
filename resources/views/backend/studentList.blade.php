@@ -71,7 +71,7 @@
                       </thead>
 
                       <tbody>
-                        @foreach ($allData as $key => $user)
+                        @foreach ($data as $key => $user)
                         
                         <tr>
                           <td>{{$key + 1}}</td>
@@ -87,9 +87,9 @@
 
                           </td>
                           <td>
-                            <a title="Accepted" value="Accepted" class="btn btn-sm btn-success" href=""><i class="fa fa-check-circle"></i></a>
+                            <a title="Accepted" class="btn btn-sm btn-success" href="{{route('student.accept',$user->id)}}"><i class="fa fa-check-circle"></i></a>
 
-                            <a title="Rejected" class="btn btn-sm btn-danger" href=""><i class="fas fa-times-circle"></i></a>
+                            <a title="Rejected" class="btn btn-sm btn-danger" href="{{route('student.reject',$user->id)}}"><i class="fas fa-times-circle"></i></a>
                           </td>
 
                         </tr>

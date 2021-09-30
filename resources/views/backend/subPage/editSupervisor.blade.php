@@ -50,7 +50,7 @@
                 
                 <!-- /.card-header -->
 
-                <form action="{{route('supervisorPanel.updateSupervisor',$editData->id)}}" method="POST" id="myForm">
+                <form action="{{route('supervisorPanel.updateSupervisor',$data->id)}}" method="POST" id="myForm">
                       {{-- {{ csrf_field() }} --}}
                       @csrf
                   <div class="card-body">
@@ -59,21 +59,21 @@
                         <label for="exampleInputEmail1">Role</label>
                         <select class="form-select" name="usertype" aria-label="Default select example">
                               <option selected>Select Role</option>
-                              <option value="Admin" {{($editData->usertype=='Admin')?'selected':''}}>Admin</option>
-                              <option value="Supervisor" {{($editData->usertype=='Supervisor')?'selected':''}}>Supervisor</option>
+                              <option value="Admin" {{($data->usertype=='Admin')?'selected':''}}>Admin</option>
+                              <option value="Supervisor" {{($data->usertype=='Supervisor')?'selected':''}}>Supervisor</option>
                         </select>
                         </div>
 
                         <div class="form-group col-md-6">
                               <label for="exampleInputEmail1">Full Name</label>
-                              <input type="text" name="name" value="{{$editData->name}}" class="form-control" id="exampleInputEmail1" placeholder="Full Name">
+                              <input type="text" name="name" value="{{$data->name}}" class="form-control" id="exampleInputEmail1" placeholder="Full Name">
 
                               <font style="color:red">{{($errors->has('name'))?($errors->first('name')):''}}</font>
                         </div>
 
                     <div class="form-group col-md-6">
                       <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" name="email" value="{{$editData->email}}" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      <input type="email" name="email" value="{{$data->email}}" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
 
                       <font style="color:red">{{($errors->has('email'))?($errors->first('email')):''}}</font>
                     </div>
