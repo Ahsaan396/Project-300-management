@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Student;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
 
 class SupervisorController extends Controller
 {
     public function supervisorList(){
-        $data['allData'] = User::all();
-        return view('backend.supervisorList',$data);
+        $data = DB::table('users')->get();
+        return view('backend.supervisorList',['data'=>$data]);
     }
 
     public function register()
@@ -21,33 +22,32 @@ class SupervisorController extends Controller
 
     public function store(Request $request)
     {
-        $data = new User();
-        $data->usertype = $request->usertype;
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->password = bcrypt($request->password);
-        $data->save();
+        $data = DB::table('users')->insert([
+            'usertype'=> $request->usertype,
+            'name'=> $request->name,
+            'batch'=> $request->batch,
+            'email'=> $request->email,
+            'password'=> bcrypt($request->password)
+        ]);
         return redirect()->route('supervisorPanel.supervisorList');
     }
 
     public function editSupervisor($id){
-        $editData = User::find($id);
-        return view('backend.subPage.editSupervisor',compact('editData')); 
+        $data = DB::table('users')->find($id);
+        return view('backend.subPage.editSupervisor',['data'=>$data]); 
     }
 
     public function updateSupervisor($id, Request $request){
-        $data = User::find($id);
-        $data->usertype = $request->usertype;
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->password = bcrypt($request->password);
-        $data->save();
+        $data = DB::table('users')->where('id',$id)->update([
+            'usertype'=> $request->usertype,
+            'name'=> $request->name,
+            'email'=> $request->email,
+        ]);
         return redirect()->route('supervisorPanel.supervisorList');
     }
 
     public function deleteSupervisor($id){
-        $data = User::find($id);
-        $data->delete();
+        $data = DB::table('users')->where('id',$id)->delete();
         return redirect()->route('supervisorPanel.supervisorList'); 
     }
 

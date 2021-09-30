@@ -52,34 +52,35 @@
 
                 <div class="card-body">
                   <div class="tab-content p-0">
-                  <form action="{{route('student.updateStudent',$editData->id)}}" method="POST" id="myForm">
+                  <form action="{{route('student.updateStudent',$data->id)}}" method="POST" id="myForm">
                           {{-- {{ csrf_field() }} --}}
                           @csrf
                       <div class="card-body">
                         <div class="row">
                           <div class="form-group col-md-6">
                             <label for="exampleInputEmail1">Full Name</label>
-                            <input type="text" class="form-control" value="{{$editData->name}}" name="name" id="exampleInputEmail1" placeholder="Full Name">
+                            <input type="text" class="form-control" value="{{$data->name}}" name="name" id="exampleInputEmail1" placeholder="Full Name">
                           </div>
                           
                           <div class="form-group col-md-6">
                             <label for="exampleInputPassword1">ID</label>
-                            <input type="text" name="student_id" value="{{$editData->student_id}}" class="form-control" id="exampleInputPassword1" placeholder="ID">
+                            <input type="text" name="student_id" 
+                            value="{{$data->student_id}}" class="form-control" id="exampleInputPassword1" placeholder="ID">
                           </div>
 
                           <div class="form-group col-md-6">
                               <label for="exampleInputEmail1">Batch</label>
-                              <input type="text" name="batch" value="{{$editData->batch}}" class="form-control" id="exampleInputEmail1" placeholder="Batch">
+                              <input type="text" name="batch" value="{{$data->batch}}" class="form-control" id="exampleInputEmail1" placeholder="Batch">
                             </div>
 
                             <div class="form-group col-md-6">
                               <label for="exampleInputEmail1">Project Name</label>
-                              <input type="text" name="pname" value="{{$editData->pname}}" class="form-control" id="exampleInputEmail1" placeholder="Project Name">
+                              <input type="text" name="pname" value="{{$data->pname}}" class="form-control" id="exampleInputEmail1" placeholder="Project Name">
                             </div>
 
                             <div class="form-group col-md-6">
                               <label for="exampleInputEmail1">Phone Number</label>
-                              <input type="tel" name="number" value="{{$editData->number}}" class="form-control" id="exampleInputEmail1" placeholder="01620761863">
+                              <input type="tel" name="number" value="{{$data->number}}" class="form-control" id="exampleInputEmail1" placeholder="01620761863">
                             </div>
                         </div>
                       </div>

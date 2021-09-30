@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Student;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -11,12 +12,13 @@ class StudentController extends Controller
 {
     
     public function studentList(){
-        $data['allData'] = Student::all();
-        return view('backend.studentList',$data);
+        $data = DB::table('students')->get();
+        return view('backend.studentList',['data'=>$data]);
     }
 
     public function addStudent(){
-        return view('backend.subPage.addStudent');
+        $data = DB::table('users')->get();
+        return view('backend.subPage.addStudent',['data'=>$data]);
     }
 
     public function storeStudent(Request $request){
@@ -28,43 +30,63 @@ class StudentController extends Controller
             'number' => 'required',
 
         ]);
-        $data = new Student();
-        $data->name = $request->name;
-        $data->student_id = $request->student_id;
-        $data->batch = $request->batch;
-        $data->pname = $request->pname;
-        $data->number = $request->number;
-        $data->acceptance = $request->acceptance;
-        $data->save();
+
+        $data = DB::table('students')->insert([
+            'name'=> $request->name,
+            'student_id'=> $request->student_id,
+            'batch'=> $request->batch,
+            'pname'=> $request->pname,
+            'number'=> $request->number,
+            'acceptance'=> $request->acceptance,
+            'supervisorId'=> $request->$id
+        ]);
+
         return redirect()->route('student.addStudent');
     }
 
-    public function acceptedStudent(){
-        $data['allData'] = Student::all();
-        return view('backend.acceptedStudent',$data);
-    }
-
+  
     public function editStudent($id){
-        $editData = Student::find($id);
-        return view('backend.subPage.editStudent',compact('editData'));
+        $data = DB::table('students')->find($id);
+        return view('backend.subPage.editStudent',['data'=>$data]); 
     }
 
     public function updateStudent($id, Request $request){
-        $data = Student::find($id);
-        $data->name = $request->name;
-        $data->student_id = $request->student_id;
-        $data->batch = $request->batch;
-        $data->pname = $request->pname;
-        $data->number = $request->number;
-        $data->acceptance = $request->acceptance;
-        $data->save();
+        $data = DB::table('students')->where('id',$id)->update([
+            'name'=> $request->name,
+            'student_id'=> $request->student_id,
+            'batch'=> $request->batch,
+            'pname'=> $request->pname,
+            'number'=> $request->number,
+            'acceptance'=> $request->acceptance
+            // 'supervisorId'=> $request->$id
+        ]);
         return redirect()->route('student.studentList');
     }
 
     public function deleteStudent($id){
-        // dd($id);
-        $data = Student::find($id);
-        $data->delete();
+        $data = DB::table('students')->where('id',$id)->delete();
         return redirect()->route('student.studentList');
     }
+
+
+    public function accept($id){
+        $data = DB::table('students')->where('id',$id)->update(['acceptance'=>'Accepted']);
+        return redirect()->route('student.studentList');
+    }
+
+    public function acceptedStudent(){
+        $data = DB::table('students')->get()->where('acceptance','Accepted');
+        return view('backend.acceptedStudent',['data'=>$data]);
+    }
+
+    public function reject($id){
+        $data = DB::table('students')->where('id',$id)->update(['acceptance'=>'Rejected']);
+        return redirect()->route('student.studentList');
+    }
+
+    public function rejectedStudent(){
+        $data = DB::table('students')->get()->where('acceptance','Rejected');
+        return view('backend.rejectedStudent',['data'=>$data]);
+    }
+
 }

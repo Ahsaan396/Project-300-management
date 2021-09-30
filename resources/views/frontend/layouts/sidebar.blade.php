@@ -88,12 +88,12 @@
                   </a>
                 </li>
               </ul>
-  
+
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{route('student.rejectedStudent')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Marks</p>
+                    <p>Rejected Student</p>
                   </a>
                 </li>
               </ul>

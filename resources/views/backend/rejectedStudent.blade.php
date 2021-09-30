@@ -34,17 +34,17 @@
                   <h3 class="card-title">
                     {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
                     <i class="fas fa-user-graduate"></i>
-                    Add Student
+                    Rejected Students
                   </h3>
 
-                  <div class="card-tools">
+                  {{-- <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                       <li class="nav-item">
-                       <a class="btn btn-success float-right btn-sm" href="{{route('student.studentList')}}"><i class="fa fa-list">
-                          Show Student List</i></a>
+                       <a class="btn btn-success float-right btn-sm" href="{{route('student.addStudent')}}"><i class="fa fa-plus-circle">
+                          Add Student</i></a>
                       </li>
                     </ul>
-                  </div>
+                  </div> --}}
 
                 </div>
                 
@@ -52,44 +52,47 @@
 
                 <div class="card-body">
                   <div class="tab-content p-0">
-                    {{-- {{$data = DB::table('users')->get()}} --}}
-                  <form action="{{route('student.storeStudent')}}" method="POST" id="myForm">
-                          {{-- {{ csrf_field() }} --}}
-                          @csrf
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="form-group col-md-6">
-                            <label for="exampleInputEmail1">Full Name</label>
-                            <input type="text" class="form-control" name="name" id="exampleInputEmail1" placeholder="Full Name">
-                          </div>
-                          
-                          <div class="form-group col-md-6">
-                            <label for="exampleInputPassword1">ID</label>
-                            <input type="text" name="student_id" class="form-control" id="exampleInputPassword1" placeholder="ID">
-                          </div>
 
-                          <div class="form-group col-md-6">
-                              <label for="exampleInputEmail1">Batch</label>
-                              <input type="text" name="batch" class="form-control" id="exampleInputEmail1" placeholder="Batch">
-                            </div>
+                    <!-- List -->
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
 
-                            <div class="form-group col-md-6">
-                              <label for="exampleInputEmail1">Project Name</label>
-                              <input type="text" name="pname" class="form-control" id="exampleInputEmail1" placeholder="Project Name">
-                            </div>
+                        <tr>
+                        <th>SL.</th>  
+                        <th>Name</th>  
+                        <th>ID</th>  
+                        <th>Batch</th>  
+                        <th>Project Name</th>  
+                        <th>Phone Number</th>  
+                        <th>Action</th>
+                        
+                        </tr>
 
-                            <div class="form-group col-md-6">
-                              <label for="exampleInputEmail1">Phone Number</label>
-                              <input type="tel" name="number" class="form-control" id="exampleInputEmail1" placeholder="01620761863">
-                            </div>
-                        </div>
-                      </div>
-                        <!-- /.card-body -->
-        
-                        <div class="card-footer">
-                          <button type="submit" class="btn btn-primary">Add</button>
-                        </div>
-                  </form>
+                      </thead>
+
+                      <tbody>
+                        @foreach ($data as $key => $user)
+                        
+                        <tr>
+                          <td>{{$key + 1}}</td>
+                          <td>{{$user->name}}</td>
+                          <td>{{$user->student_id}}</td>
+                          <td>{{$user->batch}}</td>
+                          <td>{{$user->pname}}</td>
+                          <td>{{$user->number}}</td>
+                          <td>
+                              <a title="Accepted" class="btn btn-sm btn-success" href="{{route('student.accept',$user->id)}}"><i class="fa fa-check-circle"></i></a>
+                              
+                              <a title="Delete" class="btn btn-sm btn-danger" href="{{route('student.deleteStudent',$user->id)}}"><i class="fa fa-trash"></i></a>
+                          </td>
+                        
+                        </tr>
+                        @endforeach
+
+                      </tbody>
+
+                    </table>
+
 
                     <div class="chart tab-pane active" id="revenue-chart"
                          style="position: relative; height: 300px;">
