@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit55a7697e1cb1e998ef6ac99112fc469c
+class ComposerStaticInit73a32df5efe00790c06a702c6558317e
 {
     public static $files = array (
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
@@ -532,6 +532,7 @@ class ComposerStaticInit55a7697e1cb1e998ef6ac99112fc469c
         'App\\Http\\Controllers\\Auth\\RegisteredUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisteredUserController.php',
         'App\\Http\\Controllers\\Auth\\VerifyEmailController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerifyEmailController.php',
         'App\\Http\\Controllers\\Backend\\BackendController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/BackendController.php',
+        'App\\Http\\Controllers\\Backend\\MarksController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/MarksController.php',
         'App\\Http\\Controllers\\Backend\\StudentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/StudentController.php',
         'App\\Http\\Controllers\\Backend\\SupervisorController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/SupervisorController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
@@ -1341,7 +1342,6 @@ class ComposerStaticInit55a7697e1cb1e998ef6ac99112fc469c
         'Faker\\Provider\\nl_BE\\Payment' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Payment.php',
         'Faker\\Provider\\nl_BE\\Person' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Person.php',
         'Faker\\Provider\\nl_BE\\PhoneNumber' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/PhoneNumber.php',
-        'Faker\\Provider\\nl_BE\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_BE/Text.php',
         'Faker\\Provider\\nl_NL\\Address' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Address.php',
         'Faker\\Provider\\nl_NL\\Color' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Color.php',
         'Faker\\Provider\\nl_NL\\Company' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/nl_NL/Company.php',
@@ -5495,10 +5495,10 @@ class ComposerStaticInit55a7697e1cb1e998ef6ac99112fc469c
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit55a7697e1cb1e998ef6ac99112fc469c::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit55a7697e1cb1e998ef6ac99112fc469c::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit55a7697e1cb1e998ef6ac99112fc469c::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit55a7697e1cb1e998ef6ac99112fc469c::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit73a32df5efe00790c06a702c6558317e::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit73a32df5efe00790c06a702c6558317e::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit73a32df5efe00790c06a702c6558317e::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit73a32df5efe00790c06a702c6558317e::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -51,9 +51,6 @@ Route::prefix('student')->group(function(){
     Route::post('/updateStudent/{id}', [StudentController::class,'updateStudent'])->name('student.updateStudent');
 
     Route::get('/deleteStudent/{id}', [StudentController::class,'deleteStudent'])->name('student.deleteStudent');
-<<<<<<< HEAD
-    Route::get('/marks/{id}',[MarksController::class,'marks'])->name('student.marks');
-=======
 
     Route::get('/acceptedStudent',[StudentController::class,'acceptedStudent'])->name('student.acceptedStudent');
 
@@ -63,8 +60,9 @@ Route::prefix('student')->group(function(){
 
 
     Route::get('/reject/{id}',[StudentController::class,'reject'])->name('student.reject');
->>>>>>> 0674e86ab7cc7c12c2c233af60eff8b902cd01d2
 });
+
+
 
 Route::get('/dashboard', function () {
     return view('frontend.layouts.dashboard');

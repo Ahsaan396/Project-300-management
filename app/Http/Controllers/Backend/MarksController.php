@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class MarksController extends Controller
 {
-    public function marks($id)
+    public function marks()
     {
         return view('backend.subPage.marks');
     }
