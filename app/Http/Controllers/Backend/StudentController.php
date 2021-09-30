@@ -38,7 +38,7 @@ class StudentController extends Controller
             'pname'=> $request->pname,
             'number'=> $request->number,
             'acceptance'=> $request->acceptance,
-            'supervisorId'=> $request->$id
+            //'supervisorId'=> $request->$id
         ]);
 
         return redirect()->route('student.addStudent');
@@ -90,3 +90,4 @@ class StudentController extends Controller
     }
 
 }
+
