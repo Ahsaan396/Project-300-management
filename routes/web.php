@@ -5,7 +5,7 @@ use App\Http\Controllers\Backend\SupervisorController;
 use App\Http\Controllers\Backend\StudentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\FrontendController;
-
+use App\Http\Controllers\Backend\MarksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +53,7 @@ Route::prefix('student')->group(function(){
     Route::post('/updateStudent/{id}', [StudentController::class,'updateStudent'])->name('student.updateStudent');
 
     Route::get('/deleteStudent/{id}', [StudentController::class,'deleteStudent'])->name('student.deleteStudent');
+    Route::get('/marks/{id}',[MarksController::class,'marks'])->name('student.marks');
 });
 
 Route::get('/dashboard', function () {
