@@ -62,11 +62,9 @@ Route::prefix('student')->group(function(){
     Route::get('/reject/{id}',[StudentController::class,'reject'])->name('student.reject');
 });
 
-
-
 Route::get('/dashboard', function () {
     return view('frontend.layouts.dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->name('dashboard');
 
 require __DIR__.'/auth.php';
 

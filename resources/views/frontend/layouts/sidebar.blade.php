@@ -17,7 +17,7 @@
           </div> --}}
   
           <div class="info">
-            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+            <a href="#" class="d-block">{{ Session('name') }}</a>
           </div>
         </div>
 
