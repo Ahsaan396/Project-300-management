@@ -11,13 +11,36 @@ use App\Models\User;
 class SupervisorController extends Controller
 {
     public function supervisorList(){
+    if(DB::table('users')->where(function ($query)
+    {
+              $query->where('id',Session('id'))
+            ->where('usertype','Admin');
+          })->count() == 1){
         $data = DB::table('users')->get();
         return view('backend.supervisorList',['data'=>$data]);
     }
 
+    else{
+        return redirect('/dashboard');
+    }
+
+    }
+
     public function register()
     {
+    if(DB::table('users')->where(function ($query)
+        {
+         $query->where('id',Session('id'))
+        ->where('usertype','Admin');
+        })->count() == 1)
+    {
         return view('backend.subPage.register');
+    }
+
+    else{
+        return redirect('/dashboard');
+    }
+    
     }
 
     public function store(Request $request)

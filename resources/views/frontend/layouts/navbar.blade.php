@@ -49,12 +49,11 @@
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item ">
           <div>
-                    <form action="{{ route('logout') }}" method="POST" id="logout-form">
-                          @csrf
-                          <a href="route('logout')"
-                          onclick="event.preventDefault();
-                                      this.closest('form').submit();" class="dropdown-item dropdown-footer">Logout</a>
-                     </form>
+                    {{-- <form action="{{route('logout')}}" method="POST" id="logout-form">
+                          @csrf --}}
+                          <a href="{{route('logout')}}"
+                          class="dropdown-item dropdown-footer">Logout</a>
+                     {{-- </form> --}}
           </div>
         </li>
   

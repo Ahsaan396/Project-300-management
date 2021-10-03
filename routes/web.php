@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Backend\BackendController;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\SupervisorController;
 use App\Http\Controllers\Backend\StudentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Backend\MarksController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/logout',[AuthenticatedSessionController::class,'logout'])->name('logout');
+
 Route::prefix('supervisorPanel')->group(function(){
     Route::get('/supervisorList', [SupervisorController::class,'supervisorList'])->name('supervisorPanel.supervisorList');
 
@@ -34,9 +37,7 @@ Route::prefix('supervisorPanel')->group(function(){
     Route::post('/updateSupervisor/{id}',[SupervisorController::class,'updateSupervisor'])->name('supervisorPanel.updateSupervisor');
 
     Route::get('/deleteSupervisor/{id}',[SupervisorController::class,'deleteSupervisor'])->name('supervisorPanel.deleteSupervisor');
-
-
-    
+ 
 });
 
 Route::prefix('student')->group(function(){
@@ -63,10 +64,15 @@ Route::prefix('student')->group(function(){
     Route::get('/remove/{id}',[StudentController::class,'remove'])->name('student.remove');
 });
 
-Route::get('/dashboard', function () {
-    return view('frontend.layouts.dashboard');
-})->name('dashboard');
+
+// Route::get('/dashboard', function () {
+//     return view('frontend.layouts.dashboard');
+// })->name('dashboard');
+
+Route::get('/dashboard', [DashboardController::class,'dashboard'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
 
 
