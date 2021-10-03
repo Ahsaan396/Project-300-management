@@ -25,7 +25,6 @@ class SupervisorController extends Controller
         $data = DB::table('users')->insert([
             'usertype'=> $request->usertype,
             'name'=> $request->name,
-            'batch'=> $request->batch,
             'email'=> $request->email,
             'password'=> bcrypt($request->password)
         ]);

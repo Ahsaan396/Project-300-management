@@ -58,8 +58,9 @@ Route::prefix('student')->group(function(){
 
     Route::get('/rejectedStudent',[StudentController::class,'rejectedStudent'])->name('student.rejectedStudent');
 
-
     Route::get('/reject/{id}',[StudentController::class,'reject'])->name('student.reject');
+
+    Route::get('/remove/{id}',[StudentController::class,'remove'])->name('student.remove');
 });
 
 Route::get('/dashboard', function () {

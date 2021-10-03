@@ -83,7 +83,7 @@
                           <td>
                               <a title="Accepted" class="btn btn-sm btn-success" href="{{route('student.accept',$user->id)}}"><i class="fa fa-check-circle"></i></a>
                               
-                              <a title="Delete" class="btn btn-sm btn-danger" href="{{route('student.deleteStudent',$user->id)}}"><i class="fa fa-trash"></i></a>
+                              <a title="Remove" class="btn btn-sm btn-danger" href="{{route('student.remove',$user->id)}}"><i class="fa fa-remove"></i></i></a>
                           </td>
                         
                         </tr>
