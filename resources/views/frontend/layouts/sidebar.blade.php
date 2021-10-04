@@ -2,8 +2,18 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="{{route('dashboard')}}" class="brand-link">
-        <img src="{{asset('frontend/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Super Admin</span>
+        <img src="{{asset('frontend/dist/img/AdminLTELogo.png')}}" class="brand-image img-circle elevation-3" style="opacity: .8">
+        @if (DB::table('users')->where(function ($query)
+        {
+          $query->where('id',Session('id'))
+        ->where('usertype','Admin');
+      })->count() == 1)
+        <span class="brand-text font-weight-light">Admin Panel</span>
+        
+        @else
+        <span class="brand-text font-weight-light">Supervisor Panel</span>
+        
+        @endif
       </a>
   
       <!-- Sidebar -->
@@ -52,7 +62,17 @@
                       </a>
                     </li>
                   </ul>
+
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="{{route('supervisorPanel.boardMemberList')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Board Member List</p>
+                      </a>
+                    </li>
+                  </ul>
                 </li>
+                
                 @endif
             
             <li class="nav-item">

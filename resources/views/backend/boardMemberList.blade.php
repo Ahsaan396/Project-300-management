@@ -10,7 +10,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Manage Supervisor</h1>
+              <h1 class="m-0">Manage Board Member</h1>
             </div><!-- /.col -->
            <!-- /.col -->
           </div><!-- /.row -->
@@ -34,17 +34,18 @@
                   <h3 class="card-title">
                     {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
                     <i class="fas fa-chalkboard-teacher"></i>
-                    Supervisor List
+                    Board Member List
                   </h3>
 
                   <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                       <li class="nav-item">
-                       <a class="btn btn-success float-right btn-sm" href="{{route('supervisorPanel.register')}}"><i class="fa fa-plus-circle">
-                          Register</i></a>
+                       <a class="btn btn-success float-right btn-sm" href="{{route('supervisorPanel.supervisorList')}}"><i class="fa fa-list">
+                          Show Supervisor List</i></a>
                       </li>
                     </ul>
                   </div>
+
                 </div>
                 
                 <!-- /.card-header -->
@@ -75,11 +76,8 @@
                           <td>{{$user->name}}</td>
                           <td>{{$user->email}}</td>
                           <td>
-                            <a title="Edit" class="btn btn-sm btn-primary" href="{{route('supervisorPanel.editSupervisor',$user->id)}}"><i class="fa fa-edit"></i></a>
-
-                            <a title="Delete" class="btn btn-sm btn-danger" href="{{route('supervisorPanel.deleteSupervisor',$user->id)}}"><i class="fa fa-trash"></i></a>
-
-                            <a title="Add Board Member" class="btn btn-sm btn-success" href="{{route('supervisorPanel.addBoardMember',$user->id)}}"><i class="fa fa-plus"></i></a>
+                           
+                            <a title="Remove" class="btn btn-sm btn-danger" href="{{route('supervisorPanel.remove',$user->id)}}"><i class="fa fa-remove"></i></a>
                           </td>
 
                           </td>

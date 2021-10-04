@@ -37,6 +37,12 @@ Route::prefix('supervisorPanel')->group(function(){
     Route::post('/updateSupervisor/{id}',[SupervisorController::class,'updateSupervisor'])->name('supervisorPanel.updateSupervisor');
 
     Route::get('/deleteSupervisor/{id}',[SupervisorController::class,'deleteSupervisor'])->name('supervisorPanel.deleteSupervisor');
+
+    Route::get('/boardMemberList',[SupervisorController::class,'boardMemberList'])->name('supervisorPanel.boardMemberList');
+
+    Route::get('/addBoardMember/{id}',[SupervisorController::class,'addBoardMember'])->name('supervisorPanel.addBoardMember');
+
+    Route::get('/remove/{id}',[SupervisorController::class,'remove'])->name('supervisorPanel.remove');
  
 });
 

@@ -73,4 +73,33 @@ class SupervisorController extends Controller
         return redirect()->route('supervisorPanel.supervisorList'); 
     }
 
+    public function boardMemberList(){
+
+        if(DB::table('users')->where(function ($query)
+    {
+              $query->where('id',Session('id'))
+            ->where('usertype','Admin');
+          })->count() == 1){
+        $data = DB::table('users')->where('bMember','Board Member')->get();
+        return view('backend.boardMemberList',['data'=>$data]);
+    }
+
+    else{
+        return redirect('/dashboard');
+    }
+
+    }
+
+    public function addBoardMember($id){
+        $data = DB::table('users')->where('id', $id)->update(['bMember'=>'Board Member']);
+        return redirect( url()->previous());
+    }
+
+
+
+     public function remove($id){
+        $data = DB::table('users')->where('id',$id)->update(['bMember'=>'NULL']);
+        return redirect( url()->previous());
+    }
+
 }
