@@ -15,12 +15,14 @@ class CreateStudentTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('student_id')->unique();
-            $table->string('batch');
+            $table->string('name1');
+            $table->string('name2')->nullable();
+            $table->string('student_id1')->unique();
+            $table->string('student_id2')->unique()->nullable();
+            $table->string('batch1');
+            $table->string('batch2')->nullable();
             $table->string('pname');
             $table->string('number')->nullable();
-            $table->string('acceptance')->nullable();
             $table->foreignId('supervisorID')->nullable()->references('id')->on('users');
             $table->timestamps();
         });
@@ -33,6 +35,6 @@ class CreateStudentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student');
+        Schema::dropIfExists('students');
     }
 }

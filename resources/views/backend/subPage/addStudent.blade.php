@@ -41,7 +41,7 @@
                     <ul class="nav nav-pills ml-auto">
                       <li class="nav-item">
                        <a class="btn btn-success float-right btn-sm" href="{{route('student.studentList')}}"><i class="fa fa-list">
-                          Show Student List</i></a>
+                        Show Student List</i></a>
                       </li>
                     </ul>
                   </div>
@@ -52,38 +52,55 @@
 
                 <div class="card-body">
                   <div class="tab-content p-0">
-                    {{-- {{$data = DB::table('users')->get()}} --}}
+
                   <form action="{{route('student.storeStudent')}}" method="POST" id="myForm">
                           {{-- {{ csrf_field() }} --}}
                           @csrf
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="form-group col-md-6">
-                            <label for="exampleInputEmail1">Full Name</label>
-                            <input type="text" class="form-control" name="name" id="exampleInputEmail1" placeholder="Full Name">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">Member Name_1</label>
+                                <input type="text" class="form-control" name="name1" id="exampleInputEmail1" placeholder="Full Name">
+                              </div>
+    
+                              <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">Member Name_2</label>
+                                <input type="text" class="form-control"  name="name2" id="exampleInputEmail1" placeholder="Full Name">
+                              </div>
+                              
+                              <div class="form-group col-md-6">
+                                <label for="exampleInputPassword1">Member ID_1</label>
+                                <input type="text" name="student_id1" 
+                                 class="form-control" id="exampleInputPassword1" placeholder="Member ID_1">
+                              </div>
+    
+                              <div class="form-group col-md-6">
+                                <label for="exampleInputPassword1">Member ID_2</label>
+                                <input type="text" name="student_id2" 
+                                 class="form-control" id="exampleInputPassword1" placeholder="Member ID_2">
+                              </div>
+    
+                              <div class="form-group col-md-6">
+                                  <label for="exampleInputEmail1">Member Batch_1</label>
+                                  <input type="text" name="batch1"  class="form-control" id="exampleInputEmail1" placeholder="Member Batch_1">
+                                </div>
+    
+                                <div class="form-group col-md-6">
+                                  <label for="exampleInputEmail1">Member Batch_1</label>
+                                  <input type="text" name="batch2" class="form-control" id="exampleInputEmail1" placeholder="Member Batch_2">
+                                </div>
+    
+                                <div class="form-group col-md-6">
+                                  <label for="exampleInputEmail1">Project Name</label>
+                                  <input type="text" name="pname"  class="form-control" id="exampleInputEmail1" placeholder="Project Name">
+                                </div>
+    
+                                <div class="form-group col-md-6">
+                                  <label for="exampleInputEmail1">Phone Number</label>
+                                  <input type="tel" name="number" class="form-control" id="exampleInputEmail1" placeholder="01620761863">
+                                </div>
+                            </div>
                           </div>
-                          
-                          <div class="form-group col-md-6">
-                            <label for="exampleInputPassword1">ID</label>
-                            <input type="text" name="student_id" class="form-control" id="exampleInputPassword1" placeholder="ID">
-                          </div>
-
-                          <div class="form-group col-md-6">
-                              <label for="exampleInputEmail1">Batch</label>
-                              <input type="text" name="batch" class="form-control" id="exampleInputEmail1" placeholder="Batch">
-                            </div>
-
-                            <div class="form-group col-md-6">
-                              <label for="exampleInputEmail1">Project Name</label>
-                              <input type="text" name="pname" class="form-control" id="exampleInputEmail1" placeholder="Project Name">
-                            </div>
-
-                            <div class="form-group col-md-6">
-                              <label for="exampleInputEmail1">Phone Number</label>
-                              <input type="tel" name="number" class="form-control" id="exampleInputEmail1" placeholder="01620761863">
-                            </div>
-                        </div>
-                      </div>
                         <!-- /.card-body -->
         
                         <div class="card-footer">

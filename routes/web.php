@@ -68,6 +68,17 @@ Route::prefix('student')->group(function(){
     Route::get('/reject/{id}',[StudentController::class,'reject'])->name('student.reject');
 
     Route::get('/remove/{id}',[StudentController::class,'remove'])->name('student.remove');
+
+    Route::get('/allowedForBoard',[StudentController::class,'allowedForBoard'])->name('student.allowedForBoard');
+
+    Route::get('/addToBoard/{id}',[StudentController::class,'addToBoard'])->name('student.addToBoard');
+
+    Route::post('/storeToBoard/{id}',[StudentController::class,'storeToBoard'])->name('student.storeToBoard');
+
+    Route::get('/addReportReviewer/{id}',[StudentController::class,'addReportReviewer'])->name('student.addReportReviewer');
+
+    Route::post('/storeReportReviewer/{id}',[StudentController::class,'storeReportReviewer'])->name('student.storeReportReviewer');
+
 });
 
 

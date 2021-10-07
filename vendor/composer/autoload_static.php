@@ -531,7 +531,7 @@ class ComposerStaticInit55a7697e1cb1e998ef6ac99112fc469c
         'App\\Http\\Controllers\\Auth\\PasswordResetLinkController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/PasswordResetLinkController.php',
         'App\\Http\\Controllers\\Auth\\RegisteredUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisteredUserController.php',
         'App\\Http\\Controllers\\Auth\\VerifyEmailController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerifyEmailController.php',
-        'App\\Http\\Controllers\\Backend\\BackendController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/BackendController.php',
+        'App\\Http\\Controllers\\Backend\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/DashboardController.php',
         'App\\Http\\Controllers\\Backend\\MarksController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/MarksController.php',
         'App\\Http\\Controllers\\Backend\\StudentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/StudentController.php',
         'App\\Http\\Controllers\\Backend\\SupervisorController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/SupervisorController.php',

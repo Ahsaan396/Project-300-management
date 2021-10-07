@@ -58,19 +58,35 @@
                       <div class="card-body">
                         <div class="row">
                           <div class="form-group col-md-6">
-                            <label for="exampleInputEmail1">Full Name</label>
-                            <input type="text" class="form-control" value="{{$data->name}}" name="name" id="exampleInputEmail1" placeholder="Full Name">
-                          </div>
-                          
-                          <div class="form-group col-md-6">
-                            <label for="exampleInputPassword1">ID</label>
-                            <input type="text" name="student_id" 
-                            value="{{$data->student_id}}" class="form-control" id="exampleInputPassword1" placeholder="ID">
+                            <label for="exampleInputEmail1">Member Name_1</label>
+                            <input type="text" class="form-control" value="{{$data->name1}}" name="name1" id="exampleInputEmail1" placeholder="Full Name">
                           </div>
 
                           <div class="form-group col-md-6">
-                              <label for="exampleInputEmail1">Batch</label>
-                              <input type="text" name="batch" value="{{$data->batch}}" class="form-control" id="exampleInputEmail1" placeholder="Batch">
+                            <label for="exampleInputEmail1">Member Name_2</label>
+                            <input type="text" class="form-control" value="{{$data->name2}}" name="name2" id="exampleInputEmail1" placeholder="Full Name">
+                          </div>
+                          
+                          <div class="form-group col-md-6">
+                            <label for="exampleInputPassword1">Member ID_1</label>
+                            <input type="text" name="student_id1" 
+                            value="{{$data->student_id1}}" class="form-control" id="exampleInputPassword1" placeholder="Member ID_1">
+                          </div>
+
+                          <div class="form-group col-md-6">
+                            <label for="exampleInputPassword1">Member ID_2</label>
+                            <input type="text" name="student_id2" 
+                            value="{{$data->student_id2}}" class="form-control" id="exampleInputPassword1" placeholder="Member ID_2">
+                          </div>
+
+                          <div class="form-group col-md-6">
+                              <label for="exampleInputEmail1">Member Batch_1</label>
+                              <input type="text" name="batch1" value="{{$data->batch1}}" class="form-control" id="exampleInputEmail1" placeholder="Member Batch_1">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                              <label for="exampleInputEmail1">Member Batch_1</label>
+                              <input type="text" name="batch2" value="{{$data->batch2}}" class="form-control" id="exampleInputEmail1" placeholder="Member Batch_2">
                             </div>
 
                             <div class="form-group col-md-6">
