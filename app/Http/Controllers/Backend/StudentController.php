@@ -30,6 +30,9 @@ class StudentController extends Controller
 
             $data = DB::table('students')->where('supervisorId',Session('id'))->orderBy('student_id1')->get();    
         }
+        else{
+          return redirect('/dashboard');
+        }
         return view('backend.studentList',['data'=>$data]); 
     }
 
@@ -185,6 +188,10 @@ class StudentController extends Controller
         ->where('acceptance','Accepted')->orderBy('student_id1')->select('students.id','students.name1','students.name2','students.student_id1','students.student_id2','students.batch1','students.batch2', 'students.pname')->get();
     }
 
+    else{
+      return redirect('/dashboard');
+    }
+
         return view('backend.acceptedStudent',['data'=>$data]);
     }
 
@@ -211,6 +218,10 @@ class StudentController extends Controller
         ->join('students', 'acceptances.id','=','students.id')
         ->where('acceptance','Rejected')->orderBy('student_id1')->select('students.id','students.name1','students.name2','students.student_id1','students.student_id2','students.batch1','students.batch2', 'students.pname')->get();
     }
+
+    else{
+      return redirect('/dashboard');
+    }
         return view('backend.rejectedStudent',['data'=>$data]);
 
     }
@@ -222,22 +233,65 @@ class StudentController extends Controller
           $query->where('id',Session('id'))
         ->where('usertype','Admin');
       })->count() == 1){
-    $data = DB::table('acceptances')->join('students', 'acceptances.supervisorID','=','students.supervisorID')->join('users','users.id','=','students.supervisorID')->where(function ($query)
+    $data = DB::table('acceptances')->join('students', 'acceptances.id','=','students.id')->where(function ($query)
       {
          $query->where('bMember1','!=','NULL')
           ->where('bMember2','!=','NULL');
         })->orderBy('student_id1')->select('students.id','students.name1','students.name2','students.student_id1','students.student_id2','students.batch1','students.batch2', 'students.pname','acceptances.bMember1','acceptances.bMember2','acceptances.rReviewer1','acceptances.rReviewer2')->get();
       }
 
-      else{
-        $data = DB::table('acceptances')->where('acceptances.supervisorID',Session('id'))->join('students', 'acceptances.supervisorID','=','students.supervisorID')->join('users','users.id','=','students.supervisorID')->where(function ($query)
+      else if(DB::table('users')->where(function ($query)
+      {
+        $query->where('id',Session('id'))
+      ->where('usertype','Supervisor');
+    })->count() == 1){
+        $data = DB::table('acceptances')->where('acceptances.bMId1',Session('id'))->orWhere('acceptances.bMId2',Session('id'))->join('students', 'acceptances.id','=','students.id')->where(function ($query)
           {
              $query->where('bMember1','!=','NULL')
-              ->where('bMember2','!=','NULL');
+              ->where('bMember2','!=','NULL')->where('acceptance','Accepted');
             })->orderBy('student_id1')->select('students.id','students.name1','students.name2','students.student_id1','students.student_id2','students.batch1','students.batch2', 'students.pname','acceptances.bMember1','acceptances.bMember2','acceptances.rReviewer1','acceptances.rReviewer2')->get();
+          }
+          
+         else{
+            return redirect('/dashboard');
           }
         return view('backend.allowedForBoard',['data'=>$data]); 
     }
+
+
+      // Allowed Student for Report Review board
+    public function assignedForReportReview(){
+      if(DB::table('users')->where(function ($query)
+        {
+          $query->where('id',Session('id'))
+        ->where('usertype','Admin');
+      })->count() == 1){
+    $data = DB::table('acceptances')->join('students', 'acceptances.id','=','students.id')->where(function ($query)
+      {
+         $query->where('rReviewer1','!=','NULL')
+          ->where('rReviewer2','!=','NULL');
+        })->orderBy('student_id1')->select('students.id','students.name1','students.name2','students.student_id1','students.student_id2','students.batch1','students.batch2', 'students.pname','acceptances.bMember1','acceptances.bMember2','acceptances.rReviewer1','acceptances.rReviewer2')->get();
+      }
+
+      else if(DB::table('users')->where(function ($query)
+      {
+        $query->where('id',Session('id'))
+      ->where('usertype','Supervisor');
+    })->count() == 1){
+        $data = DB::table('acceptances')->where('acceptances.rRId1',Session('id'))->orWhere('acceptances.rRId2',Session('id'))->join('students', 'acceptances.id','=','students.id')->where(function ($query)
+          {
+             $query->where('rReviewer1','!=','NULL')
+              ->where('rReviewer2','!=','NULL')->where('acceptance','Accepted');
+            })->orderBy('student_id1')->select('students.id','students.name1','students.name2','students.student_id1','students.student_id2','students.batch1','students.batch2', 'students.pname','acceptances.bMember1','acceptances.bMember2','acceptances.rReviewer1','acceptances.rReviewer2')->get();
+          }
+
+          else{
+            return redirect('/dashboard');
+          }
+
+        return view('backend.assignedForReportReview',['data'=>$data]); 
+    }
+
 
     // Getting Board Members name from users table 
     public function addToBoard($id){
@@ -253,10 +307,24 @@ class StudentController extends Controller
 
     // Storing Board Members name to acceptances table
     public function storeToBoard($id, Request $request){
+      //  $id1 = DB::table('users')->select('id')->where('email',$request->bM1)->get();
+      //  get_object_vars($id1);
+      // $id2 = DB::table('users')->where('email',$request->bM2)->select('users.id')->get();
+      // get_object_vars($id2);
+// ->join('acceptances', 'acceptances.supervisorID','=','users.id')
+
       $data = DB::table('acceptances')->where('id',$id)->update([
         'bMember1'=> $request->bM1, 
-        'bMember2'=>$request->bM2
+        'bMember2'=>$request->bM2,
+        'bMId1'=>$request->bMId1,
+        'bMId2'=>$request->bMId2
       ]);
+
+      //  if(DB::table('users')->where(function ($query){
+      //    $query->where('email',$request->bM1)->where('id',$request->bMId1);
+      //  })){
+
+      //  }
 
       return redirect()->route('student.acceptedStudent');
     }
@@ -265,7 +333,9 @@ class StudentController extends Controller
     public function storeReportReviewer($id, Request $request){
       $data = DB::table('acceptances')->where('id',$id)->update([
         'rReviewer1'=> $request->rR1, 
-        'rReviewer2'=>$request->rR2
+        'rReviewer2'=>$request->rR2,
+        'rRId1'=>$request->rRId1, 
+        'rRId2'=>$request->rRId2
       ]);
 
       return redirect()->route('student.acceptedStudent');

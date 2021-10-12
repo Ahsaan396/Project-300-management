@@ -71,6 +71,8 @@ Route::prefix('student')->group(function(){
 
     Route::get('/allowedForBoard',[StudentController::class,'allowedForBoard'])->name('student.allowedForBoard');
 
+    Route::get('/assignedForReportReview',[StudentController::class,'assignedForReportReview'])->name('student.assignedForReportReview');
+
     Route::get('/addToBoard/{id}',[StudentController::class,'addToBoard'])->name('student.addToBoard');
 
     Route::post('/storeToBoard/{id}',[StudentController::class,'storeToBoard'])->name('student.storeToBoard');

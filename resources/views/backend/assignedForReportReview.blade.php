@@ -34,7 +34,7 @@
                   <h3 class="card-title">
                     {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
                     <i class="fas fa-user-graduate"></i>
-                    Allowed For Board
+                    Assigned For Report Review
                   </h3>
 
                   {{-- <div class="card-tools">
@@ -68,9 +68,9 @@
                         $query->where('id',Session('id'))
                         ->where('usertype','Admin');
                         })->count() == 1)
-                        <th>Board Members</th>  
-                        {{-- <th>Report Reviwers</th>  --}}
-                        @endif  
+                        {{-- <th>Board Members</th>   --}}
+                        <th>Report Reviwers</th> 
+                        @endif 
                         <th>Action</th>
                         
                         </tr>
@@ -86,13 +86,13 @@
                           <td>{{$user->name2}}<br>{{$user->student_id2}}</td>
                           <td>{{$user->batch1}}<br>{{$user->batch2}}</td>
                           <td>{{$user->pname}}</td>
-                          @if(DB::table('users')->where(function ($query)
+                        @if(DB::table('users')->where(function ($query)
                         {
                         $query->where('id',Session('id'))
                         ->where('usertype','Admin');
                         })->count() == 1)
-                          <td>{{$user->bMember1}}<br>{{$user->bMember2}}</td>
-                          {{-- <td>{{$user->rReviewer1}}<br>{{$user->rReviewer2}}</td> --}}
+                          {{-- <td>{{$user->bMember1}}<br>{{$user->bMember2}}</td> --}}
+                          <td>{{$user->rReviewer1}}<br>{{$user->rReviewer2}}</td>
                           @endif
                           <td>
                             <a title="Mark" class="btn btn-sm btn-primary" href=""><i class="fas fa-sign-out-alt"></i>

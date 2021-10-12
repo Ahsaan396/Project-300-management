@@ -16,6 +16,10 @@ class Acceptance extends Migration
         Schema::create('acceptances', function (Blueprint $table) {
             $table->id()->nullable();
             $table->foreignId('supervisorID')->nullable()->references('id')->on('users');
+            $table->bigInteger('bMId1')->nullable();
+            $table->bigInteger('bMId2')->nullable();
+            $table->bigInteger('rRId1')->nullable();
+            $table->bigInteger('rRId2')->nullable();
             $table->string('acceptance')->nullable();
             $table->string('bMember1')->nullable();
             $table->string('bMember2')->nullable();

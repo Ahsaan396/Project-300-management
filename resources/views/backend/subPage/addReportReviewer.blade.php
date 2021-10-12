@@ -57,7 +57,7 @@
                   <div class="card-body">
                         <div class="row">
                         <div class="form-group col-md-6">
-                        <label for="exampleInputEmail1">Board Member No. 1</label>
+                        <label for="exampleInputEmail1">Report Reviewer No. 1</label>
                         <select class="form-select" name="rR1" aria-label="Default select example">
                               @foreach ($data as $user)
                               <option value={{$user->email}} >{{$user->email}}</option>
@@ -66,12 +66,31 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                              <label for="exampleInputEmail1">Board Member No. 2</label>
+                              <label for="exampleInputEmail1">Report Reviewer No. 2</label>
                               <select class="form-select" name="rR2" aria-label="Default select example">
                                     @foreach ($data as $user)
                                     <option value={{$user->email}} >{{$user->email}}</option>
                                     @endforeach
                               </select>
+                              </div>
+
+                        
+                              <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">Report Reviewer Id No. 1</label>
+                                <select class="form-select" name="rRId1" aria-label="Default select example">
+                                      @foreach ($data as $user)
+                                      <option value="{{$user->id}}">{{$user->name}}'s User id->{{$user->id}}</option>
+                                      @endforeach
+                                </select>
+                              </div>
+
+                              <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">Report Reviewer Id No. 2</label>
+                                <select class="form-select" name="rRId2" aria-label="Default select example">
+                                      @foreach ($data as $user)
+                                      <option value="{{$user->id}}">{{$user->name}}'s User id->{{$user->id}}</option> 
+                                      @endforeach
+                                </select>
                               </div>
 
                       </div>
