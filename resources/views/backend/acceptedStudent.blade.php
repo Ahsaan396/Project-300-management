@@ -34,7 +34,7 @@
                   <h3 class="card-title">
                     {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
                     <i class="fas fa-user-graduate"></i>
-                    Accepted Students
+                    Accepted Students List
                   </h3>
 
                   {{-- <div class="card-tools">
@@ -58,15 +58,15 @@
                       <thead>
 
                         <tr>
-                        <th>SL.</th>  
-                        <th>Name</th>  
-                        <th>ID</th>  
-                        <th>Batch</th>  
-                        <th>Project Name</th>  
-                        <th>Phone Number</th>  
-                        <th>Mark</th>
-                        
-                        </tr>
+                          <th>SL.</th>  
+                          <th>Member 1</th>  
+                          <th>Member 2</th>  
+                          <th>Batch</th>  
+                          <th>Project Name</th>  
+                          {{-- <th>Phone Number</th>  --}}
+                          <th>Action</th>
+                         
+                          </tr>
 
                       </thead>
 
@@ -75,15 +75,26 @@
                         
                         <tr>
                           <td>{{$key + 1}}</td>
-                          <td>{{$user->name}}</td>
-                          <td>{{$user->student_id}}</td>
-                          <td>{{$user->batch}}</td>
-                          <td>{{$user->pname}}</td>
-                          <td>{{$user->number}}</td>
+                          <td>{{$user->name1}}<br>{{$user->student_id1}}</td>
+                          <td>{{$user->name2}}<br>{{$user->student_id2}}</td>
+                          <td>{{$user->batch1}}<br>{{$user->batch2}}</td>
+                          <td>{{$user->pname}}</td>                      
+                          {{-- <td>{{$user->number}}</td> --}}
                           <td>
                             <a title="Mark" class="btn btn-sm btn-primary" href=""><i class="fas fa-sign-out-alt"></i></a>
 
-                            <a title="Delete" class="btn btn-sm btn-danger" href="{{route('student.deleteStudent',$user->id)}}"><i class="fa fa-trash"></i></a>
+                          @if(DB::table('users')->where(function ($query)
+                          {
+                            $query->where('id',Session('id'))
+                            ->where('usertype','Admin');
+                          })->count() == 1)
+                            <a title="Add To Board" class="btn btn-sm btn-success" href="{{route('student.addToBoard',$user->id)}}"><i class="fas fa-plus"></i></a>
+
+                            <a title="Add Report Reviewer" class="btn btn-sm btn-warning" href="{{route('student.addReportReviewer',$user->id)}}"><i class="fas fa-plus"></i></a>
+
+                          @endif
+                          
+                            <a title="Remove" class="btn btn-sm btn-danger" href="{{route('student.remove',$user->id)}}"><i class="fa fa-remove"></i></i></a>
                           </td>
                         
                         </tr>

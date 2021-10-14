@@ -10,7 +10,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Manage Student</h1>
+              <h1 class="m-0">Manage Marks</h1>
             </div><!-- /.col -->
            <!-- /.col -->
           </div><!-- /.row -->
@@ -34,65 +34,56 @@
                   <h3 class="card-title">
                     {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
                     <i class="fas fa-user-graduate"></i>
-                    Rejected Students List
+                    Marks
                   </h3>
 
-                  {{-- <div class="card-tools">
+                  <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                       <li class="nav-item">
-                       <a class="btn btn-success float-right btn-sm" href="{{route('student.addStudent')}}"><i class="fa fa-plus-circle">
-                          Add Student</i></a>
+                       <a class="btn btn-success float-right btn-sm" href="{{route('supervisorPanel.supervisorList')}}"><i class="fa fa-list">
+                          Show Students List</i></a>
                       </li>
                     </ul>
-                  </div> --}}
+                  </div>
 
                 </div>
                 
                 <!-- /.card-header -->
 
-                <div class="card-body">
-                  <div class="tab-content p-0">
+                <form action="{{route('supervisorPanel.updateSupervisor',$editData->id)}}" method="POST" id="myForm">
+                      {{-- {{ csrf_field() }} --}}
+                      @csrf
+                  <div class="card-body">
+                        <div class="row">
 
-                    <!-- List -->
-                    <table id="example1" class="table table-bordered table-striped">
-                      <thead>
+                        <div class="form-group col-md-6">
+                              <label for="exampleInputEmail1">Full Name</label>
+                              <input type="text" name="name" value="{{$editData->name}}" class="form-control" id="exampleInputEmail1" placeholder="Full Name">
 
-                        <tr>
-                          <th>SL.</th>  
-                          <th>Member 1</th>  
-                          <th>Member 2</th>  
-                          <th>Batch</th>  
-                          <th>Project Name</th>  
-                          {{-- <th>Phone Number</th>  --}}
-                          <th>Action</th>
-                         
-                          </tr>
+                        </div>
 
-                      </thead>
+                        <div class="form-group col-md-6">
+                              <label for="exampleInputEmail1">Full Name</label>
+                              <input type="text" name="name" value="{{$editData->name}}" class="form-control" id="exampleInputEmail1" placeholder="Full Name">
 
-                      <tbody>
-                        @foreach ($data as $key => $user)
                         
-                        <tr>
-                          <td>{{$key + 1}}</td>
-                          <td>{{$user->name1}}<br>{{$user->student_id1}}</td>
-                          <td>{{$user->name2}}<br>{{$user->student_id2}}</td>
-                          <td>{{$user->batch1}}<br>{{$user->batch2}}</td>
-                          <td>{{$user->pname}}</td>                      
-                          {{-- <td>{{$user->number}}</td> --}}
-                          <td>
-                            <a title="Accepted" class="btn btn-sm btn-success" href="{{route('student.accept',$user->id)}}"><i class="fa fa-check-circle"></i></a>
+                        </div>
 
-                            <a title="Remove" class="btn btn-sm btn-danger" href="{{route('student.remove',$user->id)}}"><i class="fa fa-remove"></i></i></a>
-                          </td>
-                        
-                        </tr>
-                        @endforeach
+                    <div class="form-group col-md-6">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" name="email" value="{{$editData->email}}" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
 
-                      </tbody>
+                    
+                    </div>
 
-                    </table>
-
+                  </div>
+                  </div>
+                  <!-- /.card-body -->
+  
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                  </div>
+                </form>
 
                     <div class="chart tab-pane active" id="revenue-chart"
                          style="position: relative; height: 300px;">
@@ -103,9 +94,9 @@
                       <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
                     </div>
                   </div>
-                </div><!-- /.card-body -->
+                </div>
+                <!-- /.card-body -->
               </div>
-              <!-- /.card -->
               <!-- /.card -->
             </section>
 

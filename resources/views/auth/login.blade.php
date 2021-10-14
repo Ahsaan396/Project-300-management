@@ -116,6 +116,7 @@ margin-left: 4px;
 
 </head>
 <body>
+	
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
@@ -126,6 +127,7 @@ margin-left: 4px;
 					<span><i class="fab fa-google-plus-square"></i></span>
 					<span><i class="fab fa-twitter-square"></i></span>
 				</div> --}}
+				
 			</div>
 
 
@@ -140,14 +142,15 @@ margin-left: 4px;
 			<form method="POST" action="{{ route('login') }}" >
                     @csrf
 
-			  @if($errors->any())
-			  <div class="alert alert-danger alert-dismissible">
+			  {{-- @if($errors->any())
+			  <div class="alert alert-danger 	">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
 				@foreach ($errors->all() as $error)
 				<strong>{{$error}}</strong><br>
 				@endforeach
 			</div>
-			@endif			
+			@endif			 --}}
+			
 
                      <!-- Email Address -->
 					<div class="input-group form-group">
@@ -170,7 +173,13 @@ margin-left: 4px;
                   name="password"
                   required autocomplete="current-password" />
 					</div>
-
+                    @foreach ($errors->all() as $error)
+                                    <div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                    </button>
+                                        <div>{{ $error }}</div>
+                                    </div>
+                                @endforeach
                     <!-- Remember Me -->
 					<div class="row align-items-center remember">
 
@@ -183,14 +192,14 @@ margin-left: 4px;
 			</div>
 
 
-			<div class="card-footer">
+			{{-- <div class="card-footer">
 				<div class="d-flex justify-content-center links">
 					Don't have an account?<a href="{{ route('register') }}">Sign Up</a>
 				</div>
 				<div class="d-flex justify-content-center">
 					<a href="#">Forgot your password?</a>
 				</div>
-			</div>
+			</div> --}}
 
 		</div>
 	</div>

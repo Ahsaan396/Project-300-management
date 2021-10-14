@@ -10,7 +10,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Manage Student</h1>
+              <h1 class="m-0">Manage Accepted Student</h1>
             </div><!-- /.col -->
            <!-- /.col -->
           </div><!-- /.row -->
@@ -34,7 +34,7 @@
                   <h3 class="card-title">
                     {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
                     <i class="fas fa-user-graduate"></i>
-                    Rejected Students List
+                    Assigned For Report Review
                   </h3>
 
                   {{-- <div class="card-tools">
@@ -58,15 +58,22 @@
                       <thead>
 
                         <tr>
-                          <th>SL.</th>  
-                          <th>Member 1</th>  
-                          <th>Member 2</th>  
-                          <th>Batch</th>  
-                          <th>Project Name</th>  
-                          {{-- <th>Phone Number</th>  --}}
-                          <th>Action</th>
-                         
-                          </tr>
+                        <th>SL.</th>  
+                        <th>Member 1</th>  
+                        <th>Member 2</th>   
+                        <th>Batch</th>  
+                        <th>Project Name</th>  
+                        @if(DB::table('users')->where(function ($query)
+                        {
+                        $query->where('id',Session('id'))
+                        ->where('usertype','Admin');
+                        })->count() == 1)
+                        {{-- <th>Board Members</th>   --}}
+                        <th>Report Reviwers</th> 
+                        @endif 
+                        <th>Action</th>
+                        
+                        </tr>
 
                       </thead>
 
@@ -78,10 +85,18 @@
                           <td>{{$user->name1}}<br>{{$user->student_id1}}</td>
                           <td>{{$user->name2}}<br>{{$user->student_id2}}</td>
                           <td>{{$user->batch1}}<br>{{$user->batch2}}</td>
-                          <td>{{$user->pname}}</td>                      
-                          {{-- <td>{{$user->number}}</td> --}}
+                          <td>{{$user->pname}}</td>
+                        @if(DB::table('users')->where(function ($query)
+                        {
+                        $query->where('id',Session('id'))
+                        ->where('usertype','Admin');
+                        })->count() == 1)
+                          {{-- <td>{{$user->bMember1}}<br>{{$user->bMember2}}</td> --}}
+                          <td>{{$user->rReviewer1}}<br>{{$user->rReviewer2}}</td>
+                          @endif
                           <td>
-                            <a title="Accepted" class="btn btn-sm btn-success" href="{{route('student.accept',$user->id)}}"><i class="fa fa-check-circle"></i></a>
+                            <a title="Mark" class="btn btn-sm btn-primary" href=""><i class="fas fa-sign-out-alt"></i>
+                           </a>                         
 
                             <a title="Remove" class="btn btn-sm btn-danger" href="{{route('student.remove',$user->id)}}"><i class="fa fa-remove"></i></i></a>
                           </td>

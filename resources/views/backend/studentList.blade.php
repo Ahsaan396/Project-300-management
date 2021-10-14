@@ -59,13 +59,14 @@
 
                         <tr>
                         <th>SL.</th>  
-                        <th>Name</th>  
-                        <th>ID</th>  
+                        <th>Member 1</th>  
+                        <th>Member 2</th>  
                         <th>Batch</th>  
                         <th>Project Name</th>  
-                        <th>Phone Number</th>  
+                        {{-- <th>Supervisor Name</th> --}}
+                        <th>Phone Number</th> 
                         <th>Action</th>
-                        <th>Acceptance</th> 
+                        {{-- <th>Acceptance</th>  --}}
                         </tr>
 
                       </thead>
@@ -75,18 +76,19 @@
                         
                         <tr>
                           <td>{{$key + 1}}</td>
-                          <td>{{$user->name}}</td>
-                          <td>{{$user->student_id}}</td>
-                          <td>{{$user->batch}}</td>
-                          <td>{{$user->pname}}</td>
+                          <td>{{$user->name1}}<br>{{$user->student_id1}}</td>
+                          <td>{{$user->name2}}<br>{{$user->student_id2}}</td>
+                          <td>{{$user->batch1}}<br>{{$user->batch2}}</td>
+                          <td>{{$user->pname}}</td>                      
                           <td>{{$user->number}}</td>
+
                           <td>
                             <a title="Edit" class="btn btn-sm btn-primary" href="{{route('student.editStudent',$user->id)}}"><i class="fa fa-edit"></i></a>
 
                             <a title="Delete" class="btn btn-sm btn-danger" href="{{route('student.deleteStudent',$user->id)}}"><i class="fa fa-trash"></i></a>
 
-                          </td>
-                          <td>
+                          {{-- </td>
+                          <td> --}}
                             <a title="Accepted" class="btn btn-sm btn-success" href="{{route('student.accept',$user->id)}}"><i class="fa fa-check-circle"></i></a>
 
                             <a title="Rejected" class="btn btn-sm btn-danger" href="{{route('student.reject',$user->id)}}"><i class="fas fa-times-circle"></i></a>

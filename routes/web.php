@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Backend\BackendController;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\SupervisorController;
 use App\Http\Controllers\Backend\StudentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\FrontendController;
-
+use App\Http\Controllers\Backend\MarksController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/logout',[AuthenticatedSessionController::class,'logout'])->name('logout');
+
 Route::prefix('supervisorPanel')->group(function(){
     Route::get('/supervisorList', [SupervisorController::class,'supervisorList'])->name('supervisorPanel.supervisorList');
 
@@ -35,8 +38,12 @@ Route::prefix('supervisorPanel')->group(function(){
 
     Route::get('/deleteSupervisor/{id}',[SupervisorController::class,'deleteSupervisor'])->name('supervisorPanel.deleteSupervisor');
 
+    Route::get('/boardMemberList',[SupervisorController::class,'boardMemberList'])->name('supervisorPanel.boardMemberList');
 
-    
+    Route::get('/addBoardMember/{id}',[SupervisorController::class,'addBoardMember'])->name('supervisorPanel.addBoardMember');
+
+    Route::get('/remove/{id}',[SupervisorController::class,'remove'])->name('supervisorPanel.remove');
+ 
 });
 
 Route::prefix('student')->group(function(){
@@ -58,12 +65,37 @@ Route::prefix('student')->group(function(){
 
     Route::get('/rejectedStudent',[StudentController::class,'rejectedStudent'])->name('student.rejectedStudent');
 
-
     Route::get('/reject/{id}',[StudentController::class,'reject'])->name('student.reject');
+
+    Route::get('/remove/{id}',[StudentController::class,'remove'])->name('student.remove');
+
+    Route::get('/allowedForBoard',[StudentController::class,'allowedForBoard'])->name('student.allowedForBoard');
+
+    Route::get('/assignedForReportReview',[StudentController::class,'assignedForReportReview'])->name('student.assignedForReportReview');
+
+    Route::get('/addToBoard/{id}',[StudentController::class,'addToBoard'])->name('student.addToBoard');
+
+    Route::post('/storeToBoard/{id}',[StudentController::class,'storeToBoard'])->name('student.storeToBoard');
+
+    Route::get('/addReportReviewer/{id}',[StudentController::class,'addReportReviewer'])->name('student.addReportReviewer');
+
+    Route::post('/storeReportReviewer/{id}',[StudentController::class,'storeReportReviewer'])->name('student.storeReportReviewer');
+
 });
 
-Route::get('/dashboard', function () {
-    return view('frontend.layouts.dashboard');
-})->middleware(['auth'])->name('dashboard');
 
+// Route::get('/dashboard', function () {
+//     return view('frontend.layouts.dashboard');
+// })->name('dashboard');
+
+Route::get('/dashboard', [DashboardController::class,'dashboard'])->name('dashboard');
+
+<<<<<<< HEAD
 require __DIR__.'/auth.php';
+=======
+require __DIR__.'/auth.php';
+
+
+
+
+>>>>>>> Board
