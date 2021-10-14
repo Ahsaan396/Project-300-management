@@ -90,12 +90,4 @@ Route::prefix('student')->group(function(){
 
 Route::get('/dashboard', [DashboardController::class,'dashboard'])->name('dashboard');
 
-<<<<<<< HEAD
 require __DIR__.'/auth.php';
-=======
-require __DIR__.'/auth.php';
-
-
-
-
->>>>>>> Board

@@ -62,12 +62,7 @@ class StudentController extends Controller
             'batch2'=> $request->batch2,
             'pname'=> $request->pname,
             'number'=> $request->number,
-<<<<<<< HEAD
-            'acceptance'=> $request->acceptance,
-            //'supervisorId'=> $request->$id
-=======
             'supervisorId'=> session('id')
->>>>>>> Board
         ]);
 
         return redirect()->route('student.addStudent');
