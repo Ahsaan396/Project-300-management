@@ -81,7 +81,7 @@
                           <td>{{$user->pname}}</td>                      
                           {{-- <td>{{$user->number}}</td> --}}
                           <td>
-                            <a title="Mark" class="btn btn-sm btn-primary" href=""><i class="fas fa-sign-out-alt"></i></a>
+                            <a title="Mark" class="btn btn-sm btn-primary" href="{{route('student.marks',$user->id)}}"><i class="fas fa-sign-out-alt"></i></a>
 
                           @if(DB::table('users')->where(function ($query)
                           {

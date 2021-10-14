@@ -340,5 +340,17 @@ class StudentController extends Controller
 
       return redirect()->route('student.acceptedStudent');
     }
+      
+          
+          public function marks($id)
+          {
+                return view('backend.subpage.marks',['id'=>$id]);
+          }
 
+          public function storeMarks($id,Request $request)
+          {
+
+                //return redirect()->route('student.acceptedStudent');
+                return redirect( url()->previous());
+          }
 }

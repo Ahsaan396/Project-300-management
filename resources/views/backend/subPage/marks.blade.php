@@ -50,30 +50,26 @@
                 
                 <!-- /.card-header -->
 
-                <form action="{{route('supervisorPanel.updateSupervisor',$editData->id)}}" method="POST" id="myForm">
+                <form action="{{route('student.storeMarks',$id)}}"method="POST" id="myForm">
                       {{-- {{ csrf_field() }} --}}
                       @csrf
                   <div class="card-body">
                         <div class="row">
 
-                        <div class="form-group col-md-6">
-                              <label for="exampleInputEmail1">Full Name</label>
-                              <input type="text" name="name" value="{{$editData->name}}" class="form-control" id="exampleInputEmail1" placeholder="Full Name">
+                        <div class="form-group col-md-4">
+                              <label for="exampleInputEmail1">Supervisor Mark</label>
+                              <input type="number" name="sMark" class="form-control" id="exampleInputEmail1" placeholder="0-30"min="0" max="30">
 
                         </div>
 
-                        <div class="form-group col-md-6">
-                              <label for="exampleInputEmail1">Full Name</label>
-                              <input type="text" name="name" value="{{$editData->name}}" class="form-control" id="exampleInputEmail1" placeholder="Full Name">
-
-                        
+                        <div class="form-group col-md-4">
+                              <label for="exampleInputEmail1">Report Mark</label>
+                              <input type="number" name="rMark" class="form-control" id="exampleInputEmail1" placeholder="0-30" min="0" max="40">
                         </div>
 
-                    <div class="form-group col-md-6">
-                      <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" name="email" value="{{$editData->email}}" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-
-                    
+                    <div class="form-group col-md-4">
+                      <label for="exampleInputEmail1">Presentation Mark</label>
+                      <input type="number" name="pMark" class="form-control" id="exampleInputEmail1" placeholder="0-40" min="0" max="40">
                     </div>
 
                   </div>

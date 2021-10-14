@@ -81,6 +81,10 @@ Route::prefix('student')->group(function(){
 
     Route::post('/storeReportReviewer/{id}',[StudentController::class,'storeReportReviewer'])->name('student.storeReportReviewer');
 
+     Route::get('/marks/{id}',[StudentController::class,'marks'])->name('student.marks');
+
+     Route::post('/storeMarks/{id}',[StudentController::class,'storeMarks'])->name('student.storeMarks');
+
 });
 
 
