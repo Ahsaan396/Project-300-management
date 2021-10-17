@@ -10,7 +10,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Manage Supervisor</h1>
+              <h1 class="m-0">Manage Marks</h1>
             </div><!-- /.col -->
            <!-- /.col -->
           </div><!-- /.row -->
@@ -34,64 +34,37 @@
                   <h3 class="card-title">
                     {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
                     <i class="fas fa-user-graduate"></i>
-                    Register Supervisor
+                    Marks
                   </h3>
 
-                  <div class="card-tools">
+                  {{-- <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                       <li class="nav-item">
-                       <a class="btn btn-success float-right btn-sm" href="{{route('supervisorPanel.supervisorList')}}"><i class="fa fa-list">
-                          Show Supervisor List</i></a>
+                       <a class="btn btn-success float-right btn-sm" href="{{route('student.acceptedStudent')}}"><i class="fa fa-list">
+                          Show Students List</i></a>
                       </li>
                     </ul>
-                  </div>
+                  </div> --}}
 
                 </div>
                 
                 <!-- /.card-header -->
 
-                <form action="{{route('supervisorPanel.store')}}" method="POST" id="myForm">
+                <form action="{{route('student.storeMarksB',$id)}}"method="POST" id="myForm">
+                      {{-- {{ csrf_field() }} --}}
                       @csrf
                   <div class="card-body">
                         <div class="row">
-                        <div class="form-group col-md-6">
-                        <label for="exampleInputEmail1">Role</label>
-                        <select class="form-select" name="usertype" aria-label="Default select example" required>
-                              <option selected>Select Role</option>
-                              <option value="Admin">Admin</option>
-                              <option value="Supervisor">Supervisor</option>
-                        </select>
-                        </div>
-
-                        <div class="form-group col-md-6">
-                              <label for="exampleInputEmail1">Full Name</label>
-                              <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Full Name">
-
-                              <font style="color:red">{{($errors->has('name'))?($errors->first('name')):''}}</font>
-                        </div>
-
-                    <div class="form-group col-md-6">
-                      <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
-
-                      <font style="color:red">{{($errors->has('email'))?($errors->first('email')):''}}</font>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label for="exampleInputPassword1">Confirm Password</label>
-                        <input type="password" name="cpass" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password" required>
-                      </div>
+                              <div class="form-group col-md-4">
+                                    <label for="exampleInputEmail1">Presentation Mark</label>
+                                    <input type="number" name="pMark" class="form-control" id="exampleInputEmail1" placeholder="0-40" min="0" max="40">
+                              </div> 
                   </div>
                   </div>
                   <!-- /.card-body -->
   
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                   </div>
                 </form>
 

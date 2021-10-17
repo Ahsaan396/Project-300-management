@@ -45,6 +45,7 @@ class SupervisorController extends Controller
 
     public function store(Request $request)
     {
+        if($request->password == $request->cpass){
         $data = DB::table('users')->insert([
             'usertype'=> $request->usertype,
             'name'=> $request->name,
@@ -52,6 +53,13 @@ class SupervisorController extends Controller
             'password'=> bcrypt($request->password)
         ]);
         return redirect()->route('supervisorPanel.supervisorList');
+    }
+
+    else{
+        echo'<script> alert("Passwords do not match")</script>';
+         return redirect( url()->previous());
+    }
+        
     }
 
     public function editSupervisor($id){
@@ -99,7 +107,7 @@ class SupervisorController extends Controller
 
      public function remove($id){
         $data = DB::table('users')->where('id',$id)->update(['bMember'=>'NULL']);
+        $data = DB::table('users')->where('id',$id)->update(['rReviewer'=>'NULL']);
         return redirect( url()->previous());
     }
-
 }
