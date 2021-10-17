@@ -85,7 +85,7 @@
                           <td>
                             <a title="Edit" class="btn btn-sm btn-primary" href="{{route('student.editStudent',$user->id)}}"><i class="fa fa-edit"></i></a>
 
-                            <a title="Delete" class="btn btn-sm btn-danger" href="{{route('student.deleteStudent',$user->id)}}"><i class="fa fa-trash"></i></a>
+                            <a onclick="return confirm('Are you sure to delete')" title="Delete" class="btn btn-sm btn-danger" href="{{route('student.deleteStudent',$user->id)}}"><i class="fa fa-trash"></i></a>
 
                           {{-- </td>
                           <td> --}}

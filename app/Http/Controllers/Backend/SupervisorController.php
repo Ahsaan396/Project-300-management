@@ -7,6 +7,9 @@ use App\Models\Student;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
+
+//use Illuminate\Validation\Validator;
 
 class SupervisorController extends Controller
 {
@@ -45,6 +48,14 @@ class SupervisorController extends Controller
 
     public function store(Request $request)
     {
+        
+        $this->validate($request,[
+          //  'usertype'=>'required',
+            //'name'=>'required',
+            //'email'=>'required|email|users:unique',
+            'password' => 'required|min:8',
+            'confirm password' => 'same:password|min:8'
+        ]);
         if($request->password == $request->cpass){
         $data = DB::table('users')->insert([
             'usertype'=> $request->usertype,
@@ -56,10 +67,9 @@ class SupervisorController extends Controller
     }
 
     else{
-        echo'<script> alert("Passwords do not match")</script>';
-         return redirect( url()->previous());
+       //echo'<script> alert("Passwords do not match")</script>';
+        return redirect( url()->previous());
     }
-        
     }
 
     public function editSupervisor($id){

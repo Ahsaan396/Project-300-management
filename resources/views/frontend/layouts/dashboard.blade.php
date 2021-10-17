@@ -49,7 +49,7 @@
                     <i class="fas fa-chart-pie mr-1"></i>
                     Supervisor Activity
                   </h3>
-                  
+
                   @endif
                 </div>
 
