@@ -13,9 +13,10 @@ class SupervisorController extends Controller
     public function supervisorList(){
     if(DB::table('users')->where(function ($query)
     {
-              $query->where('id',Session('id'))
+            $query->where('id',Session('id'))
             ->where('usertype','Admin');
-          })->count() == 1){
+    }
+        )->count() == 1){
         $data = DB::table('users')->get();
         return view('backend.supervisorList',['data'=>$data]);
     }

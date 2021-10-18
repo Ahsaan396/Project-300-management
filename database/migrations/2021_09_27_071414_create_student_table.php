@@ -23,10 +23,6 @@ class CreateStudentTable extends Migration
             $table->string('batch2')->nullable();
             $table->string('pname');
             $table->string('number')->nullable();
-<<<<<<< HEAD
-            $table->string('acceptance')->nullable();
-=======
->>>>>>> Board
             $table->foreignId('supervisorID')->nullable()->references('id')->on('users');
             $table->timestamps();
         });

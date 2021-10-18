@@ -13,22 +13,14 @@ class StudentController extends Controller
 {
     // Student List
     public function studentList(){
-    if(DB::table('users')->where(function ($query)
-    {
-          $query->where('id',Session('id'))
-        ->where('usertype','Admin');
-      })->count() == 1){
+    if(auth()->user()->usertype=='Admin'){
 
             $data = DB::table('students')->orderBy('student_id1')->get();
     }
 
-    else if(DB::table('users')->where(function ($query)
-    {
-          $query->where('id',Session('id'))
-        ->where('usertype','Supervisor');
-      })->count() == 1){ 
+    else if(auth()->user()->usertype=='Supervisor'){ 
 
-            $data = DB::table('students')->where('supervisorId',Session('id'))->orderBy('student_id1')->get();    
+            $data = DB::table('students')->where('supervisorId',auth()->user()->id)->orderBy('student_id1')->get();    
         }
         else{
           return redirect('/dashboard');
@@ -62,7 +54,7 @@ class StudentController extends Controller
             'batch2'=> $request->batch2,
             'pname'=> $request->pname,
             'number'=> $request->number,
-            'supervisorId'=> session('id')
+            'supervisorId'=> auth()->user()->id
         ]);
 
         return redirect()->route('student.addStudent');
@@ -105,7 +97,7 @@ class StudentController extends Controller
       $data = DB::table('acceptances')->
         insert([
         'id'=>$id,
-        'supervisorID'=>Session('id'),
+        'supervisorID'=>auth()->user()->id,
         'acceptance'=>'Accepted',
       ]);
     } 
@@ -127,11 +119,11 @@ class StudentController extends Controller
           ]);
         }
   
-       else {
+      else {
         $data = DB::table('acceptances')->
         insert([
         'id'=>$id,
-        'supervisorID'=>Session('id'),
+        'supervisorID'=>auth()->user()->id,
         'acceptance'=>'Rejected',
       ]);
     }
@@ -156,7 +148,7 @@ class StudentController extends Controller
 
 
    // Delete Student from students & acceptances table
-   public function deleteStudent($id){
+  public function deleteStudent($id){
     $data = DB::table('students')->where('id',$id)->delete();
     $data = DB::table('acceptances')->where('id',$id)->delete();
     return redirect()->route('student.studentList');
@@ -166,24 +158,16 @@ class StudentController extends Controller
 
     //Accepted Student
     public function acceptedStudent(){
-    if(DB::table('users')->where(function ($query)
-      {
-          $query->where('id',Session('id'))
-        ->where('usertype','Admin');
-      })->count() == 1){
+    if(auth()->user()->usertype=='Admin'){
 
         $data = DB::table('acceptances')
         ->join('students', 'acceptances.id','=','students.id')
         ->where('acceptance','Accepted')->orderBy('student_id1')->select('students.id','students.name1','students.name2','students.student_id1','students.student_id2','students.batch1','students.batch2', 'students.pname')->get();
     }
   
-    else if(DB::table('users')->where(function ($query)
-        {
-          $query->where('id',Session('id'))
-        ->where('usertype','Supervisor');
-      })->count() == 1){
+    else if(auth()->user()->usertype=='Supervisor'){
 
-        $data = DB::table('acceptances')->where('acceptances.supervisorID',Session('id'))
+        $data = DB::table('acceptances')->where('acceptances.supervisorID',auth()->user()->id)
         ->join('students', 'acceptances.id','=','students.id')
         ->where('acceptance','Accepted')->orderBy('student_id1')->select('students.id','students.name1','students.name2','students.student_id1','students.student_id2','students.batch1','students.batch2', 'students.pname')->get();
     }
@@ -198,23 +182,15 @@ class StudentController extends Controller
     // Rejected Student
     public function rejectedStudent(){
 
-    if(DB::table('users')->where(function ($query)
-        {
-          $query->where('id',Session('id'))
-        ->where('usertype','Admin');
-      })->count() == 1){
+    if(auth()->user()->usertype=='Admin'){
         $data = DB::table('acceptances')
         ->join('students', 'acceptances.id','=','students.id')
         ->where('acceptance','Rejected')->orderBy('student_id1')->select('students.id','students.name1','students.name2','students.student_id1','students.student_id2','students.batch1','students.batch2', 'students.pname')->get();
     }
   
-    else if(DB::table('users')->where(function ($query)
-        {
-          $query->where('id',Session('id'))
-        ->where('usertype','Supervisor');
-      })->count() == 1){
+    else if(auth()->user()->usertype=='Supervisor'){
 
-        $data = DB::table('acceptances')->where('acceptances.supervisorID',Session('id'))
+        $data = DB::table('acceptances')->where('acceptances.supervisorID',auth()->user()->id)
         ->join('students', 'acceptances.id','=','students.id')
         ->where('acceptance','Rejected')->orderBy('student_id1')->select('students.id','students.name1','students.name2','students.student_id1','students.student_id2','students.batch1','students.batch2', 'students.pname')->get();
     }
@@ -228,31 +204,23 @@ class StudentController extends Controller
 
     // Allowed Student for board
     public function allowedForBoard(){
-      if(DB::table('users')->where(function ($query)
-        {
-          $query->where('id',Session('id'))
-        ->where('usertype','Admin');
-      })->count() == 1){
+      if(auth()->user()->usertype=='Admin'){
     $data = DB::table('acceptances')->join('students', 'acceptances.id','=','students.id')->where(function ($query)
       {
-         $query->where('bMember1','!=','NULL')
+        $query->where('bMember1','!=','NULL')
           ->where('bMember2','!=','NULL');
         })->orderBy('student_id1')->select('students.id','students.name1','students.name2','students.student_id1','students.student_id2','students.batch1','students.batch2', 'students.pname','acceptances.bMember1','acceptances.bMember2','acceptances.rReviewer1','acceptances.rReviewer2')->get();
       }
 
-      else if(DB::table('users')->where(function ($query)
-      {
-        $query->where('id',Session('id'))
-      ->where('usertype','Supervisor');
-    })->count() == 1){
-        $data = DB::table('acceptances')->where('acceptances.bMId1',Session('id'))->orWhere('acceptances.bMId2',Session('id'))->join('students', 'acceptances.id','=','students.id')->where(function ($query)
+      else if(auth()->user()->usertype=='Supervisor'){
+        $data = DB::table('acceptances')->where('acceptances.bMId1',auth()->user()->id)->orWhere('acceptances.bMId2',auth()->user()->id)->join('students', 'acceptances.id','=','students.id')->where(function ($query)
           {
-             $query->where('bMember1','!=','NULL')
+            $query->where('bMember1','!=','NULL')
               ->where('bMember2','!=','NULL')->where('acceptance','Accepted');
             })->orderBy('student_id1')->select('students.id','students.name1','students.name2','students.student_id1','students.student_id2','students.batch1','students.batch2', 'students.pname','acceptances.bMember1','acceptances.bMember2','acceptances.rReviewer1','acceptances.rReviewer2')->get();
           }
           
-         else{
+        else{
             return redirect('/dashboard');
           }
         return view('backend.allowedForBoard',['data'=>$data]); 
@@ -261,26 +229,18 @@ class StudentController extends Controller
 
       // Allowed Student for Report Review board
     public function assignedForReportReview(){
-      if(DB::table('users')->where(function ($query)
-        {
-          $query->where('id',Session('id'))
-        ->where('usertype','Admin');
-      })->count() == 1){
+      if(auth()->user()->usertype=='Admin'){
     $data = DB::table('acceptances')->join('students', 'acceptances.id','=','students.id')->where(function ($query)
       {
-         $query->where('rReviewer1','!=','NULL')
+        $query->where('rReviewer1','!=','NULL')
           ->where('rReviewer2','!=','NULL');
         })->orderBy('student_id1')->select('students.id','students.name1','students.name2','students.student_id1','students.student_id2','students.batch1','students.batch2', 'students.pname','acceptances.bMember1','acceptances.bMember2','acceptances.rReviewer1','acceptances.rReviewer2')->get();
       }
 
-      else if(DB::table('users')->where(function ($query)
-      {
-        $query->where('id',Session('id'))
-      ->where('usertype','Supervisor');
-    })->count() == 1){
-        $data = DB::table('acceptances')->where('acceptances.rRId1',Session('id'))->orWhere('acceptances.rRId2',Session('id'))->join('students', 'acceptances.id','=','students.id')->where(function ($query)
+      else if(auth()->user()->usertype=='Supervisor'){
+        $data = DB::table('acceptances')->where('acceptances.rRId1',auth()->user()->id)->orWhere('acceptances.rRId2',auth()->user()->id)->join('students', 'acceptances.id','=','students.id')->where(function ($query)
           {
-             $query->where('rReviewer1','!=','NULL')
+            $query->where('rReviewer1','!=','NULL')
               ->where('rReviewer2','!=','NULL')->where('acceptance','Accepted');
             })->orderBy('student_id1')->select('students.id','students.name1','students.name2','students.student_id1','students.student_id2','students.batch1','students.batch2', 'students.pname','acceptances.bMember1','acceptances.bMember2','acceptances.rReviewer1','acceptances.rReviewer2')->get();
           }
