@@ -69,6 +69,10 @@ Route::prefix('student')->group(function(){
 
     Route::get('/remove/{id}',[StudentController::class,'remove'])->name('student.remove');
 
+    Route::get('/removeB/{id}',[StudentController::class,'removeB'])->name('student.removeB');
+
+    Route::get('/removeR/{id}',[StudentController::class,'removeR'])->name('student.removeR');
+
     Route::get('/allowedForBoard',[StudentController::class,'allowedForBoard'])->name('student.allowedForBoard');
 
     Route::get('/assignedForReportReview',[StudentController::class,'assignedForReportReview'])->name('student.assignedForReportReview');
@@ -81,9 +85,13 @@ Route::prefix('student')->group(function(){
 
     Route::post('/storeReportReviewer/{id}',[StudentController::class,'storeReportReviewer'])->name('student.storeReportReviewer');
 
-     Route::get('/marks/{id}',[StudentController::class,'marks'])->name('student.marks');
+    Route::get('/marks/{id}',[StudentController::class,'marks'])->name('student.marks');
+    Route::get('/marksB/{id}',[StudentController::class,'marksB'])->name('student.marksB');
+    Route::get('/marksR/{id}',[StudentController::class,'marksR'])->name('student.marksR');
 
-     Route::post('/storeMarks/{id}',[StudentController::class,'storeMarks'])->name('student.storeMarks');
+    Route::post('/storeMarks/{id}',[StudentController::class,'storeMarks'])->name('student.storeMarks');
+    Route::post('/storeMarksB/{id}',[StudentController::class,'storeMarksB'])->name('student.storeMarksB');
+    Route::post('/storeMarksR/{id}',[StudentController::class,'storeMarksR'])->name('student.storeMarksR');
 
 });
 
@@ -93,5 +101,6 @@ Route::prefix('student')->group(function(){
 // })->name('dashboard');
 
 Route::get('/dashboard', [DashboardController::class,'dashboard'])->name('dashboard');
+// Route::get('/dashboard', [DashboardController::class,'dashData'])->name('dashboard');
 
 require __DIR__.'/auth.php';

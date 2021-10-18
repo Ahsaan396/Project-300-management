@@ -100,6 +100,12 @@ class StudentController extends Controller
         'supervisorID'=>auth()->user()->id,
         'acceptance'=>'Accepted',
       ]);
+
+      $dat = DB::table('marks')->
+      insert([
+      'id'=>$id,
+      'supervisorID'=>Session('id')
+    ]);
     } 
    
     return redirect( url()->previous());
@@ -115,7 +121,24 @@ class StudentController extends Controller
             'bMember1'=>'NULL',
             'bMember2'=>'NULL',
             'rReviewer1'=>'NULL',
-            'rReviewer2'=>'NULL'
+            'rReviewer2'=>'NULL',
+            'bMId1'=>'0',
+            'bMId2'=>'0',
+            'rRId1'=>'0',
+            'rRId2'=>'0'
+          ]);
+
+          $dat = DB::table('marks')->where('id',$id)->
+            update([
+              'bMId1'=>'0',
+              'bMId2'=>'0',
+              'rRId1'=>'0',
+              'rRId2'=>'0',
+              'bM1'=>'0',
+              'bM2'=>'0',
+              'rM1'=>'0',
+              'rM2'=>'0',
+              'sM'=>'0',
           ]);
         }
   
@@ -141,16 +164,73 @@ class StudentController extends Controller
         'bMember1'=>'NULL',
         'bMember2'=>'NULL',
         'rReviewer1'=>'NULL',
-        'rReviewer2'=>'NULL'
+        'rReviewer2'=>'NULL',
+        'bMId1'=>'0',
+        'bMId2'=>'0',
+        'rRId1'=>'0',
+        'rRId2'=>'0'
     ]);
+
+    $dat = DB::table('marks')->where('id',$id)
+    ->update([
+      'bMId1'=>'0',
+      'bMId2'=>'0',
+      'rRId1'=>'0',
+      'rRId2'=>'0',
+      'bM1'=>'0',
+      'bM2'=>'0',
+      'rM1'=>'0',
+      'rM2'=>'0',
+      'sM'=>'0',
+  ]);
       return redirect( url()->previous());
   }
+
+  // Remove Board Member traces
+  public function removeB($id){
+    $data = DB::table('acceptances')->where('id',$id)
+    ->update([
+      'bMember1'=>'NULL',
+      'bMember2'=>'NULL',
+      'bMId1'=>'0',
+      'bMId2'=>'0'
+  ]);
+
+  $dat = DB::table('marks')->where('id',$id)
+  ->update([
+    'bMId1'=>'0',
+    'bMId2'=>'0',
+    'bM1'=>'0',
+    'bM2'=>'0',
+]);
+    return redirect( url()->previous());
+}
+
+public function removeR($id){
+  $data = DB::table('acceptances')->where('id',$id)
+  ->update([
+    'rReviewer1'=>'NULL',
+    'rReviewer2'=>'NULL',
+    'rRId1'=>'0',
+    'rRId2'=>'0'
+]);
+
+$dat = DB::table('marks')->where('id',$id)
+->update([
+  'rRId1'=>'0',
+  'rRId2'=>'0',
+  'rM1'=>'0',
+  'rM2'=>'0'
+]);
+  return redirect( url()->previous());
+}
 
 
    // Delete Student from students & acceptances table
   public function deleteStudent($id){
     $data = DB::table('students')->where('id',$id)->delete();
     $data = DB::table('acceptances')->where('id',$id)->delete();
+    $data = DB::table('marks')->where('id',$id)->delete();
     return redirect()->route('student.studentList');
 }
 
@@ -267,12 +347,6 @@ class StudentController extends Controller
 
     // Storing Board Members name to acceptances table
     public function storeToBoard($id, Request $request){
-      //  $id1 = DB::table('users')->select('id')->where('email',$request->bM1)->get();
-      //  get_object_vars($id1);
-      // $id2 = DB::table('users')->where('email',$request->bM2)->select('users.id')->get();
-      // get_object_vars($id2);
-// ->join('acceptances', 'acceptances.supervisorID','=','users.id')
-
       $data = DB::table('acceptances')->where('id',$id)->update([
         'bMember1'=> $request->bM1, 
         'bMember2'=>$request->bM2,
@@ -280,11 +354,10 @@ class StudentController extends Controller
         'bMId2'=>$request->bMId2
       ]);
 
-      //  if(DB::table('users')->where(function ($query){
-      //    $query->where('email',$request->bM1)->where('id',$request->bMId1);
-      //  })){
-
-      //  }
+      $dat = DB::table('marks')->where('id',$id)->update([
+        'bMId1'=>$request->bMId1,
+        'bMId2'=>$request->bMId2
+      ]);
 
       return redirect()->route('student.acceptedStudent');
     }
@@ -298,20 +371,70 @@ class StudentController extends Controller
         'rRId2'=>$request->rRId2
       ]);
 
+      $dat = DB::table('marks')->where('id',$id)->update([
+        'rRId1'=>$request->rRId1,
+        'rRId2'=>$request->rRId2
+      ]);
+
       return redirect()->route('student.acceptedStudent');
     }
       
-          
-          public function marks($id)
-          {
-                return view('backend.subpage.marks',['id'=>$id]);
-          }
+    // Supervisor Marks
+    public function marks($id){
+      return view('backend.subpage.marks',['id'=>$id]);
+    }
 
-          public function storeMarks($id,Request $request)
-          {
+    // Board Member Marks / Presentation Marks
+    public function marksB($id){
+      return view('backend.subpage.marksB',['id'=>$id]);
+    }
 
-                //return redirect()->route('student.acceptedStudent');
-                return redirect( url()->previous());
-          }
+    // Report Marks
+    public function marksR($id){
+      return view('backend.subpage.marksR',['id'=>$id]);
+    }
+
+    // Storing Supervisor Marks
+    public function storeMarks($id,Request $request){
+      if(DB::table('marks')->where('supervisorID', Session('id'))){
+        $data = DB::table('marks')->where('id', $id)->update([
+          'sM'=>$request->sMark
+        ]);
+      }
+      return redirect()->route('student.acceptedStudent');
+    }
+
+     // Storing Board Member Marks / Presentation Marks
+    public function storeMarksB($id,Request $request){
+      if(DB::table('marks')->where('bMId1', Session('id'))->count()== 1){
+        $data = DB::table('marks')->where('id', $id)->update([
+          'bM1'=>$request->pMark
+        ]);
+      }
+
+      else if(DB::table('marks')->where('bMId2', Session('id'))->count()== 1){
+          $data = DB::table('marks')->where('id', $id)->update([
+            'bM2'=>$request->pMark
+          ]);
+        }
+     
+      return redirect()->route('student.allowedForBoard');
+    }
+
+     // Storing Report Marks
+    public function storeMarksR($id,Request $request){
+      if(DB::table('marks')->where('rRId1', Session('id'))->count()== 1){
+        $data = DB::table('marks')->where('id', $id)->update([
+          'rM1'=>$request->rMark
+        ]);
+      }
+
+      else if(DB::table('marks')->where('rRId2', Session('id'))->count()== 1){
+        $data = DB::table('marks')->where('id', $id)->update([
+          'rM2'=>$request->rMark
+        ]);
+      }
+      return redirect()->route('student.assignedForReportReview');
+    }
 }
 

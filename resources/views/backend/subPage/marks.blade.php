@@ -37,14 +37,14 @@
                     Marks
                   </h3>
 
-                  <div class="card-tools">
+                  {{-- <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                       <li class="nav-item">
-                       <a class="btn btn-success float-right btn-sm" href="{{route('supervisorPanel.supervisorList')}}"><i class="fa fa-list">
+                       <a class="btn btn-success float-right btn-sm" href="{{route('student.acceptedStudent')}}"><i class="fa fa-list">
                           Show Students List</i></a>
                       </li>
                     </ul>
-                  </div>
+                  </div> --}}
 
                 </div>
                 
@@ -55,22 +55,11 @@
                       @csrf
                   <div class="card-body">
                         <div class="row">
-
+                   
                         <div class="form-group col-md-4">
                               <label for="exampleInputEmail1">Supervisor Mark</label>
                               <input type="number" name="sMark" class="form-control" id="exampleInputEmail1" placeholder="0-30"min="0" max="30">
-
                         </div>
-
-                        <div class="form-group col-md-4">
-                              <label for="exampleInputEmail1">Report Mark</label>
-                              <input type="number" name="rMark" class="form-control" id="exampleInputEmail1" placeholder="0-30" min="0" max="40">
-                        </div>
-
-                    <div class="form-group col-md-4">
-                      <label for="exampleInputEmail1">Presentation Mark</label>
-                      <input type="number" name="pMark" class="form-control" id="exampleInputEmail1" placeholder="0-40" min="0" max="40">
-                    </div>
 
                   </div>
                   </div>

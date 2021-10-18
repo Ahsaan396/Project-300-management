@@ -16,7 +16,20 @@
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
       </div>
-      
+      <div class="card-heading pr-4 pl-4" id="session">
+                        <div class="Session">
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul style="margin: 0px">
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                
       <!-- /.content-header -->
   
       <!-- Main content -->
@@ -51,13 +64,12 @@
                 <!-- /.card-header -->
 
                 <form action="{{route('supervisorPanel.store')}}" method="POST" id="myForm">
-                      {{-- {{ csrf_field() }} --}}
                       @csrf
                   <div class="card-body">
                         <div class="row">
                         <div class="form-group col-md-6">
                         <label for="exampleInputEmail1">Role</label>
-                        <select class="form-select" name="usertype" aria-label="Default select example">
+                        <select class="form-select" name="usertype" aria-label="Default select example" required>
                               <option selected>Select Role</option>
                               <option value="Admin">Admin</option>
                               <option value="Supervisor">Supervisor</option>
@@ -66,26 +78,31 @@
 
                         <div class="form-group col-md-6">
                               <label for="exampleInputEmail1">Full Name</label>
-                              <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Full Name">
+                              <input type="text" name="name" class="form-control" required id="exampleInputEmail1" placeholder="Full Name">
 
-                              <font style="color:red">{{($errors->has('name'))?($errors->first('name')):''}}</font>
+                             
                         </div>
 
                     <div class="form-group col-md-6">
                       <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      <input type="email" name="email" class="form-control" 
+                      required id="exampleInputEmail1" placeholder="Enter email">
 
-                      <font style="color:red">{{($errors->has('email'))?($errors->first('email')):''}}</font>
+                      
                     </div>
 
                     <div class="form-group col-md-6">
                       <label for="exampleInputPassword1">Password</label>
-                      <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      <input type="password" name="password" class="form-control" 
+                      required id="exampleInputPassword1" placeholder="Password">
+                       
                     </div>
 
                     <div class="form-group col-md-6">
                         <label for="exampleInputPassword1">Confirm Password</label>
-                        <input type="password" name="cpass" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password">
+                        <input type="password" name="cpass" class="form-control"
+                        required id="exampleInputPassword1" placeholder="Confirm Password">
+                         
                       </div>
                   </div>
                   </div>

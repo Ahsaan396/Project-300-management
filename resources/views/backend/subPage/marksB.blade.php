@@ -10,7 +10,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Manage Supervisor</h1>
+              <h1 class="m-0">Manage Marks</h1>
             </div><!-- /.col -->
            <!-- /.col -->
           </div><!-- /.row -->
@@ -33,77 +33,53 @@
                 <div class="card-header">
                   <h3 class="card-title">
                     {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    Supervisor List
+                    <i class="fas fa-user-graduate"></i>
+                    Marks
                   </h3>
 
-                  <div class="card-tools">
+                  {{-- <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                       <li class="nav-item">
-                       <a class="btn btn-success float-right btn-sm" href="{{route('supervisorPanel.register')}}"><i class="fa fa-plus-circle">
-                          Register</i></a>
+                       <a class="btn btn-success float-right btn-sm" href="{{route('student.acceptedStudent')}}"><i class="fa fa-list">
+                          Show Students List</i></a>
                       </li>
                     </ul>
-                  </div>
+                  </div> --}}
+
                 </div>
                 
                 <!-- /.card-header -->
 
-                <div class="card-body">
-                  <div class="tab-content p-0">
-
-                    <!-- List -->
-                    <table id="example1" class="table table-bordered table-striped">
-                      <thead>
-
-                        <tr>
-                        <th>SL.</th>  
-                        <th>Role</th>  
-                        <th>Name</th>  
-                        <th>Email</th> 
-                        <th>Action</th> 
-                        </tr>
-
-                      </thead>
-
-                      <tbody>
-                        @foreach ($data as $key => $user)
-
-                        <tr>
-                          <td>{{$key + 1}}</td>
-                          <td>{{$user->usertype}}</td>
-                          <td>{{$user->name}}</td>
-                          <td>{{$user->email}}</td>
-                          <td>
-                            <a title="Edit" class="btn btn-sm btn-primary" href="{{route('supervisorPanel.editSupervisor',$user->id)}}"><i class="fa fa-edit"></i></a>
-
-                            <a onclick="return confirm('Are you sure to delete')" title="Delete" class="btn btn-sm btn-danger" href="{{route('supervisorPanel.deleteSupervisor',$user->id)}}"><i class="fa fa-trash"></i></a>
-
-                            <a title="Add Board Member" class="btn btn-sm btn-success" href="{{route('supervisorPanel.addBoardMember',$user->id)}}"><i class="fa fa-plus"></i></a>
-                          </td>
-
-                          </td>
-                        </tr>
-
-                        @endforeach
-
-                      </tbody>
-
-                    </table>
-
+                <form action="{{route('student.storeMarksB',$id)}}"method="POST" id="myForm">
+                      {{-- {{ csrf_field() }} --}}
+                      @csrf
+                  <div class="card-body">
+                        <div class="row">
+                              <div class="form-group col-md-4">
+                                    <label for="exampleInputEmail1">Presentation Mark</label>
+                                    <input type="number" name="pMark" class="form-control" id="exampleInputEmail1" placeholder="0-40" min="0" max="40">
+                              </div> 
+                  </div>
+                  </div>
+                  <!-- /.card-body -->
+  
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                  </div>
+                </form>
 
                     <div class="chart tab-pane active" id="revenue-chart"
                          style="position: relative; height: 300px;">
-                        <canvas id="revenue-chart-canvas" height="300" style="height: 300px;">hey</canvas>
+                        <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
                      </div>
                      
                     <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
                       <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
                     </div>
                   </div>
-                </div><!-- /.card-body -->
+                </div>
+                <!-- /.card-body -->
               </div>
-              <!-- /.card -->
               <!-- /.card -->
             </section>
 
