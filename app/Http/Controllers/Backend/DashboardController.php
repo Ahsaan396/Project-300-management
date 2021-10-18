@@ -12,30 +12,24 @@ class DashboardController extends Controller
 {
       public function dashboard()
       {
-            if(DB::table('users')->where(function($query){
-                  $query->where('id', Session('id'))
-                  ->where('usertype','Admin');
-            })->count() == 1)
+            if(auth()->user()->usertype=='Admin')
             {
-                  $pData = DB::table('users')->where('id', Session('id'))->get();
+                  $pData = DB::table('users')->where('id', auth()->user()->id)->get();
                   $sData = DB::table('students')->count();
                   $supData = DB::table('users')->count();
       
                   return view('frontend.layouts.dashboard',['pData'=>$pData,'sData'=>$sData,'supData'=>$supData]);
             }
 
-            else if(DB::table('users')->where(function($query){
-                  $query->where('id', Session('id'))
-                  ->where('usertype','Supervisor');
-            })->count() == 1)
+            else if(auth()->user()->usertype=='Supervisor')
             {
-                  $pData = DB::table('users')->where('id', Session('id'))->get();
-                  $sData = DB::table('students')->where('supervisorID', Session('id'))->count();
+                  $pData = DB::table('users')->where('id', auth()->user()->id)->get();
+                  $sData = DB::table('students')->where('supervisorID', auth()->user()->id)->count();
                   $aSData = DB::table('acceptances')->where('acceptance','Accepted')->count();
 
-                  $bSData = DB::table('acceptances')->where('bMID1', Session('id'))->orWhere('bMID2', Session('id'))->count();
+                  $bSData = DB::table('acceptances')->where('bMID1', auth()->user()->id)->orWhere('bMID2', Session('id'))->count();
 
-                  $rSData = DB::table('acceptances')->where('rRID1', Session('id'))->orWhere('rRID2', Session('id'))->count();
+                  $rSData = DB::table('acceptances')->where('rRID1', auth()->user()->id)->orWhere('rRID2', auth()->user()->id)->count();
       
                   return view('frontend.layouts.dashboard',['pData'=>$pData,'sData'=>$sData,'aSData'=>$aSData, 'bSData'=>$bSData, 'rSData'=>$rSData]);
             }
