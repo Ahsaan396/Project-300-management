@@ -30,20 +30,14 @@
               <!-- Custom tabs (Charts with tabs)-->
               <div class="card">
                 <div class="card-header">
-                  @if(DB::table('users')->where(function($query){
-                    $query->where('id', Session('id'))
-                    ->where('usertype','Admin');
-                  })->count() == 1)
+                  @if(auth()->user()->usertype=='Admin')
 
                   <h3 class="card-title">
                     <i class="fas fa-chart-pie mr-1"></i>
                     Admin Activity
                   </h3>
 
-                  @elseif(DB::table('users')->where(function($query){
-                    $query->where('id', Session('id'))
-                    ->where('usertype','Supervisor');
-                  })->count() == 1)
+                  @elseif(auth()->user()->usertype=='Supervisor')
 
                   <h3 class="card-title">
                     <i class="fas fa-chart-pie mr-1"></i>
@@ -56,10 +50,7 @@
                 <div class="card-body">
                   <div class="tab-content p-0">
 
-                @if(DB::table('users')->where(function($query){
-                  $query->where('id', Session('id'))
-                  ->where('usertype','Admin');
-                })->count() == 1)
+                @if(auth()->user()->usertype=='Admin')
 
                 @foreach ($pData as $key => $user)
 
@@ -74,10 +65,7 @@
 
 
 
-                @elseif(DB::table('users')->where(function($query){
-                  $query->where('id', Session('id'))
-                  ->where('usertype','Supervisor');
-                })->count() == 1)
+                @elseif(auth()->user()->usertype=='Supervisor')
 
                 @foreach ($pData as $key => $user)
 

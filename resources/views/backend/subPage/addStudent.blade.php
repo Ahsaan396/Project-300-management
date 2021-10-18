@@ -86,7 +86,7 @@
                                 </div>
     
                                 <div class="form-group col-md-6">
-                                  <label for="exampleInputEmail1">Member Batch_1</label>
+                                  <label for="exampleInputEmail1">Member Batch_2</label>
                                   <input type="text" name="batch2" class="form-control" id="exampleInputEmail1" placeholder="Member Batch_2">
                                 </div>
     

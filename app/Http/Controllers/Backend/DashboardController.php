@@ -25,9 +25,9 @@ class DashboardController extends Controller
             {
                   $pData = DB::table('users')->where('id', auth()->user()->id)->get();
                   $sData = DB::table('students')->where('supervisorID', auth()->user()->id)->count();
-                  $aSData = DB::table('acceptances')->where('acceptance','Accepted')->count();
+                  $aSData = DB::table('acceptances')->where('acceptance','Accepted')->where('supervisorID',auth()->user()->id)->count();
 
-                  $bSData = DB::table('acceptances')->where('bMID1', auth()->user()->id)->orWhere('bMID2', Session('id'))->count();
+                  $bSData = DB::table('acceptances')->where('bMID1', auth()->user()->id)->orWhere('bMID2',auth()->user()->id )->count();
 
                   $rSData = DB::table('acceptances')->where('rRID1', auth()->user()->id)->orWhere('rRID2', auth()->user()->id)->count();
       

@@ -7,7 +7,7 @@ use App\Models\Student;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Contracts\Session\Session;
+//use Illuminate\Contracts\Session\Session;
 
 class StudentController extends Controller
 {
@@ -104,7 +104,7 @@ class StudentController extends Controller
       $dat = DB::table('marks')->
       insert([
       'id'=>$id,
-      'supervisorID'=>Session('id')
+      'supervisorID'=>auth()->user()->id
     ]);
     } 
    
@@ -396,7 +396,7 @@ $dat = DB::table('marks')->where('id',$id)
 
     // Storing Supervisor Marks
     public function storeMarks($id,Request $request){
-      if(DB::table('marks')->where('supervisorID', Session('id'))){
+      if(DB::table('marks')->where('supervisorID', auth()->user()->id)){
         $data = DB::table('marks')->where('id', $id)->update([
           'sM'=>$request->sMark
         ]);
@@ -406,13 +406,13 @@ $dat = DB::table('marks')->where('id',$id)
 
      // Storing Board Member Marks / Presentation Marks
     public function storeMarksB($id,Request $request){
-      if(DB::table('marks')->where('bMId1', Session('id'))->count()== 1){
+      if(DB::table('marks')->where('bMId1', auth()->user()->id)->count()== 1){
         $data = DB::table('marks')->where('id', $id)->update([
           'bM1'=>$request->pMark
         ]);
       }
 
-      else if(DB::table('marks')->where('bMId2', Session('id'))->count()== 1){
+      else if(DB::table('marks')->where('bMId2', auth()->user()->id)->count()== 1){
           $data = DB::table('marks')->where('id', $id)->update([
             'bM2'=>$request->pMark
           ]);
@@ -423,13 +423,13 @@ $dat = DB::table('marks')->where('id',$id)
 
      // Storing Report Marks
     public function storeMarksR($id,Request $request){
-      if(DB::table('marks')->where('rRId1', Session('id'))->count()== 1){
+      if(DB::table('marks')->where('rRId1', auth()->user()->id)->count()== 1){
         $data = DB::table('marks')->where('id', $id)->update([
           'rM1'=>$request->rMark
         ]);
       }
 
-      else if(DB::table('marks')->where('rRId2', Session('id'))->count()== 1){
+      else if(DB::table('marks')->where('rRId2', auth()->user()->id)->count()== 1){
         $data = DB::table('marks')->where('id', $id)->update([
           'rM2'=>$request->rMark
         ]);

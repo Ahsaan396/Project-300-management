@@ -14,12 +14,7 @@ use Illuminate\Support\Facades\Validator;
 class SupervisorController extends Controller
 {
     public function supervisorList(){
-    if(DB::table('users')->where(function ($query)
-    {
-            $query->where('id',Session('id'))
-            ->where('usertype','Admin');
-    }
-        )->count() == 1){
+    if(auth()->user()->usertype=='Admin'){
         $data = DB::table('users')->get();
         return view('backend.supervisorList',['data'=>$data]);
     }
@@ -32,11 +27,7 @@ class SupervisorController extends Controller
 
     public function register()
     {
-    if(DB::table('users')->where(function ($query)
-        {
-         $query->where('id',Session('id'))
-        ->where('usertype','Admin');
-        })->count() == 1)
+    if(auth()->user()->usertype=='Admin')
     {
         return view('backend.subPage.register');
     }
@@ -94,11 +85,7 @@ class SupervisorController extends Controller
 
     public function boardMemberList(){
 
-        if(DB::table('users')->where(function ($query)
-    {
-              $query->where('id',Session('id'))
-            ->where('usertype','Admin');
-          })->count() == 1){
+        if(auth()->user()->usertype=='Admin'){
         $data = DB::table('users')->where('bMember','Board Member')->get();
         return view('backend.boardMemberList',['data'=>$data]);
     }

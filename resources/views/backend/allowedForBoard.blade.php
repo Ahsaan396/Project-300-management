@@ -63,11 +63,7 @@
                         <th>Member 2</th>   
                         <th>Batch</th>  
                         <th>Project Name</th>  
-                        @if(DB::table('users')->where(function ($query)
-                        {
-                        $query->where('id',Session('id'))
-                        ->where('usertype','Admin');
-                        })->count() == 1)
+                        @if(auth()->user()->usertype=='Admin')
                         <th>Board Members</th>  
                         {{-- <th>Report Reviwers</th>  --}}
                         @endif  
@@ -86,11 +82,7 @@
                           <td>{{$user->name2}}<br>{{$user->student_id2}}</td>
                           <td>{{$user->batch1}}<br>{{$user->batch2}}</td>
                           <td>{{$user->pname}}</td>
-                          @if(DB::table('users')->where(function ($query)
-                        {
-                        $query->where('id',Session('id'))
-                        ->where('usertype','Admin');
-                        })->count() == 1)
+                          @if(auth()->user()->usertype=='Admin')
                           <td>{{$user->bMember1}}<br>{{$user->bMember2}}</td>
                           {{-- <td>{{$user->rReviewer1}}<br>{{$user->rReviewer2}}</td> --}}
                           @endif

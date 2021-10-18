@@ -83,11 +83,7 @@
                           <td>
                             <a title="Mark" class="btn btn-sm btn-primary" href="{{route('student.marks',$user->id)}}"><i class="fas fa-sign-out-alt"></i></a>
 
-                          @if(DB::table('users')->where(function ($query)
-                          {
-                            $query->where('id',Session('id'))
-                            ->where('usertype','Admin');
-                          })->count() == 1)
+                          @if(auth()->user()->usertype=='Admin')
                             <a title="Add To Board" class="btn btn-sm btn-success" href="{{route('student.addToBoard',$user->id)}}"><i class="fas fa-plus"></i></a>
 
                             <a title="Add Report Reviewer" class="btn btn-sm btn-warning" href="{{route('student.addReportReviewer',$user->id)}}"><i class="fas fa-plus"></i></a>
