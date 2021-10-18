@@ -139,7 +139,7 @@ margin-left: 4px;
           <!-- Validation Errors -->
           {{-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
                 
-			<form method="POST" action="{{ route('login') }}" >
+			<form method="POST" action="{{ route('login.store') }}" >
                     @csrf
 
 			  {{-- @if($errors->any())

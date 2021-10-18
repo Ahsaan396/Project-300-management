@@ -95,7 +95,3 @@ Route::prefix('student')->group(function(){
 Route::get('/dashboard', [DashboardController::class,'dashboard'])->name('dashboard');
 
 require __DIR__.'/auth.php';
-
-
-
-

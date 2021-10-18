@@ -354,3 +354,4 @@ class StudentController extends Controller
                 return redirect( url()->previous());
           }
 }
+
