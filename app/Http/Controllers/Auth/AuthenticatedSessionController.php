@@ -38,29 +38,41 @@ class AuthenticatedSessionController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:5'
         ]);
+
         if($validator->fails()){
-            //return Redirect::back()->withErrors($validator);
+            return Redirect::back()->withErrors($validator);
         }
-        $user_info = User::where(function ($query) use ($request){
-            $query->where(['email' => $request->input('email')]);
-        })->first();
-        if($user_info){
-            if(Hash::check($request->input('password'),$user_info->password)){
-                $credential=$request->only('email','password');
-                $request->session()->put('id',$user_info->id);
-                $request->session()->put('name',$user_info->name);
-                $request->session()->put('usertype',$user_info->usertype);
+        $credentials=['email'=>$request->email,'password'=>$request->password];
+        if (Auth::attempt($credentials)) {
+       
+            $request->session()->regenerate();
+            return redirect('dashboard');
+        }
+        else{
+            
+            return redirect()->back()->with('email', 'Credentials not match');
+        }
+        // $user_info = User::where(function ($query) use ($request){
+        //     $query->where(['email' => $request->input('email')]);
+        // })->first();
+        // if($user_info){
+        //     if(Hash::check($request->input('password'),$user_info->password)){
+        //         $credential=$request->only('email','password');
+        //         $request->session()->put('id',$user_info->id);
+        //         $request->session()->put('name',$user_info->name);
+        //         $request->session()->put('usertype',$user_info->usertype);
               
-                return redirect('dashboard');
-              }
-              else{
-                // return view('auth/login')->with('msg','credentials not matching');
-                   return  Redirect::back()->withErrors('Credintials not matching');
-                //return redirect()->back()->with('status', 'Cred not match');
+        //         return redirect('dashboard');
+        //       }
+            //   else{
+            //       dd("hello");
+            //     // return view('auth/login')->with('msg','credentials not matching');
+            //        return  Redirect::back()->withErrors('Credintials not matching');
+            //     
                 
 
-            }
-        }
+            // }
+        //}
     
         // $credentials = $request->getCredentials();
         // $user = Auth::getProvider()->retrieveByCredentials($credentials);

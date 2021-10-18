@@ -3,11 +3,7 @@
       <!-- Brand Logo -->
       <a href="{{route('dashboard')}}" class="brand-link">
         <img src="{{asset('frontend/dist/img/AdminLTELogo.png')}}" class="brand-image img-circle elevation-3" style="opacity: .8">
-        @if (DB::table('users')->where(function ($query)
-        {
-          $query->where('id',Session('id'))
-        ->where('usertype','Admin');
-      })->count() == 1)
+        @if (auth()->user()->usertype=='Admin')
         <span class="brand-text font-weight-light">Admin Panel</span>
         
         @else
@@ -27,7 +23,7 @@
           </div> --}}
   
           <div class="info">
-            <a href="#" class="d-block">{{ Session('name') }}</a>
+            <a href="#" class="d-block">{{ auth()->user()->name }}</a>
           </div>
         </div>
 
@@ -38,11 +34,7 @@
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
            
-                @if (DB::table('users')->where(function ($query)
-                {
-                  $query->where('id',Session('id'))
-                ->where('usertype','Admin');
-              })->count() == 1)
+                @if (auth()->user()->usertype=='Admin')
 
                 <li class="nav-item">
                   <a href="#" class="nav-link">
