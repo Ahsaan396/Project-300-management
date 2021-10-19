@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::get('/logout',[AuthenticatedSessionController::class,'logout'])->name('logout');
 
-Route::prefix('supervisorPanel')->group(function(){
+Route::prefix('supervisorPanel')->middleware(['auth'])->group(function(){
     Route::get('/supervisorList', [SupervisorController::class,'supervisorList'])->name('supervisorPanel.supervisorList');
 
     Route::get('/register', [SupervisorController::class,'register'])->name('supervisorPanel.register');
@@ -100,7 +100,7 @@ Route::prefix('student')->group(function(){
 //     return view('frontend.layouts.dashboard');
 // })->name('dashboard');
 
-Route::get('/dashboard', [DashboardController::class,'dashboard'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class,'dashboard'])->name('dashboard')->middleware('auth');
 // Route::get('/dashboard', [DashboardController::class,'dashData'])->name('dashboard');
 
 require __DIR__.'/auth.php';

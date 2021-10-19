@@ -228,10 +228,17 @@ $dat = DB::table('marks')->where('id',$id)
 
    // Delete Student from students & acceptances table
   public function deleteStudent($id){
+    
+    if($id){
     $data = DB::table('students')->where('id',$id)->delete();
     $data = DB::table('acceptances')->where('id',$id)->delete();
     $data = DB::table('marks')->where('id',$id)->delete();
     return redirect()->route('student.studentList');
+    }
+    else
+    {
+      return redirect( url()->previous());
+    }
 }
 
 
@@ -406,13 +413,13 @@ $dat = DB::table('marks')->where('id',$id)
 
      // Storing Board Member Marks / Presentation Marks
     public function storeMarksB($id,Request $request){
-      if(DB::table('marks')->where('bMId1', auth()->user()->id)->count()== 1){
+      if(DB::table('marks')->where('bMId1', auth()->user()->id)->count()>0){
         $data = DB::table('marks')->where('id', $id)->update([
           'bM1'=>$request->pMark
         ]);
       }
 
-      else if(DB::table('marks')->where('bMId2', auth()->user()->id)->count()== 1){
+      else if(DB::table('marks')->where('bMId2', auth()->user()->id)->count()>0){
           $data = DB::table('marks')->where('id', $id)->update([
             'bM2'=>$request->pMark
           ]);
@@ -423,13 +430,13 @@ $dat = DB::table('marks')->where('id',$id)
 
      // Storing Report Marks
     public function storeMarksR($id,Request $request){
-      if(DB::table('marks')->where('rRId1', auth()->user()->id)->count()== 1){
+      if(DB::table('marks')->where('rRId1', auth()->user()->id)->count()>0){
         $data = DB::table('marks')->where('id', $id)->update([
           'rM1'=>$request->rMark
         ]);
       }
 
-      else if(DB::table('marks')->where('rRId2', auth()->user()->id)->count()== 1){
+      else if(DB::table('marks')->where('rRId2', auth()->user()->id)->count()>0){
         $data = DB::table('marks')->where('id', $id)->update([
           'rM2'=>$request->rMark
         ]);

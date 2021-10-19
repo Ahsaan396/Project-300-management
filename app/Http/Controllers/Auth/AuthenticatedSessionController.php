@@ -123,8 +123,7 @@ class AuthenticatedSessionController extends Controller
     // }
 
     public function logout(Request $request){
-        $request->session()->forget('id');
-        $request->session()->forget('name');
+        Auth::logout();
         return redirect('/');
     }
 }
