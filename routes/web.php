@@ -93,6 +93,8 @@ Route::prefix('student')->group(function(){
     Route::post('/storeMarksB/{id}',[StudentController::class,'storeMarksB'])->name('student.storeMarksB');
     Route::post('/storeMarksR/{id}',[StudentController::class,'storeMarksR'])->name('student.storeMarksR');
 
+    Route::get('/showMarks',[StudentController::class,'showMarks'])->name('student.marksA');
+
 });
 
 
