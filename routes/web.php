@@ -85,15 +85,19 @@ Route::prefix('student')->group(function(){
 
     Route::post('/storeReportReviewer/{id}',[StudentController::class,'storeReportReviewer'])->name('student.storeReportReviewer');
 
-    Route::get('/marks/{id}',[StudentController::class,'marks'])->name('student.marks');
-    Route::get('/marksB/{id}',[StudentController::class,'marksB'])->name('student.marksB');
-    Route::get('/marksR/{id}',[StudentController::class,'marksR'])->name('student.marksR');
 
-    Route::post('/storeMarks/{id}',[StudentController::class,'storeMarks'])->name('student.storeMarks');
-    Route::post('/storeMarksB/{id}',[StudentController::class,'storeMarksB'])->name('student.storeMarksB');
-    Route::post('/storeMarksR/{id}',[StudentController::class,'storeMarksR'])->name('student.storeMarksR');
+    // Using MarksController
 
-    Route::get('/showMarks',[StudentController::class,'showMarks'])->name('student.marksA');
+    Route::get('/marks/{id}',[MarksController::class,'marks'])->name('student.marks');
+    Route::get('/marksB/{id}',[MarksController::class,'marksB'])->name('student.marksB');
+    Route::get('/marksR/{id}',[MarksController::class,'marksR'])->name('student.marksR');
+
+    Route::post('/storeMarks/{id}',[MarksController::class,'storeMarks'])->name('student.storeMarks');
+    Route::post('/storeMarksB/{id}',[MarksController::class,'storeMarksB'])->name('student.storeMarksB');
+    Route::post('/storeMarksR/{id}',[MarksController::class,'storeMarksR'])->name('student.storeMarksR');
+
+    Route::get('/showMarks',[MarksController::class,'showMarks'])->name('student.marksA');
+    Route::get('/showMarks',[MarksController::class,'showMarks'])->name('student.marksA');
 
 });
 
