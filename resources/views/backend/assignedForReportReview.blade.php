@@ -78,9 +78,9 @@
                         
                         <tr>
                           <td>{{$key + 1}}</td>
-                          <td>{{$user->name1}}<br>{{$user->student_id1}}</td>
-                          <td>{{$user->name2}}<br>{{$user->student_id2}}</td>
-                          <td>{{$user->batch1}}<br>{{$user->batch2}}</td>
+                          <td>{{$user->name1}} <br> {{$user->student_id1}}</td>
+                          <td>{{$user->name2}} <br> {{$user->student_id2}}</td>
+                          <td>{{$user->batch1}} <br> {{$user->batch2}}</td>
                           <td>{{$user->pname}}</td>
                         @if(auth()->user()->usertype=='Admin')
                           {{-- <td>{{$user->bMember1}}<br>{{$user->bMember2}}</td> --}}

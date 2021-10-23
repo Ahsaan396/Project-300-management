@@ -68,71 +68,62 @@ class MarksController extends Controller
         return redirect()->route('student.assignedForReportReview');
       }
   
+      // Displaying marks
       public function showMarks(){
+        $arr = [];
+        $arr2 = [];
+
+        $id = DB::table('marks')->select('id')->get();
+        foreach ($id as $i) {
+          $r = $i->id;
+        array_push($arr2,$r);
+         }
+
+         sort($arr2);
+
+        $marks = DB::table('marks')->select('sM', 'bM1', 'bM2', 'rM1', 'rM2')->get();
+        foreach ($marks as $key => $mark) {
+         $result = $mark->sM + (($mark->bM1 + $mark->bM2)/2) + (($mark->rM1 + $mark->rM2)/2);
+         $data = DB::table('marks')->where('id',$arr2[$key])->update(['tot_mark'=>$result]);
+        array_push($arr,$result);
+        }
+
+          //  dd($arr2);
+
+        for ($i=0; $i < count($arr); $i++) { 
+          if(($arr[$i] >= 40))
+          {
+            $data = DB::table('marks')->where('id',$arr2[$i])->update(['status'=>'Passed']);
+          }
+
+         if($arr[$i] < 40){
+          $data = DB::table('marks')->where('id',$arr2[$i])->update(['status'=>'Failed']);
+          }
+
+        }
+
         if(auth()->user()->usertype=='Admin'){
-        $data = DB::table('marks')->join('students','students.id', '=', 'marks.id')->select('students.student_id1','students.student_id2','marks.sM', 'marks.bM1', 'marks.bM2', 'marks.rM1', 'marks.rM2','marks.id')
+        $data = DB::table('marks')->join('students','students.id', '=', 'marks.id')->select('students.student_id1','students.student_id2','marks.sM', 'marks.bM1', 'marks.bM2', 'marks.rM1', 'marks.rM2','marks.id','marks.status','marks.tot_mark')->orderBy('student_id1')
         ->get();
         }
   
         else if(auth()->user()->usertype=='Supervisor'){
-          $data = DB::table('marks')->join('students','students.id', '=', 'marks.id')->where('marks.supervisorID',auth()->user()->id)->select('students.student_id1','students.student_id2','marks.sM', 'marks.bM1', 'marks.bM2', 'marks.rM1', 'marks.rM2','marks.id')
+          $data = DB::table('marks')->join('students','students.id', '=', 'marks.id')->where('marks.supervisorID',auth()->user()->id)->select('students.student_id1','students.student_id2','marks.sM', 'marks.bM1', 'marks.bM2', 'marks.rM1', 'marks.rM2','marks.id','marks.status','marks.tot_mark')->orderBy('student_id1')
           ->get();
         }
-
-        // $sM =  DB::table('marks')->select('sM')->first();
-        // $bM1 = DB::table('marks')->select('bM1')->first();
-        // $bM2 = DB::table('marks')->select('bM2')->first();
-        // $rM1 = DB::table('marks')->select('rM1')->first();
-        // $rM2 = DB::table('marks')->select('rM2')->first();
-        
-        // $result = $sM + (($bM1+$bM2)/2) + (($rM1+$rM2)/2);
-        // // dd($result);
-
-        $arr = [];
-        $status = "";
-
-        $marks = DB::table('marks')->select('sM', 'bM1', 'bM2', 'rM1', 'rM2')->get();
-        foreach ($marks as $mark) {
-         $result = $mark->sM + (($mark->bM1 + $mark->bM2)/2) + (($mark->rM1 + $mark->rM2)/2);
-        array_push($arr,$result);
-        }
-
-        for ($i=0; $i < count($arr); $i++) { 
-          if($arr[$i] >= 40)
-          {
-            $status.= "Passed ";
-          }
-         if($arr[$i] < 40){
-          $status.= "Failed ";
-          }
-        }
-        $status = substr($status,0,-1);
-        $arr2 = str_word_count($status,1);
-        
-        // dd($status);
-        // dd($arr2);
-        return view('backend.marksA',['data'=>$data,'status'=>$arr2]);
+        return view('backend.marksA',['data'=>$data]);
       }
 
-      public function passOrFail(){
-          $sM =DB::table('marks')->get(['sM']);
-          $bM1 =DB::table('marks')->get(['bM1']);
-          $bM2 =DB::table('marks')->get(['bM2']);
-          $rM1 =DB::table('marks')->get(['rM1']);
-          $rM2 =DB::table('marks')->get(['rM2']);
-          
-          $result = $sM + (($bM1+$bM2)/2) + (($rM1+$rM2)/2);
-          dd($result);
+      public function removeM($id){
+        $data = DB::table('marks')->where('id', $id)
+        ->update([
+          'sM'=>'0',
+          'bM1'=>'0',
+          'bM2'=>'0',
+          'rM1'=>'0',
+          'rM2'=>'0',
+        ]);
+        return redirect( url()->previous());
       }
 
-      public function result($sM, $bM1, $bM2, $rM1, $rM2){
-        // $sM =DB::table('marks')->get(['sM']);
-        // $bM1 =DB::table('marks')->get(['bM1']);
-        // $bM2 =DB::table('marks')->get(['bM2']);
-        // $rM1 =DB::table('marks')->get(['rM1']);
-        // $rM2 =DB::table('marks')->get(['rM2']);
-
-
-        
-      }
 }

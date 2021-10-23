@@ -65,15 +65,16 @@
                         
                         <tr>
                           <td>{{$key + 1}}</td>
-                          <td>{{$user->student_id1}}<br>{{$user->student_id2}}</td>
+                          <td>{{$user->student_id1}} <br> {{$user->student_id2}}</td>
                           <td>{{$user->sM}}</td>
                           <td>{{($user->bM1 + $user->bM2)/2}}</td>
                           <td>{{($user->rM1 + $user->rM2)/2}}</td>
-                          <td>{{(($user->bM1 + $user->bM2)/2)+(($user->rM1 + $user->rM2)/2)+$user->sM}}</td>
-                          <td>{{$status[$key]}}</td>
+                          {{-- <td>{{(($user->bM1 + $user->bM2)/2)+(($user->rM1 + $user->rM2)/2)+$user->sM}}</td> --}}
+                          <td>{{$user->tot_mark}}</td>
+                          <td>{{$user->status}}</td>
                           <td>
                             <a title="Remove" class="btn btn-sm btn-danger" 
-                            href = "{{route('student.remove',$user->id)}}"><i class="fa fa-remove"></i></i></a>
+                            href = "{{route('student.removeM',$user->id)}}"><i class="fa fa-remove"></i></i></a>
                           </td>
 
                         </tr>
