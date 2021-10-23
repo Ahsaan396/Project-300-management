@@ -97,7 +97,7 @@ Route::prefix('student')->group(function(){
     Route::post('/storeMarksR/{id}',[MarksController::class,'storeMarksR'])->name('student.storeMarksR');
 
     Route::get('/showMarks',[MarksController::class,'showMarks'])->name('student.marksA');
-    Route::get('/showMarks',[MarksController::class,'showMarks'])->name('student.marksA');
+    // Route::get('/showMarks',[MarksController::class,'showMarks'])->name('student.marksA');
 
 });
 

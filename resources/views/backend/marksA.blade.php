@@ -53,10 +53,9 @@
                         <th>Supervisor Marks</th>   
                         <th>Presentation Marks</th>  
                         <th>Reports Marks</th>  
-                        <th>Total Marks</th>  
-                        {{-- <th>Status</th> --}}
+                        <th>Total Marks</th> 
+                        <th>Status</th> 
                         <th>Action</th>
-                        
                         </tr>
 
                       </thead>
@@ -71,12 +70,7 @@
                           <td>{{($user->bM1 + $user->bM2)/2}}</td>
                           <td>{{($user->rM1 + $user->rM2)/2}}</td>
                           <td>{{(($user->bM1 + $user->bM2)/2)+(($user->rM1 + $user->rM2)/2)+$user->sM}}</td>
-
-                          {{-- @if({{$result >= 40}})
-                          <td>Passed</td>
-                          @else
-                          <td>Failed</td>
-                          @endif   --}}
+                          <td>{{$status[$key]}}</td>
                           <td>
                             <a title="Remove" class="btn btn-sm btn-danger" 
                             href = "{{route('student.remove',$user->id)}}"><i class="fa fa-remove"></i></i></a>
@@ -84,6 +78,7 @@
 
                         </tr>
                         @endforeach
+
 
                       </tbody>
 

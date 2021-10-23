@@ -70,12 +70,12 @@ class MarksController extends Controller
   
       public function showMarks(){
         if(auth()->user()->usertype=='Admin'){
-        $data = DB::table('marks')->join('students','students.id', '=', 'marks.id')->orderBy('student_id1')->select('students.student_id1','students.student_id2','marks.sM', 'marks.bM1', 'marks.bM2', 'marks.rM1', 'marks.rM2','marks.id')
+        $data = DB::table('marks')->join('students','students.id', '=', 'marks.id')->select('students.student_id1','students.student_id2','marks.sM', 'marks.bM1', 'marks.bM2', 'marks.rM1', 'marks.rM2','marks.id')
         ->get();
         }
   
         else if(auth()->user()->usertype=='Supervisor'){
-          $data = DB::table('marks')->join('students','students.id', '=', 'marks.id')->where('marks.supervisorID',auth()->user()->id)->orderBy('student_id1')->select('students.student_id1','students.student_id2','marks.sM', 'marks.bM1', 'marks.bM2', 'marks.rM1', 'marks.rM2','marks.id')
+          $data = DB::table('marks')->join('students','students.id', '=', 'marks.id')->where('marks.supervisorID',auth()->user()->id)->select('students.student_id1','students.student_id2','marks.sM', 'marks.bM1', 'marks.bM2', 'marks.rM1', 'marks.rM2','marks.id')
           ->get();
         }
 
@@ -87,7 +87,31 @@ class MarksController extends Controller
         
         // $result = $sM + (($bM1+$bM2)/2) + (($rM1+$rM2)/2);
         // // dd($result);
-        return view('backend.marks',['data'=>$data]);
+
+        $arr = [];
+        $status = "";
+
+        $marks = DB::table('marks')->select('sM', 'bM1', 'bM2', 'rM1', 'rM2')->get();
+        foreach ($marks as $mark) {
+         $result = $mark->sM + (($mark->bM1 + $mark->bM2)/2) + (($mark->rM1 + $mark->rM2)/2);
+        array_push($arr,$result);
+        }
+
+        for ($i=0; $i < count($arr); $i++) { 
+          if($arr[$i] >= 40)
+          {
+            $status.= "Passed ";
+          }
+         if($arr[$i] < 40){
+          $status.= "Failed ";
+          }
+        }
+        $status = substr($status,0,-1);
+        $arr2 = str_word_count($status,1);
+        
+        // dd($status);
+        // dd($arr2);
+        return view('backend.marksA',['data'=>$data,'status'=>$arr2]);
       }
 
       public function passOrFail(){
@@ -102,10 +126,13 @@ class MarksController extends Controller
       }
 
       public function result($sM, $bM1, $bM2, $rM1, $rM2){
-        $sM =DB::table('marks')->get(['sM']);
-        $bM1 =DB::table('marks')->get(['bM1']);
-        $bM2 =DB::table('marks')->get(['bM2']);
-        $rM1 =DB::table('marks')->get(['rM1']);
-        $rM2 =DB::table('marks')->get(['rM2']);
+        // $sM =DB::table('marks')->get(['sM']);
+        // $bM1 =DB::table('marks')->get(['bM1']);
+        // $bM2 =DB::table('marks')->get(['bM2']);
+        // $rM1 =DB::table('marks')->get(['rM1']);
+        // $rM2 =DB::table('marks')->get(['rM2']);
+
+
+        
       }
 }
