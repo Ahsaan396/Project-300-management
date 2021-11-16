@@ -386,62 +386,6 @@ $dat = DB::table('marks')->where('id',$id)
       return redirect()->route('student.acceptedStudent');
     }
       
-    // Supervisor Marks
-    public function marks($id){
-      return view('backend.subpage.marks',['id'=>$id]);
-    }
-
-    // Board Member Marks / Presentation Marks
-    public function marksB($id){
-      return view('backend.subpage.marksB',['id'=>$id]);
-    }
-
-    // Report Marks
-    public function marksR($id){
-      return view('backend.subpage.marksR',['id'=>$id]);
-    }
-
-    // Storing Supervisor Marks
-    public function storeMarks($id,Request $request){
-      if(DB::table('marks')->where('supervisorID', auth()->user()->id)){
-        $data = DB::table('marks')->where('id', $id)->update([
-          'sM'=>$request->sMark
-        ]);
-      }
-      return redirect()->route('student.acceptedStudent');
-    }
-
-     // Storing Board Member Marks / Presentation Marks
-    public function storeMarksB($id,Request $request){
-      if(DB::table('marks')->where('bMId1', auth()->user()->id)->count()>0){
-        $data = DB::table('marks')->where('id', $id)->update([
-          'bM1'=>$request->pMark
-        ]);
-      }
-
-      else if(DB::table('marks')->where('bMId2', auth()->user()->id)->count()>0){
-          $data = DB::table('marks')->where('id', $id)->update([
-            'bM2'=>$request->pMark
-          ]);
-        }
-    
-      return redirect()->route('student.allowedForBoard');
-    }
-
-     // Storing Report Marks
-    public function storeMarksR($id,Request $request){
-      if(DB::table('marks')->where('rRId1', auth()->user()->id)->count()>0){
-        $data = DB::table('marks')->where('id', $id)->update([
-          'rM1'=>$request->rMark
-        ]);
-      }
-
-      else if(DB::table('marks')->where('rRId2', auth()->user()->id)->count()>0){
-        $data = DB::table('marks')->where('id', $id)->update([
-          'rM2'=>$request->rMark
-        ]);
-      }
-      return redirect()->route('student.assignedForReportReview');
-    }
+   
 }
 

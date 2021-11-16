@@ -10,7 +10,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Manage Accepted Student</h1>
+              <h1 class="m-0">Marks of Accepted Students</h1>
             </div><!-- /.col -->
            <!-- /.col -->
           </div><!-- /.row -->
@@ -33,19 +33,9 @@
                 <div class="card-header">
                   <h3 class="card-title">
                     {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
-                    <i class="fas fa-user-graduate"></i>
-                    Assigned For Report Review
+                    <i class="fas fa-check"></i>
+                    Marks
                   </h3>
-
-                  {{-- <div class="card-tools">
-                    <ul class="nav nav-pills ml-auto">
-                      <li class="nav-item">
-                       <a class="btn btn-success float-right btn-sm" href="{{route('student.addStudent')}}"><i class="fa fa-plus-circle">
-                          Add Student</i></a>
-                      </li>
-                    </ul>
-                  </div> --}}
-
                 </div>
                 
                 <!-- /.card-header -->
@@ -59,16 +49,13 @@
 
                         <tr>
                         <th>SL.</th>  
-                        <th>Member 1</th>  
-                        <th>Member 2</th>   
-                        <th>Batch</th>  
-                        <th>Project Name</th>  
-                        @if(auth()->user()->usertype=='Admin')
-                        {{-- <th>Board Members</th>   --}}
-                        <th>Report Reviwers</th> 
-                        @endif 
+                        <th>Students ID</th>  
+                        <th>Supervisor Marks</th>   
+                        <th>Presentation Marks</th>  
+                        <th>Reports Marks</th>  
+                        <th>Total Marks</th> 
+                        <th>Status</th> 
                         <th>Action</th>
-                        
                         </tr>
 
                       </thead>
@@ -78,23 +65,21 @@
                         
                         <tr>
                           <td>{{$key + 1}}</td>
-                          <td>{{$user->name1}} <br> {{$user->student_id1}}</td>
-                          <td>{{$user->name2}} <br> {{$user->student_id2}}</td>
-                          <td>{{$user->batch1}} <br> {{$user->batch2}}</td>
-                          <td>{{$user->pname}}</td>
-                        @if(auth()->user()->usertype=='Admin')
-                          {{-- <td>{{$user->bMember1}}<br>{{$user->bMember2}}</td> --}}
-                          <td>{{$user->rReviewer1}}<br>{{$user->rReviewer2}}</td>
-                          @endif
+                          <td>{{$user->student_id1}} <br> {{$user->student_id2}}</td>
+                          <td>{{$user->sM}}</td>
+                          <td>{{($user->bM1 + $user->bM2)/2}}</td>
+                          <td>{{($user->rM1 + $user->rM2)/2}}</td>
+                          {{-- <td>{{(($user->bM1 + $user->bM2)/2)+(($user->rM1 + $user->rM2)/2)+$user->sM}}</td> --}}
+                          <td>{{$user->tot_mark}}</td>
+                          <td>{{$user->status}}</td>
                           <td>
-                            <a title="Mark" class="btn btn-sm btn-primary" href="{{route('student.marksR',$user->id)}}"><i class="fas fa-sign-out-alt"></i>
-                           </a>                         
-
-                            <a title="Remove" class="btn btn-sm btn-danger" href="{{route('student.removeR',$user->id)}}"><i class="fa fa-remove"></i></i></a>
+                            <a title="Remove" class="btn btn-sm btn-danger" 
+                            href = "{{route('student.removeM',$user->id)}}"><i class="fa fa-remove"></i></i></a>
                           </td>
-                        
+
                         </tr>
                         @endforeach
+
 
                       </tbody>
 
