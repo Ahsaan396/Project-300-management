@@ -107,7 +107,7 @@ class StudentController extends Controller
       'supervisorID'=>auth()->user()->id
     ]);
     } 
-   
+  
     return redirect( url()->previous());
     }
 
@@ -424,7 +424,7 @@ $dat = DB::table('marks')->where('id',$id)
             'bM2'=>$request->pMark
           ]);
         }
-     
+    
       return redirect()->route('student.allowedForBoard');
     }
 

@@ -40,7 +40,7 @@
                   {{-- <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                       <li class="nav-item">
-                       <a class="btn btn-success float-right btn-sm" href="{{route('student.addStudent')}}"><i class="fa fa-plus-circle">
+                      <a class="btn btn-success float-right btn-sm" href="{{route('student.addStudent')}}"><i class="fa fa-plus-circle">
                           Add Student</i></a>
                       </li>
                     </ul>
@@ -95,10 +95,10 @@
 
 
                     <div class="chart tab-pane active" id="revenue-chart"
-                         style="position: relative; height: 300px;">
+                        style="position: relative; height: 300px;">
                         <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-                     </div>
-                     
+                    </div>
+                    
                     <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
                       <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
                     </div>
