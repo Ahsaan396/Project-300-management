@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Backend\MarksController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Backend\VivaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,8 +98,16 @@ Route::prefix('student')->group(function(){
     Route::post('/storeMarksR/{id}',[MarksController::class,'storeMarksR'])->name('student.storeMarksR');
 
     Route::get('/showMarks',[MarksController::class,'showMarks'])->name('student.marksA');
+    // Route::get('/vivaEntry',[MarksController::class, 'addToViva'])->name('student.marksA');
+
     Route::get('/removeM/{id}',[MarksController::class,'removeM'])->name('student.removeM');
 
+    //  Route::get('/vivaEntry', [VivaController::class, 'addToViva'])->name('student.marksA');
+
+});
+
+Route::prefix('viva')->group(function(){
+    Route::get('/vivaEntry', [VivaController::class, 'addToViva'])->name('viva.allowedForViva');
 });
 
 

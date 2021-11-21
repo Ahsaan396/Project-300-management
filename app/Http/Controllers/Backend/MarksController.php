@@ -93,11 +93,37 @@ class MarksController extends Controller
         for ($i=0; $i < count($arr); $i++) { 
           if(($arr[$i] >= 40))
           {
-            $data = DB::table('marks')->where('id',$arr2[$i])->update(['status'=>'Passed']);
+          $marks = DB::table('marks')->where('id', $arr2[$i])->select('sM', 'bM1', 'bM2', 'rM1', 'rM2')->get();
+
+          foreach($marks as $mark)
+          {
+              // dd($mark->sM);
+            if(($mark->sM < 1) || ($mark->bM1 < 1) || ($mark->bM2 < 1) || ($mark->rM1 < 1) || ($mark->rM2 < 1))
+            {
+                $data = DB::table('marks')->where('id',$arr2[$i])->update(['status'=>'In progress...']);
+            }
+
+            else{
+                $data = DB::table('marks')->where('id',$arr2[$i])->update(['status'=>'Passed']);
+            }
+
+          }
           }
 
          if($arr[$i] < 40){
-          $data = DB::table('marks')->where('id',$arr2[$i])->update(['status'=>'Failed']);
+          $marks = DB::table('marks')->where('id', $arr2[$i])->select('sM', 'bM1', 'bM2', 'rM1', 'rM2')->get();
+
+          foreach($marks as $mark)
+          {
+            // dd($mark->sM);
+            if(($mark->sM < 1) || ($mark->bM1 < 1) || ($mark->bM2 < 1) || ($mark->rM1 < 1) || ($mark->rM2 < 1))
+            {
+              $data = DB::table('marks')->where('id',$arr2[$i])->update(['status'=>'In progress...']);
+            }
+            else{
+              $data = DB::table('marks')->where('id',$arr2[$i])->update(['status'=>'Failed']);
+            }
+          }
           }
 
         }
@@ -125,5 +151,4 @@ class MarksController extends Controller
         ]);
         return redirect( url()->previous());
       }
-
 }

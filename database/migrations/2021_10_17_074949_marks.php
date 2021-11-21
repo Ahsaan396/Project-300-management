@@ -25,6 +25,8 @@ class Marks extends Migration
             $table->bigInteger('bM2')->nullable();
             $table->bigInteger('rM1')->nullable();
             $table->bigInteger('rM2')->nullable();
+            $table->bigInteger('tot_mark')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
