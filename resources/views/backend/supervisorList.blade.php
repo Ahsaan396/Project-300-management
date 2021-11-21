@@ -69,7 +69,7 @@
                       <tbody>
                         @foreach ($data as $key => $user)
 
-                        <tr>
+                        <tr id="user{{$user->id}}">
                           <td>{{$key + 1}}</td>
                           <td>{{$user->usertype}}</td>
                           <td>{{$user->name}}</td>
@@ -77,7 +77,7 @@
                           <td>
                             <a title="Edit" class="btn btn-sm btn-primary" href="{{route('supervisorPanel.editSupervisor',$user->id)}}"><i class="fa fa-edit"></i></a>
 
-                            <a onclick="return confirm('Are you sure to delete')" title="Delete" class="btn btn-sm btn-danger" href="{{route('supervisorPanel.deleteSupervisor',$user->id)}}"><i class="fa fa-trash"></i></a>
+                            <a href="javascript:void(0)" title="Delete"  class="btn btn-sm btn-danger" onclick="deleteSupervisor({{$user->id}})"><i class="fa fa-trash"></i></a>
 
                             <a title="Add Board Member" class="btn btn-sm btn-success" href="{{route('supervisorPanel.addBoardMember',$user->id)}}"><i class="fa fa-plus"></i></a>
                           </td>
@@ -119,6 +119,24 @@
       </section>
       <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->  
+  <!-- /.content-wrapper -->
+  <script>
+    function deleteSupervisor(id)
+    {
+      if(confirm("Do you want to delete?"))
+      {
+        $.ajax({
+          url:'/supervisorPanel/deleteSupervisor/'+id,
+          data:{
+            _token:$("input[name=_token]").val()
+          },
+          success:function(response)
+          {
+            $("#user"+id).remove()
+          }
+        });
+      }
+    }
+  </script>  
 
  @endsection

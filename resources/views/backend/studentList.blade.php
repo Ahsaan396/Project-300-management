@@ -3,8 +3,8 @@
 
 <div class="wrapper">
 
-   <!-- Content Wrapper. Contains page content -->
- <div class="content-wrapper">
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <div class="content-header">
         <div class="container-fluid">
@@ -12,7 +12,7 @@
             <div class="col-sm-6">
               <h1 class="m-0">Manage Student</h1>
             </div><!-- /.col -->
-           <!-- /.col -->
+          <!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
       </div>
@@ -40,7 +40,7 @@
                   <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                       <li class="nav-item">
-                       <a class="btn btn-success float-right btn-sm" href="{{route('student.addStudent')}}"><i class="fa fa-plus-circle">
+                      <a class="btn btn-success float-right btn-sm" href="{{route('student.addStudent')}}"><i class="fa fa-plus-circle">
                           Add Student</i></a>
                       </li>
                     </ul>
@@ -74,7 +74,7 @@
                       <tbody>
                         @foreach ($data as $key => $user)
                         
-                        <tr>
+                        <tr id="user{{$user->id}}">
                           <td>{{$key + 1}}</td>
                           <td>{{$user->name1}} <br> {{$user->student_id1}}</td>
                           <td>{{$user->name2}} <br> {{$user->student_id2}}</td>
@@ -85,7 +85,7 @@
                           <td>
                             <a title="Edit" class="btn btn-sm btn-primary" href="{{route('student.editStudent',$user->id)}}"><i class="fa fa-edit"></i></a>
 
-                            <a onclick="return confirm('Are you sure to delete')" title="Delete" class="btn btn-sm btn-danger" href="{{route('student.deleteStudent',$user->id)}}"><i class="fa fa-trash"></i></a>
+                            <a href="javascript:void(0)" title="Delete"  class="btn btn-sm btn-danger" onclick="deleteStudent({{$user->id}})"><i class="fa fa-trash"></i></a>
 
                           {{-- </td>
                           <td> --}}
@@ -104,10 +104,10 @@
 
 
                     <div class="chart tab-pane active" id="revenue-chart"
-                         style="position: relative; height: 300px;">
+                        style="position: relative; height: 300px;">
                         <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-                     </div>
-                     
+                    </div>
+                    
                     <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
                       <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
                     </div>
@@ -131,5 +131,23 @@
       <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->  
+  <script>
+    function deleteStudent(id)
+    {
+      if(confirm("Do you want to delete?"))
+      {
+        $.ajax({
+          url:'/student/deleteStudent/'+id,
+          data:{
+            _token:$("input[name=_token]").val()
+          },
+          success:function(response)
+          {
+            $("#user"+id).remove()
+          }
+        });
+      }
+    }
+  </script>  
 
- @endsection
+@endsection
