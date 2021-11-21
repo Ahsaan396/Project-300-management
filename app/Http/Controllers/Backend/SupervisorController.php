@@ -103,7 +103,7 @@ class SupervisorController extends Controller
 
 
 
-     public function remove($id){
+    public function remove($id){
         $data = DB::table('users')->where('id',$id)->update(['bMember'=>'NULL']);
         $data = DB::table('users')->where('id',$id)->update(['rReviewer'=>'NULL']);
         return redirect( url()->previous());

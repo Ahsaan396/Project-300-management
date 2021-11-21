@@ -107,7 +107,7 @@ class StudentController extends Controller
       'supervisorID'=>auth()->user()->id
     ]);
     } 
-   
+  
     return redirect( url()->previous());
     }
 
