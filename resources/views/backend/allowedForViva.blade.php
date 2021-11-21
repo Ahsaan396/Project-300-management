@@ -10,7 +10,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Marks of Accepted Students</h1>
+              <h1 class="m-0">Allowed For Viva</h1>
             </div><!-- /.col -->
            <!-- /.col -->
           </div><!-- /.row -->
@@ -33,8 +33,8 @@
                 <div class="card-header">
                   <h3 class="card-title">
                     {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
-                    <i class="fas fa-check"></i>
-                    Marks
+                    <i class="fas fa-user-graduate"></i>
+                    Student List
                   </h3>
                 </div>
                 
@@ -49,12 +49,10 @@
 
                         <tr>
                         <th>SL.</th>  
-                        <th>Students ID</th>  
-                        <th>Supervisor Marks</th>   
-                        <th>Presentation Marks</th>  
-                        <th>Reports Marks</th>  
-                        <th>Total Marks</th> 
-                        <th>Status</th> 
+                        <th>Member 1</th>   
+                        <th>Member 1</th>   
+                        {{-- <th>Total Marks</th>  --}}
+                        {{-- <th>Status</th>  --}}
                         <th>Action</th>
                         </tr>
 
@@ -65,17 +63,14 @@
                         
                         <tr>
                           <td>{{$key + 1}}</td>
-                          <td>{{$user->student_id1}} <br> {{$user->student_id2}}</td>
-                          <td>{{$user->sM}}</td>
-                          <td>{{($user->bM1 + $user->bM2)/2}}</td>
-                          <td>{{($user->rM1 + $user->rM2)/2}}</td>
-                          {{-- <td>{{(($user->bM1 + $user->bM2)/2)+(($user->rM1 + $user->rM2)/2)+$user->sM}}</td> --}}
-                          <td>{{$user->tot_mark}}</td>
-                          <td>{{$user->status}}</td>
+                          <td>{{$user->name1}} <br> {{$user->student_id1}}</td>
+                          <td>{{$user->name2}} <br> {{$user->student_id2}}</td>
+                          {{-- <td></td>
+                          <td></td> {{route('student.removeM',$user->id)}}--}}
                           <td>
                             <a onclick="return confirm('Are you sure to remove the marks')" title="Remove" class="btn btn-sm btn-danger" 
                             
-                            href = "{{route('student.removeM',$user->id)}}"><i class="fa fa-remove"></i></i></a>
+                            href = ""><i class="fa fa-remove"></i></i></a>
                           </td>
 
                         </tr>
