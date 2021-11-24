@@ -4,15 +4,18 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Student;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
+// use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Validator;
 
-//use Illuminate\Validation\Validator;
+// use Illuminate\Validation\Validator;
 
 class SupervisorController extends Controller
 {
+    // Providing supervisor list
     public function supervisorList(){
     if(auth()->user()->usertype=='Admin'){
         $data = DB::table('users')->get();
@@ -25,6 +28,7 @@ class SupervisorController extends Controller
 
     }
 
+    // Redirecting to registration page
     public function register()
     {
     if(auth()->user()->usertype=='Admin')
@@ -38,30 +42,55 @@ class SupervisorController extends Controller
     
     }
 
+    // Registering supervisor(New user)
     public function store(Request $request)
     {
         
         $this->validate($request,[
-          //  'usertype'=>'required',
-            //'name'=>'required',
-            //'email'=>'required|email|users:unique',
-            'password' => 'required|min:8',
-            'confirm password' => 'same:password|min:8'
+           'usertype'=>'required',
+            'name'=>'required',
+            'email'=>'required|email|unique:users',
+            'password' => 'required|min:6',
+            'confirm password' => 'same:password|min:6'
         ]);
-        if($request->password == $request->cpass){
+      
         $data = DB::table('users')->insert([
             'usertype'=> $request->usertype,
             'name'=> $request->name,
             'email'=> $request->email,
             'password'=> bcrypt($request->password)
         ]);
-        return redirect()->route('supervisorPanel.supervisorList');
-    }
-
-    else{
-       //echo'<script> alert("Passwords do not match")</script>';
+        // return redirect()->route('supervisorPanel.supervisorList');
         return redirect( url()->previous());
     }
+
+     //Redirecting to the change password page
+    public function changePassword(){
+        return view('backend.verify');
+    }
+
+    public function verify(Request $request){
+        if(Auth::attempt(['id'=>auth()->user()->id, 'email'=>$request->email, 'password' => $request->password])){
+            return view('backend.changePassword');
+        }
+        else{
+            return redirect( url()->previous());
+        }
+    }
+
+    public function storePassword(Request $request){
+        //   dd('ok');
+        $this->validate($request,[
+            'password' => 'required|min:6',
+            'confirm password' => 'same:password|min:6'
+         ]);
+       
+        $data = DB::table('users')->where('id', auth()->user()->id)->update([
+            'password'=> bcrypt($request->password)
+        ]);
+        Auth::logout();
+        return redirect()->route('dashboard');
+        
     }
 
     public function editSupervisor($id){
@@ -108,4 +137,5 @@ class SupervisorController extends Controller
         $data = DB::table('users')->where('id',$id)->update(['rReviewer'=>'NULL']);
         return redirect( url()->previous());
     }
+
 }

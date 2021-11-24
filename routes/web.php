@@ -33,6 +33,12 @@ Route::prefix('supervisorPanel')->middleware(['auth'])->group(function(){
 
     Route::post('/store', [SupervisorController::class,'store'])->name('supervisorPanel.store');
 
+    Route::get('/changePassword', [SupervisorController::class,'changePassword'])->name('supervisorPanel.changePassword');
+
+    Route::post('/verify', [SupervisorController::class,'verify'])->name('supervisorPanel.verify');
+
+    Route::post('/storePassword', [SupervisorController::class,'storePassword'])->name('supervisorPanel.storePassword');
+
     Route::get('/editSupervisor/{id}',[SupervisorController::class,'editSupervisor'])->name('supervisorPanel.editSupervisor');
 
     Route::post('/updateSupervisor/{id}',[SupervisorController::class,'updateSupervisor'])->name('supervisorPanel.updateSupervisor');
@@ -98,11 +104,7 @@ Route::prefix('student')->group(function(){
     Route::post('/storeMarksR/{id}',[MarksController::class,'storeMarksR'])->name('student.storeMarksR');
 
     Route::get('/showMarks',[MarksController::class,'showMarks'])->name('student.marksA');
-    // Route::get('/vivaEntry',[MarksController::class, 'addToViva'])->name('student.marksA');
-
     Route::get('/removeM/{id}',[MarksController::class,'removeM'])->name('student.removeM');
-
-    //  Route::get('/vivaEntry', [VivaController::class, 'addToViva'])->name('student.marksA');
 
 });
 

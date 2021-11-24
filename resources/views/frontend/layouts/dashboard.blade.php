@@ -84,6 +84,7 @@
 
               @endif
 
+              <h2><a href="{{route('supervisorPanel.changePassword')}}">Change Password</a></h2>
 
               </div>
               </div>

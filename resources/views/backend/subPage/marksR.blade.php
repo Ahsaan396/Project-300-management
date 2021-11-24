@@ -57,7 +57,7 @@
                         <div class="row">
                         <div class="form-group col-md-4">
                               <label for="exampleInputEmail1">Report Mark</label>
-                              <input type="number" name="rMark" class="form-control" id="exampleInputEmail1" placeholder="0-30" min="0" max="30">
+                              <input type="number" name="rMark" class="form-control" id="exampleInputEmail1" placeholder="1-30" min="1" max="30">
                         </div>
 
                   </div>

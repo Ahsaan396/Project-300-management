@@ -16,7 +16,7 @@
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
       </div>
-      <div class="card-heading pr-4 pl-4" id="session">
+      {{-- <div class="card-heading pr-4 pl-4" id="session">
                         <div class="Session">
                             @if ($errors->any())
                             <div class="alert alert-danger">
@@ -28,7 +28,7 @@
                             </div>
                             @endif
                         </div>
-                    </div>
+                    </div> --}}
                 
       <!-- /.content-header -->
   
@@ -61,48 +61,51 @@
 
                 </div>
                 
-                <!-- /.card-header -->
+                {{-- <!-- /.card-header -->id="myForm" --}}
 
-                <form action="{{route('supervisorPanel.store')}}" method="POST" id="myForm">
+                <form action="{{route('supervisorPanel.store')}}" method="POST" id="quickForm">
                       @csrf
                   <div class="card-body">
                         <div class="row">
                         <div class="form-group col-md-6">
                         <label for="exampleInputEmail1">Role</label>
-                        <select class="form-select" name="usertype" aria-label="Default select example" required>
+                        <select class="form-select" name="usertype" aria-label="Default select example" id="usertype">
                               <option selected>Select Role</option>
                               <option value="Admin">Admin</option>
                               <option value="Supervisor">Supervisor</option>
                         </select>
+                        <font style="color: red">{{($errors->has('usertype'))?($errors->first('usertype')):''}}</font>
                         </div>
 
                         <div class="form-group col-md-6">
                               <label for="exampleInputEmail1">Full Name</label>
-                              <input type="text" name="name" class="form-control" required id="exampleInputEmail1" placeholder="Full Name">
+                              <input type="text" name="name" class="form-control"  id="name" placeholder="Full Name">
 
-                             
+                             <font style="color: red">{{($errors->has('name'))?($errors->first('name')):''}}</font>
                         </div>
 
                     <div class="form-group col-md-6">
                       <label for="exampleInputEmail1">Email address</label>
                       <input type="email" name="email" class="form-control" 
-                      required id="exampleInputEmail1" placeholder="Enter email">
+                      id="email" placeholder="Enter email">
 
+                      <font style="color: red">{{($errors->has('email'))?($errors->first('email')):''}}</font>
                       
                     </div>
 
                     <div class="form-group col-md-6">
                       <label for="exampleInputPassword1">Password</label>
                       <input type="password" name="password" class="form-control" 
-                      required id="exampleInputPassword1" placeholder="Password">
+                       id="password" placeholder="Password">
                        
+                       <font style="color: red">{{($errors->has('password'))?($errors->first('password')):''}}</font>
                     </div>
 
                     <div class="form-group col-md-6">
                         <label for="exampleInputPassword1">Confirm Password</label>
                         <input type="password" name="cpass" class="form-control"
-                        required id="exampleInputPassword1" placeholder="Confirm Password">
-                         
+                         id="cpass" placeholder="Confirm Password">
+                         <font style="color: red">{{($errors->has('confirm password'))?($errors->first('confirm password')):''}}</font>
                       </div>
                   </div>
                   </div>
@@ -141,5 +144,67 @@
       <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->  
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#quickForm').validate({
+        rules: {
+          usertype:{
+            required: true
+          },
+          name:{
+            required: true
+          },
+        
+          email: {
+            required: true,
+            email: true,
+          },
+          password: {
+            required: true,
+            minlength: 6
+          },
+          cpass: {
+            required: true,
+            minlength: 6,
+            equalTo : '#password'
+          },
+          terms: {
+            required: true
+          },
+        },
+        messages: {
+          usertype: {
+            required: "You have to choose a role"
+          },
+
+          name:{
+            required: "Please enter a name"
+          },
+
+          email: {
+            required: "Please enter a email address",
+            email: "Please enter a vaild email address"
+          },
+          password: {
+            required: "Please provide a password",
+            minlength: "Your password must be at least 6 characters long"
+          },
+          terms: "Please accept our terms"
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
+        }
+      });
+    });
+    </script>
 
  @endsection
