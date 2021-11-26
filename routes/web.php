@@ -19,10 +19,7 @@ use App\Http\Controllers\Backend\VivaController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',function(){
-    return view('pages.index');
-});
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('auth.login');
 });
 
