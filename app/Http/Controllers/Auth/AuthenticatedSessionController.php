@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
     {
        $validator =Validator::make($request->all(),[
             'email' => 'required|email',
-            'password' => 'required|min:5'
+            'password' => 'required|min:6'
         ]);
 
         if($validator->fails()){
@@ -52,6 +52,7 @@ class AuthenticatedSessionController extends Controller
             
             return redirect()->back()->with('email', 'Credentials not match');
         }
+        
         // $user_info = User::where(function ($query) use ($request){
         //     $query->where(['email' => $request->input('email')]);
         // })->first();
