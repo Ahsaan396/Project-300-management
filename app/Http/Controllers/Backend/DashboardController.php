@@ -11,7 +11,7 @@ use Auth;
 class DashboardController extends Controller
 {
       public function dashboard()
-      {
+      {     
             if(auth()->user()->usertype=='Admin')
             {
                   $pData = DB::table('users')->where('id', auth()->user()->id)->get();

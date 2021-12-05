@@ -17,6 +17,8 @@
         </div><!-- /.container-fluid -->
       </div>
       
+      {{-- bootstrap card --}}
+      
       <!-- /.content-header -->
   
       <!-- Main content -->
@@ -26,7 +28,7 @@
           <!-- Main row -->
           <div class="row">
             <!-- Left col -->
-            <section class="col-md-12">
+            <section class="col-md-4">
               <!-- Custom tabs (Charts with tabs)-->
               <div class="card">
                 <div class="card-header">
@@ -54,7 +56,7 @@
 
                 @foreach ($pData as $key => $user)
 
-                <h4>Name: {{$user->name}}</h4>
+                <h4>{{$user->name}}</h4>
                 <h5>Role: {{$user->usertype}}</h5>
 
                 @endforeach
@@ -69,7 +71,7 @@
 
                 @foreach ($pData as $key => $user)
 
-                <h4>Name: {{$user->name}}</h4>
+                <h4>{{$user->name}}</h4>
                 <h5>Role: {{$user->usertype}}</h5>
 
                 @endforeach
@@ -84,13 +86,13 @@
 
               @endif
 
-              <h2><a href="{{route('supervisorPanel.changePassword')}}">Change Password</a></h2>
+              <h4><a href="{{route('supervisorPanel.changePassword')}}">Change Password</a></h4>
 
               </div>
               </div>
                 <!-- /.card-header -->
 
-                <div class="card-body">
+                {{-- <div class="card-body">
                   <div class="tab-content p-0">
                     <!-- Morris chart - Sales -->
                     <div class="chart tab-pane active" id="revenue-chart"
@@ -101,7 +103,7 @@
                       <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
                     </div>
                   </div>
-                </div>
+                </div> --}}
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->
