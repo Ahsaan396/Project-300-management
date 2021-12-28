@@ -90,7 +90,7 @@
                             <a title="Mark" class="btn btn-sm btn-primary" href="{{route('student.marksR',$user->id)}}"><i class="fas fa-sign-out-alt"></i>
                            </a>                         
 
-                            <a title="Remove" class="btn btn-sm btn-danger" href="{{route('student.removeR',$user->id)}}"><i class="fa fa-remove"></i></i></a>
+                            <a title="Remove" class="btn btn-sm btn-danger" href="{{route('student.removeR',$user->id)}}"><i class="fa fa-remove"></i></a>
                           </td>
                         
                         </tr>

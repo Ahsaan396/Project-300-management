@@ -385,7 +385,5 @@ $dat = DB::table('marks')->where('id',$id)
 
       return redirect()->route('student.acceptedStudent');
     }
-      
-   
 }
 

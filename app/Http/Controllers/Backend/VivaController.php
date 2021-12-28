@@ -23,6 +23,7 @@ class VivaController extends Controller
             $rid = $i->id;
             array_push($arr, $rid);
         }
+        
         // sort($arr);
 
         // Getting supervisor id from mark table.

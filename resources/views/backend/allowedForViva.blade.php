@@ -68,9 +68,11 @@
                           {{-- <td></td>
                           <td></td> {{route('student.removeM',$user->id)}}--}}
                           <td>
+                            <a title="Mark" class="btn btn-sm btn-primary" href="{{route('student.marksR',$user->id)}}"><i class="fas fa-sign-out-alt"></i>
+                            </a> 
                             <a onclick="return confirm('Are you sure to remove the marks')" title="Remove" class="btn btn-sm btn-danger" 
                             
-                            href = ""><i class="fa fa-remove"></i></i></a>
+                            href = ""><i class="fa fa-remove"></i></a>
                           </td>
 
                         </tr>
