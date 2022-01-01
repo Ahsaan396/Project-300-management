@@ -10,6 +10,14 @@ use App\Models\User;
 use Auth;
 class DashboardController extends Controller
 {
+      public function home()
+      {
+            return view('Backend.home');
+      }
+      public function result()
+      {
+            return view('Backend.result');
+      }
       public function dashboard()
       {     
             if(auth()->user()->usertype=='Admin')
