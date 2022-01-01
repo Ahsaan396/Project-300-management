@@ -12,15 +12,24 @@
 			<li class="nav-item">
 			<a class="nav-link active text-dark" aria-current="page" href="{{route('result')}}">Result</a>
 			</li>
-            <li class="nav-item active">
-				<a class="nav-link text-dark" href="{{route('login')}}">Login</a>
-			    </li>
+           
 			@if(Auth::check())
+      <li class="nav-item active">
+				<a class="nav-link text-dark" href="{{route('dashboard')}}">Admin Panel</a>
+			</li>
 			<li class="nav-item active">
-			  <form action="{{route('logout')}}" method="POST" id="logout-form">
-                          @csrf 
-                          <a href="{{route('logout')}}">Logout</a>
-                     </form>
+			  <div>
+          <form action="{{route('logout')}}" method="POST" id="logout-form">
+                @csrf 
+                <a href="{{route('logout')}}"
+                class="nav-link text-dark">Logout</a>
+           </form>
+          </div>
+			</li>
+
+      @else
+      <li class="nav-item active">
+				<a class="nav-link text-dark" href="{{route('login')}}">Login</a>
 			</li>
 
 			@endif

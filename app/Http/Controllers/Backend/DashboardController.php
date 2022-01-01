@@ -14,10 +14,12 @@ class DashboardController extends Controller
       {
             return view('Backend.home');
       }
+
       public function result()
       {
             return view('Backend.result');
       }
+      
       public function dashboard()
       {     
             if(auth()->user()->usertype=='Admin')

@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <nav class="navbar navbar-expand-lg navbar-warning bg-warning">
 		<div class="container-fluid">
-		  <a class="navbar-brand text-dark" href="#">Project 400 Management System</a>
+		  <a class="navbar-brand text-dark" href="{{route('home')}}">Project 400 Management System</a>
 		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
@@ -13,12 +13,25 @@
 			<li class="nav-item">
 			<a class="nav-link active text-dark" aria-current="page" href="{{route('result')}}">Result</a>
 			</li>
-            <li class="nav-item active">
-				<a class="nav-link text-dark" href="{{route('login')}}">Login</a>
-			    </li>
+
 			@if(Auth::check())
-			<li class="nav-link text-dark">
-                
+      <li class="nav-item active">
+				<a class="nav-link text-dark" href="{{route('dashboard')}}">Admin Panel</a>
+			</li>
+
+      <li class="nav-item active">
+			  <div>
+          <form action="{{route('logout')}}" method="POST" id="logout-form">
+                @csrf 
+                <a href="{{route('logout')}}"
+                class="nav-link text-dark">Logout</a>
+           </form>
+          </div>
+			</li>
+
+      @else
+      <li class="nav-item active">
+				<a class="nav-link text-dark" href="{{route('login')}}">Login</a>
 			</li>
 
 			@endif

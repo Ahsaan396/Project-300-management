@@ -19,12 +19,15 @@ use App\Http\Controllers\Backend\VivaController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', [DashboardController::class,'home'])->name('home');
+
 Route::get('/login', function () {
     return view('auth.login');
 });
 
-Route::get('/', [DashboardController::class,'home'])->name('home');
 Route::get('/result', [DashboardController::class,'result'])->name('result');
+
 Route::get('/logout',[AuthenticatedSessionController::class,'logout'])->name('logout');
 
 Route::prefix('supervisorPanel')->middleware(['auth'])->group(function(){
@@ -119,6 +122,5 @@ Route::prefix('viva')->group(function(){
 // })->name('dashboard');
 
 Route::get('/dashboard', [DashboardController::class,'dashboard'])->name('dashboard')->middleware('auth');
-// Route::get('/dashboard', [DashboardController::class,'dashData'])->name('dashboard');
 
 require __DIR__.'/auth.php';
