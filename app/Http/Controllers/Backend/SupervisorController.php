@@ -130,6 +130,10 @@ class SupervisorController extends Controller
         return redirect( url()->previous());
     }
 
+    public function addToViva($id){
+        $data = DB::table('users')->where('id', $id)->update(['vMember'=>'yes']);
+        return redirect( url()->previous());
+    }
 
 
     public function remove($id){

@@ -80,8 +80,6 @@
                             <a onclick="return confirm('Are you sure to delete')" title="Delete" class="btn btn-sm btn-danger" href="{{route('supervisorPanel.deleteSupervisor',$user->id)}}"><i class="fa fa-trash"></i></a>
 
                             <a title="Add Board Member" class="btn btn-sm btn-success" href="{{route('supervisorPanel.addBoardMember',$user->id)}}"><i class="fa fa-plus"></i></a>
-
-                            <a title="Add to Viva Board" class="btn btn-sm btn-warning" href="{{route('supervisorPanel.addBoardMember',$user->id)}}"><i class="fa fa-plus"></i></a>
                           </td>
 
                           </td>

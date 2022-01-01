@@ -10,7 +10,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Allowed For Viva</h1>
+              <h1 class="m-0">Manage Marks</h1>
             </div><!-- /.col -->
            <!-- /.col -->
           </div><!-- /.row -->
@@ -34,42 +34,40 @@
                   <h3 class="card-title">
                     {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
                     <i class="fas fa-user-graduate"></i>
-                    Student List
+                    Viva Marks
                   </h3>
+
+                  {{-- <div class="card-tools">
+                    <ul class="nav nav-pills ml-auto">
+                      <li class="nav-item">
+                       <a class="btn btn-success float-right btn-sm" href="{{route('student.acceptedStudent')}}"><i class="fa fa-list">
+                          Show Students List</i></a>
+                      </li>
+                    </ul>
+                  </div> --}}
+
                 </div>
                 
                 <!-- /.card-header -->
 
-                <div class="card-body">
-                  <div class="tab-content p-0">
+                <form action="{{route('student.storeMarksR',$id)}}"method="POST" id="myForm">
+                      {{-- {{ csrf_field() }} --}}
+                      @csrf
+                  <div class="card-body">
+                        <div class="row">
+                        <div class="form-group col-md-4">
+                              <label for="exampleInputEmail1">Viva Mark</label>
+                              <input type="number" name="vMark" class="form-control" id="exampleInputEmail1" placeholder="0-100" min="0" max="100">
+                        </div>
 
-                    <!-- List -->
-                    <table id="example1" class="table table-bordered table-striped">
-                      <thead>
-
-                        <tr>
-                        <th>SL.</th>  
-                        <th>Member 1</th>   
-                        <th>Member 2</th>   
-                        </tr>
-
-                      </thead>
-
-                      <tbody>
-                        @foreach ($data as $key => $user)
-                        
-                        <tr>
-                          <td>{{$key + 1}}</td>
-                          <td>{{$user->name1}} <br> {{$user->student_id1}}</td>
-                          <td>{{$user->name2}} <br> {{$user->student_id2}}</td>
-                        </tr>
-                        @endforeach
-
-
-                      </tbody>
-
-                    </table>
-
+                  </div>
+                  </div>
+                  <!-- /.card-body -->
+  
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                  </div>
+                </form>
 
                     <div class="chart tab-pane active" id="revenue-chart"
                          style="position: relative; height: 300px;">
@@ -80,9 +78,9 @@
                       <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
                     </div>
                   </div>
-                </div><!-- /.card-body -->
+                </div>
+                <!-- /.card-body -->
               </div>
-              <!-- /.card -->
               <!-- /.card -->
             </section>
 

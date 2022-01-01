@@ -49,6 +49,8 @@ Route::prefix('supervisorPanel')->middleware(['auth'])->group(function(){
 
     Route::get('/addBoardMember/{id}',[SupervisorController::class,'addBoardMember'])->name('supervisorPanel.addBoardMember');
 
+    Route::get('/addToViva/{id}',[SupervisorController::class,'addToViva'])->name('supervisorPanel.addToViva');
+
     Route::get('/remove/{id}',[SupervisorController::class,'remove'])->name('supervisorPanel.remove');
  
 });
@@ -110,6 +112,8 @@ Route::prefix('student')->group(function(){
 
 Route::prefix('viva')->group(function(){
     Route::get('/vivaEntry', [VivaController::class, 'addToViva'])->name('viva.allowedForViva');
+
+    Route::get('/markV/{id}', [VivaController::class, 'markV'])->name('viva.markV');
 });
 
 

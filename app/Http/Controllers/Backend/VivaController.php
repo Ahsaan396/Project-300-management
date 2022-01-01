@@ -59,16 +59,20 @@ class VivaController extends Controller
         }
 
         if(auth()->user()->usertype == 'Admin'){
-            $data = DB::table('vivas')->join('students','students.id', '=', 'vivas.sid')->select('students.name1','students.name2','students.student_id1','students.student_id2')->orderBy('student_id1')
+            $data = DB::table('vivas')->join('students','students.id', '=', 'vivas.sid')->select('students.name1','students.name2','students.student_id1','students.student_id2', 'students.id')->orderBy('student_id1')
             ->get();
             }
       
             else if(auth()->user()->usertype == 'Supervisor'){
-              $data = DB::table('vivas')->join('students','students.id', '=', 'vivas.sid')->where('vivas.supervisorID',auth()->user()->id)->select('students.name1','students.name2','students.student_id1','students.student_id2')->orderBy('student_id1')
+              $data = DB::table('vivas')->join('students','students.id', '=', 'vivas.sid')->join('users','users.id', '=', 'students.supervisorID')->where('users.vMember','yes')->select('students.name1','students.name2','students.student_id1','students.student_id2', 'students.id')->orderBy('student_id1')
               ->get();
             }
             return view('backend.allowedForViva',['data'=>$data]);
     } 
+
+    public function markV($id){
+        return view("backend.subPage.markV", ['id'=>$id]);
+    }
 
     // public function addtodb($id){
     //     altre table vivas col_name dt_typ;
