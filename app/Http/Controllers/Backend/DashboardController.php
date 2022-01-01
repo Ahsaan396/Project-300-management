@@ -17,9 +17,12 @@ class DashboardController extends Controller
 
       public function result()
       {
-            return view('Backend.result');
+        $data = DB::table('marks')->join('students','students.id', '=', 'marks.id')->join('acceptances','acceptances.id', '=', 'marks.id')->select('students.name1','students.name2','students.student_id1','students.student_id2','marks.status','marks.tot_mark', 'acceptances.acceptance')->orderBy('student_id1')
+        ->get();
+       
+            return view('Backend.result', ['data'=>$data]);
       }
-      
+
       public function dashboard()
       {     
             if(auth()->user()->usertype=='Admin')

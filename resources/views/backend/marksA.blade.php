@@ -75,7 +75,7 @@
                           <td>
                             <a onclick="return confirm('Are you sure to remove the marks')" title="Remove" class="btn btn-sm btn-danger" 
                             
-                            href = "{{route('student.removeM',$user->id)}}"><i class="fa fa-remove"></i></i></a>
+                            href = "{{route('student.removeM',$user->id)}}"><i class="fa fa-remove"></i></a>
                           </td>
 
                         </tr>
