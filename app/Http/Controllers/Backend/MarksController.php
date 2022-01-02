@@ -140,15 +140,15 @@ class MarksController extends Controller
         return view('backend.marksA',['data'=>$data]);
       }
 
-      public function removeM($id){
-        $data = DB::table('marks')->where('id', $id)
-        ->update([
-          'sM'=>'0',
-          'bM1'=>'0',
-          'bM2'=>'0',
-          'rM1'=>'0',
-          'rM2'=>'0',
-        ]);
-        return redirect( url()->previous());
-      }
+      // public function removeM($id){
+      //   $data = DB::table('marks')->where('id', $id)
+      //   ->update([
+      //     'sM'=>'0',
+      //     'bM1'=>'0',
+      //     'bM2'=>'0',
+      //     'rM1'=>'0',
+      //     'rM2'=>'0',
+      //   ]);
+      //   return redirect( url()->previous());
+      // }
 }

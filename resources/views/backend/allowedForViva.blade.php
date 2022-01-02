@@ -53,7 +53,7 @@
                         <th>Member 1</th>   
                         {{-- <th>Total Marks</th>  --}}
                         {{-- <th>Status</th>  --}}
-                        <th>Action</th>
+                        {{-- <th>Action</th> --}}
                         </tr>
 
                       </thead>
@@ -65,13 +65,12 @@
                           <td>{{$key + 1}}</td>
                           <td>{{$user->name1}} <br> {{$user->student_id1}}</td>
                           <td>{{$user->name2}} <br> {{$user->student_id2}}</td>
-                          {{-- <td></td>
-                          <td></td> {{route('student.removeM',$user->id)}}--}}
-                          <td>
+
+                          {{-- <td>
                             <a onclick="return confirm('Are you sure to remove the marks')" title="Remove" class="btn btn-sm btn-danger" 
                             
-                            href = ""><i class="fa fa-remove"></i></i></a>
-                          </td>
+                            href = ""><i class="fa fa-remove"></i></a>
+                          </td> --}}
 
                         </tr>
                         @endforeach

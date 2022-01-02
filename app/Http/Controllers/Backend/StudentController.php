@@ -91,6 +91,15 @@ class StudentController extends Controller
         update([
         'acceptance'=>'Accepted',
       ]);
+      // dd(!DB::table('marks')->find($id));
+      if(!DB::table('marks')->find($id)){
+      $dat = DB::table('marks')->
+      insert([
+      'id'=>$id,
+      'supervisorID'=>auth()->user()->id
+    ]);
+  }
+
       }
 
     else {
@@ -128,18 +137,22 @@ class StudentController extends Controller
             'rRId2'=>'0'
           ]);
 
-          $dat = DB::table('marks')->where('id',$id)->
-            update([
-              'bMId1'=>'0',
-              'bMId2'=>'0',
-              'rRId1'=>'0',
-              'rRId2'=>'0',
-              'bM1'=>'0',
-              'bM2'=>'0',
-              'rM1'=>'0',
-              'rM2'=>'0',
-              'sM'=>'0',
-          ]);
+          // $dat = DB::table('marks')->where('id',$id)->
+          //   update([
+          //     'bMId1'=>'0',
+          //     'bMId2'=>'0',
+          //     'rRId1'=>'0',
+          //     'rRId2'=>'0',
+          //     'bM1'=>'0',
+          //     'bM2'=>'0',
+          //     'rM1'=>'0',
+          //     'rM2'=>'0',
+          //     'sM'=>'0',
+          //     ''
+          // ]);
+
+          $data = DB::table('marks')->where('id',$id)->delete();
+
         }
   
       else {

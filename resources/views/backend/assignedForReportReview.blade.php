@@ -83,7 +83,6 @@
                           <td>{{$user->batch1}} <br> {{$user->batch2}}</td>
                           <td>{{$user->pname}}</td>
                         @if(auth()->user()->usertype=='Admin')
-                          {{-- <td>{{$user->bMember1}}<br>{{$user->bMember2}}</td> --}}
                           <td>{{$user->rReviewer1}}<br>{{$user->rReviewer2}}</td>
                           @endif
                           <td>

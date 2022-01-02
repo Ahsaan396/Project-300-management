@@ -180,27 +180,11 @@ margin-left: 4px;
                                         <div>{{ $error }}</div>
                                     </div>
                                 @endforeach
-                    <!-- Remember Me -->
-					<div class="row align-items-center remember">
-
-                        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">Remember Me
-					</div>
 					<div class="form-group">
 						<input type="submit" value="Login" class="btn float-right login_btn">
 					</div>
 				</form>
 			</div>
-
-
-			{{-- <div class="card-footer">
-				<div class="d-flex justify-content-center links">
-					Don't have an account?<a href="{{ route('register') }}">Sign Up</a>
-				</div>
-				<div class="d-flex justify-content-center">
-					<a href="#">Forgot your password?</a>
-				</div>
-			</div> --}}
-
 		</div>
 	</div>
 </div>

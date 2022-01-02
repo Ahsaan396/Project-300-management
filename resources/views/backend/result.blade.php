@@ -66,7 +66,7 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
         <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
-        <a class="nav-link active text-dark" aria-current="page" href="{{route('result')}}">Result</a>
+        <a class="nav-link active text-dark" aria-current="page" href="{{route('result')}}">Status</a>
         </li>
   
         @if(Auth::check())
@@ -110,9 +110,8 @@
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">
-                    {{-- <i class="fas fa-chart-pie mr-1"></i> --}}
-                    <i class="fas fa-check"></i>
-                    Marks
+                    <i class="fas fa-chart-pie mr-1"></i>
+                    Status
                   </h3>
                 </div>
                 
@@ -129,7 +128,6 @@
                         <th>SL.</th>  
                         <th>Member 1</th>  
                         <th>Member 2</th>  
-                        <th>Total Marks</th> 
                         <th>Status</th> 
                         </tr>
 
@@ -142,14 +140,10 @@
                           <td>{{$key + 1}}</td>
                           <td>{{$user->name1}} <br> {{$user->student_id1}}</td>   
                           <td>{{$user->name2}} <br> {{$user->student_id2}}</td>   
-                          <td>{{$user->tot_mark}}</td>
-                          {{-- @if({{$user->acceptance}} == "Accepted") --}}
-                          <td>{{$user->status}}</td>
-
-                          {{-- @endif --}}
+                          <td>{{$statuss[$key]}}</td>
                         </tr>
+                       
                         @endforeach
-
 
                       </tbody>
 

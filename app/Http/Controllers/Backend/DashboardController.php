@@ -17,10 +17,67 @@ class DashboardController extends Controller
 
       public function result()
       {
-        $data = DB::table('marks')->join('students','students.id', '=', 'marks.id')->join('acceptances','acceptances.id', '=', 'marks.id')->select('students.name1','students.name2','students.student_id1','students.student_id2','marks.status','marks.tot_mark', 'acceptances.acceptance')->orderBy('student_id1')
-        ->get();
+        $arr = [];
+        $arr2 = [];
+        $arr3 = [];
+
+        $id = DB::table('students')->select('id')->orderBy('student_id1')->get();
+        foreach ($id as $i) {
+          $r = $i->id;
+        array_push($arr2,$r);
+         }
+
+         sort($arr2);
+
+        $marks = DB::table('marks')->select('status')->get();
+        foreach ($marks as $key => $mark) {
+         $result = $mark->status;
+        array_push($arr,$result);
+        }
+
+        for ($i=0; $i < count($arr); $i++) { 
+          if(($arr[$i] == "Passed"))
+          {
+           $arr[$i] = "Allowed for viva";
+          }
+
+          else if($arr[$i] == "Failed"){
+            $arr[$i] = "Denied for viva";
+          }
+      //     echo $arr[$i]." ";
+          }
+
+          $accps = DB::table('acceptances')->select('acceptance')->get();
+          foreach ($accps as $key => $accp) {
+           $result = $accp->acceptance;
+          array_push($arr3,$result);
+          }
+
+          for ($i=0; $i < count($arr3); $i++) { 
+            if(($arr3[$i] == "Accepted"))
+            {
+             $arr3[$i] = "Allowed for presentation";
+            }
+  
+            else if($arr3[$i] == "Rejected"){
+              $arr3[$i] = "Denied for presentation";
+            }
+            else{
+                  $arr3[$i] = "Enrolled";
+            }
+            }
+
+            $cnt = 0;
+            for ($i=0; $i < count($arr3); $i++) { 
+                  if($arr3[$i] == "Enrolled")
+                  $cnt++;
+            }
+
+            // if($cnt)
+
+        $data = DB::table('students')->select('name1', 'name2', 'student_id1', 'student_id2')->get();
        
-            return view('Backend.result', ['data'=>$data]);
+            return view('Backend.result', ['data'=>$data, 'statuss'=>$arr3]);
       }
 
       public function dashboard()
