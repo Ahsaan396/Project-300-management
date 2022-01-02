@@ -55,7 +55,7 @@
                         <th>Reports Marks</th>  
                         <th>Total Marks</th> 
                         <th>Status</th> 
-                        <th>Action</th>
+                        {{-- <th>Action</th> --}}
                         </tr>
 
                       </thead>
@@ -72,11 +72,11 @@
                           {{-- <td>{{(($user->bM1 + $user->bM2)/2)+(($user->rM1 + $user->rM2)/2)+$user->sM}}</td> --}}
                           <td>{{$user->tot_mark}}</td>
                           <td>{{$user->status}}</td>
-                          <td>
+                          {{-- <td>
                             <a onclick="return confirm('Are you sure to remove the marks')" title="Remove" class="btn btn-sm btn-danger" 
                             
                             href = "{{route('student.removeM',$user->id)}}"><i class="fa fa-remove"></i></a>
-                          </td>
+                          </td> --}}
 
                         </tr>
                         @endforeach

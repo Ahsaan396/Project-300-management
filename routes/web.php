@@ -26,6 +26,7 @@ Route::get('/login', function () {
 });
 
 Route::get('/result', [DashboardController::class,'result'])->name('result');
+Route::get('/rejectList', [DashboardController::class, 'rejectList'])->name('rejectList');
 
 Route::get('/logout',[AuthenticatedSessionController::class,'logout'])->name('logout');
 
