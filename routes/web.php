@@ -21,7 +21,6 @@ use App\Http\Controllers\Backend\VivaController;
 */
 
 Route::get('/', [DashboardController::class,'home'])->name('home');
-
 Route::get('/login', function () {
     return view('auth.login');
 });
