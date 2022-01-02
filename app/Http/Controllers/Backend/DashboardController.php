@@ -20,15 +20,14 @@ class DashboardController extends Controller
         $arr = [];
         $arr2 = [];
         $arr3 = [];
-
-        $id = DB::table('students')->select('id')->orderBy('student_id1')->get();
-        foreach ($id as $i) {
+        
+        $id = DB::table('students')->select('id')->get();
+        foreach ($id as $key => $i) {
           $r = $i->id;
-        array_push($arr2,$r);
+        array_push($arr2,$r); 
          }
 
-         sort($arr2);
-
+      //    sort($arr2);
         $marks = DB::table('marks')->select('status')->get();
         foreach ($marks as $key => $mark) {
          $result = $mark->status;
@@ -44,7 +43,10 @@ class DashboardController extends Controller
           else if($arr[$i] == "Failed"){
             $arr[$i] = "Denied for viva";
           }
-      //     echo $arr[$i]." ";
+          else{
+            $arr[$i] = "In Progress...";
+          }
+
           }
 
           $accps = DB::table('acceptances')->select('acceptance')->get();
@@ -73,11 +75,25 @@ class DashboardController extends Controller
                   $cnt++;
             }
 
-            // if($cnt)
+            
 
         $data = DB::table('students')->select('name1', 'name2', 'student_id1', 'student_id2')->get();
        
-            return view('Backend.result', ['data'=>$data, 'statuss'=>$arr3]);
+        if($cnt == 0){
+            $data = DB::table('marks')->join('students','students.id', '=', 'marks.id')->select('students.name1','students.name2','students.student_id1','students.student_id2')->get();
+            return view('backend.result', ['data'=>$data, 'status'=>$arr]);
+      }
+
+      else{
+            return view('backend.result', ['data'=>$data, 'status'=>$arr3]);
+      }
+
+      }
+
+      public function rejectList(){
+            $reject = DB::table('acceptances')->join('students','students.id', '=', 'acceptances.id')->where('acceptance', 'Rejected')->select('students.name1','students.name2','students.student_id1','students.student_id2')->get();
+            
+            return view('backend.subPage.rejectList', ['data'=>$reject]);
       }
 
       public function dashboard()

@@ -110,19 +110,20 @@
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">
-                    <i class="fas fa-chart-pie mr-1"></i>
-                    Status
+                  <i class="fas fa-user-graduate"></i>
+                    Rejected Student List
                   </h3>
 
                   <div class="card-tools">
-                    <ul class="nav nav-pills ml-auto">
-                      <li class="nav-item">
-                      <a class="btn btn-dark float-right btn-sm" href="{{route('rejectList')}}">
-                        <i class="fas fa-user-graduate"></i>
-                          Rejected Student List</i></a>
-                      </li>
-                    </ul>
-                  </div>
+                        <ul class="nav nav-pills ml-auto">
+                          <li class="nav-item">
+                          <a class="btn btn-success float-right btn-sm" href="{{route('result')}}">
+                              <i class="fas fa-user-graduate"></i>
+                              Status</i></a>
+                          </li>
+                        </ul>
+                      </div>
+
                 </div>
                 
                 <!-- /.card-header -->
@@ -137,8 +138,7 @@
                         <tr>
                         <th>SL.</th>  
                         <th>Member 1</th>  
-                        <th>Member 2</th>  
-                        <th>Status</th> 
+                        <th>Member 2</th>
                         </tr>
 
                       </thead>
@@ -150,7 +150,6 @@
                           <td>{{$key + 1}}</td>
                           <td>{{$user->name1}} <br> {{$user->student_id1}}</td>   
                           <td>{{$user->name2}} <br> {{$user->student_id2}}</td>   
-                          <td>{{$status[$key]}}</td>
                         </tr>
                        
                         @endforeach
