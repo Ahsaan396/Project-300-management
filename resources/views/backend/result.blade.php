@@ -52,7 +52,7 @@
 <!-- jQuery -->
 <script src="{{asset('frontend/plugins/jquery/jquery.min.js')}}"></script>
 
-    <title>Result</title>
+    <title>Status</title>
   </head>
   <body>
 

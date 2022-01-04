@@ -26,8 +26,12 @@ class DashboardController extends Controller
           $r = $i->id;
         array_push($arr2,$r); 
          }
+     sort($arr2);
+      //    for ($i=0; $i < count($arr2); $i++) { 
+      //          echo $arr2[$i]. " ";
+      //    }
 
-      //    sort($arr2);
+     
         $marks = DB::table('marks')->select('status')->get();
         foreach ($marks as $key => $mark) {
          $result = $mark->status;
@@ -43,7 +47,7 @@ class DashboardController extends Controller
           else if($arr[$i] == "Failed"){
             $arr[$i] = "Denied for viva";
           }
-          else{
+          else if($arr[$i] == "In Progress..."){
             $arr[$i] = "In Progress...";
           }
 
